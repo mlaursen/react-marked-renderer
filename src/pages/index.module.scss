@@ -27,7 +27,7 @@
 
   @include rmd-divider-theme(background-color);
   position: absolute;
-  left: calc(50% - #{$width * 5});
+  left: calc(50% - #{$width * 0.5});
   top: 0;
   bottom: 0;
   width: $width;

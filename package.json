@@ -8,8 +8,6 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "predeploy": "rm -rf out && next build && next export && touch out/.nojekyll",
-    "deploy": "gh-pages -d out -t",
     "typecheck": "tsc -p tsconfig.check.json",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "next dev",

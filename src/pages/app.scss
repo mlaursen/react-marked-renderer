@@ -1,0 +1,25 @@
+@use "../everything" as *;
+
+@include react-md-utils;
+
+body > div {
+  height: 100%;
+}
+
+.auto-theme {
+  @media (prefers-color-scheme: dark) {
+    @include rmd-theme-dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    @include rmd-theme-light;
+  }
+}
+
+.light-theme {
+  @include rmd-theme-light;
+}
+
+#{$rmd-theme-dark-class} {
+  @include rmd-theme-dark;
+}

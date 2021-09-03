@@ -1,0 +1,34 @@
+@use "../everything" as *;
+
+.offset1 {
+  @include rmd-app-bar-offset($height-type: dense-height);
+}
+
+.offset2 {
+  @include rmd-app-bar-offset($height-type: prominent-dense-height);
+}
+
+.tabs {
+  flex-shrink: 1;
+}
+
+.grid {
+  height: 100%;
+}
+
+.scrollable {
+  @include rmd-utils-scroll;
+
+  height: 100%;
+}
+
+.separator {
+  $width: 0.25rem;
+
+  @include rmd-divider-theme(background-color);
+  position: absolute;
+  left: calc(50% - #{$width * 5});
+  top: 0;
+  bottom: 0;
+  width: $width;
+}

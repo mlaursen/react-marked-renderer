@@ -57,7 +57,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -120,6 +120,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
+
+"@juggle/resize-observer@^3.3.0":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
+  integrity sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==
 
 "@microsoft/tsdoc-config@0.15.2":
   version "0.15.2"
@@ -244,6 +249,467 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@react-md/alert@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/alert/-/alert-3.0.1.tgz#45e7f785d7db19a58d0c89c5afa34fbcf3a59311"
+  integrity sha512-DGVbMcJMgJHo9eiXRxcHPSJwqvjy6ouIzv01CRANIxdmAerNnEoI8mGqZbJkIAr8VZadAfCUxxdZqPyBXF9uBQ==
+  dependencies:
+    "@react-md/button" "^3.0.1"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/portal" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/app-bar@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/app-bar/-/app-bar-3.0.1.tgz#c5216ef10a15139ae66ed2e6e49486721e6919ab"
+  integrity sha512-UoHHqaqdw0e9/0mH1B7RjyZKjy+8qtTEBkaDR35arF0WbE0sSvoY/2d4ZYe/TzRlqU4SWcoFah9nL0e3tVI54A==
+  dependencies:
+    "@react-md/button" "^3.0.1"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/autocomplete@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/autocomplete/-/autocomplete-3.0.1.tgz#f6788d67fed112fab761a8a6b98fe6a5e1935705"
+  integrity sha512-sz6MFARA7G5I6LLEGT4t9bMmMAwJLE4ZFkA+tP3IIVQxxbs+C2pAc+uhZUyj87e/T16Qp9V5eXdgaMxOLrfAUw==
+  dependencies:
+    "@react-md/form" "^3.0.1"
+    "@react-md/list" "^3.0.1"
+    "@react-md/portal" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/avatar@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/avatar/-/avatar-3.0.0.tgz#d0e256cd6577fd35701a9a51158af9022015b2c8"
+  integrity sha512-FbVdYM3kUwhVJxttzRqqmZiyKhROvZYeKiLedhEG11wD3lEAenlT7Vnwnbvib8V3O7t/I0BFcK1vw4CpMiALyw==
+  dependencies:
+    "@react-md/icon" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/badge@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/badge/-/badge-3.0.1.tgz#2cc7dda01b909e1b675c53bfff9ad11086f04604"
+  integrity sha512-Dhd+9E1pLLwv1KKHiG6Xc+oHFGPjbQ73ZoNqDrl+5GLM3cpUpgh0NKP5IKB2qHg7+qXd8OliF6Gb1GAXiRbYFQ==
+  dependencies:
+    "@react-md/button" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/button@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/button/-/button-3.0.1.tgz#10fba553b5efb52799da7f3fba7dc995000cc743"
+  integrity sha512-AOxU/sJlScFlbRL3RnEBjmzHndWI39qOKHnl7g+ECiTAS8vtNydVEA2czwKHR8UytMos0etGu2pwwedo4wSrLw==
+  dependencies:
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/card@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/card/-/card-3.0.1.tgz#7b03345521baefbc20985200d98d4d067754fd47"
+  integrity sha512-My4gykRPZ1Pk/r3oS1B4nnGieBnSkIJ3G7MHL1LLV9AI+9zveFlikBzS/+w5EGsfVwhbcnvtrYo/DYsWftxOIQ==
+  dependencies:
+    "@react-md/divider" "^3.0.0"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/chip@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/chip/-/chip-3.0.1.tgz#db2277952475bbe2464e3627344782c6972ae3eb"
+  integrity sha512-/Mu74/26ektoismrwR7dTxkks9ZsRsun8YWrodez5KZm9sfzxNEA9GGCWGLJgaUmEkYR/c/QL7TBBjHvCmWYnQ==
+  dependencies:
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/dialog@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/dialog/-/dialog-3.0.1.tgz#75dd7e1cd7156c886d3328581b4ddce70b29ea58"
+  integrity sha512-HlGFHa2Bej5tFPdVbtRwt1QxaIbDYtIaWjriKixitR2ADZkej/c6ER4NzmIZmxmbxK29avVmsOGxG8Rtv1g23Q==
+  dependencies:
+    "@react-md/app-bar" "^3.0.1"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/overlay" "^3.0.1"
+    "@react-md/portal" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/divider@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/divider/-/divider-3.0.0.tgz#8986e77c592a99532133a6ad9d9423c415c6fdff"
+  integrity sha512-J+kjJC6Ea2Unvd56P2PPeHjZm+6JS/DFIU9L38tbKouY1FsgS7SmJjNzheMrP61GBloOaiIZRObFz31BS4pcRQ==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/elevation@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/elevation/-/elevation-3.0.1.tgz#db2c979e289e37efa788f3978db95a23de0f6ca5"
+  integrity sha512-jzk3+0H6vE9XwFK99ZwVzZOum/oaL2IpN+mezT+Xd32Mm7A+jBRvY33KpjVTxapUF1oc9pW6rT80z90sXTG0yg==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+
+"@react-md/expansion-panel@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/expansion-panel/-/expansion-panel-3.0.1.tgz#56d9a4f9c89c0a4abe483f03f7dead91877c451f"
+  integrity sha512-zuKLl0rD803X5BpCKhH+FxojlMi24YafhlpinGPMmiVLC0iNEU4DslNC1WE7rTfplRIY3KF9kLCKUMry02M0eA==
+  dependencies:
+    "@react-md/button" "^3.0.1"
+    "@react-md/card" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/form@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/form/-/form-3.0.1.tgz#7b0688f395581a92bcdce23754f2bba0191ce4d8"
+  integrity sha512-pe4U7DomaeqkFtOaB3a+5C0ZmlaomT4Jwg2K9TjzF58BJNd4PGGveqPxcvLEeKMY6ELb8kWpMlJWgiGU4XlKCQ==
+  dependencies:
+    "@react-md/button" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/list" "^3.0.1"
+    "@react-md/portal" "^3.0.0"
+    "@react-md/progress" "^3.0.1"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/tooltip" "^3.0.1"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    nanoid "^3.1.23"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/icon@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/icon/-/icon-3.0.0.tgz#b5cd2af00a0c7767d1babb6a8a35375a10472623"
+  integrity sha512-KIMZcWUqfQyq9XHK66bX9ZEHH+llKi4e0+5lwU3jYbEYap+7CbysDQ26uetgwoKRmUMCvwyFtFbDq/ILu6L5Rg==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/layout@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/layout/-/layout-3.0.1.tgz#f9cf563a1b128b3415ee4a8af561f6f60d8528f6"
+  integrity sha512-mhwsF1DBXfiBlhOPsaLO1MYKauRd7ivpLvj8d6/CvPPJwo/rt4JHHnYFW0jxG4X08/44qpJ2ecpujAlPgfW/tQ==
+  dependencies:
+    "@react-md/app-bar" "^3.0.1"
+    "@react-md/dialog" "^3.0.1"
+    "@react-md/divider" "^3.0.0"
+    "@react-md/form" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/link" "^3.0.1"
+    "@react-md/list" "^3.0.1"
+    "@react-md/sheet" "^3.0.1"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/tooltip" "^3.0.1"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/tree" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/link@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/link/-/link-3.0.1.tgz#5d567725fc781e001c74b30f037052a26d984719"
+  integrity sha512-q4hVG7tpZLISe00STADodQhKHTjYIS5g+zxWY4MdfPR8+Wwgb4+A31npfjfB54a//daawfwB4HtnaTrzxJMNMQ==
+  dependencies:
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types "^15.6.2"
+
+"@react-md/list@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/list/-/list-3.0.1.tgz#d0ad8fc1ed9fbece5d9c150fd29b555a5fa67b04"
+  integrity sha512-DGGi8ViM7r2xsIycbHn5y7t3ydC2v5KZpeCymdGoBwgkUhcrhZjB+kXmZvUnyNpfrZHXkSP1PAPetYafLcQ08A==
+  dependencies:
+    "@react-md/avatar" "^3.0.0"
+    "@react-md/divider" "^3.0.0"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/material-icons@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/material-icons/-/material-icons-3.0.0.tgz#7aa294c13d6e01df7b623324532cea29f4ed74db"
+  integrity sha512-LVrCBG3DRlw5w09P1FwjO8nrBzRriqdcq9uqUWn7B+k2EoFsZCgKqDqWSHaMrr10cuqQJlwyE/nsG7wWmgfwKg==
+  dependencies:
+    "@react-md/icon" "^3.0.0"
+
+"@react-md/media@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/media/-/media-3.0.0.tgz#35ee67797f8cd7ce8766179e48124965233267d8"
+  integrity sha512-vxK9JjOp+6KcNjdKM5jtlrPpjuKTL7OrsbRhBwbL5D5EEZhpk0UgX0TWNcObma1rI7mOffOI099IXelib8+DSw==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/menu@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/menu/-/menu-3.0.1.tgz#32c4bf4561da7f3b34100c2db5808cb637c2f8c3"
+  integrity sha512-e7CPwLaYFlezGMQpJnM8ujhraSY52LpdgzoqKvRs80SNTCc7RwfoZccMH6cmgH2S2dZM9PMBfOL54Ip9RpWqCA==
+  dependencies:
+    "@react-md/app-bar" "^3.0.1"
+    "@react-md/button" "^3.0.1"
+    "@react-md/divider" "^3.0.0"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/list" "^3.0.1"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/overlay@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/overlay/-/overlay-3.0.1.tgz#c421d6cd07a7961bca016f8bbd0547688e8eefb4"
+  integrity sha512-v/bF/vZf3Tlq4CTsqXBVs4yXuQCs3rzhFX2CLZ5IohzdzHccefsuK/5Cb25X2EFQtNd4Qt/Pq604Ss1gnzCpJQ==
+  dependencies:
+    "@react-md/portal" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/portal@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/portal/-/portal-3.0.0.tgz#ca0c2e13a953f145b4321b74ee1d77f8763eb2e3"
+  integrity sha512-feBDvOByDCul6Vap5TQWK4hyieXwUm5vBPDwH240+BuIRrWSiGqg2ngyNHmqEm44fxwrcffWyW/M1ioNHccMkg==
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/progress@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/progress/-/progress-3.0.1.tgz#a5f251df001196ace464d2cb96d85c0f926efde4"
+  integrity sha512-UrISSRy7ryvSt+1rmZ744k17KAItYMKpwht1UyGEBElbFppNf/JXf1hG5K8jlnlcF9tjpvenLS1WzM0L5Ocy6w==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/sheet@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/sheet/-/sheet-3.0.1.tgz#ffc990d1d90eca94d1e5b2f9740673bc1f26a55a"
+  integrity sha512-T32cWUkiRyzKd/ov9NQ1KStmGogDnzZ8jar9kejlB+ortb7E+0NZZCuX/AosrNlfyJLVARYUzK22RizBkJNSoA==
+  dependencies:
+    "@react-md/dialog" "^3.0.1"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/overlay" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/states@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/states/-/states-3.0.1.tgz#88a341bbb6ec405660fbec30702da6aaf85be213"
+  integrity sha512-2FuKVLuSl20h8BIDMHTt10/zHmJ+Sb0vGeCzrTcSUMK1YRBckUggmUzKDvik313LmeYQ1XQWzO+m6Uu13siuag==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/table@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/table/-/table-3.0.1.tgz#0fcc3a9e529081707fbddcede96b324baa2b0d74"
+  integrity sha512-BppQcsk18KVcjOy22yH5ThlpWpsNMfprPoDW23wW0MLJArZyCedg4Jq9/wS7Mw4igtspwXVbdbggw9Sqk7skZw==
+  dependencies:
+    "@react-md/divider" "^3.0.0"
+    "@react-md/form" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/tabs@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/tabs/-/tabs-3.0.1.tgz#c3880a735c4ad2cbddb092ccb32a146a8437b1cf"
+  integrity sha512-vn/JNFLw0QBywk2hGjaJcKW7H5vzA8q/LKXsIWPjmc/YSjrKRlvWnTcH5AP158F95ezstTInrQB+JlN07QdVOg==
+  dependencies:
+    "@react-md/icon" "^3.0.0"
+    "@react-md/states" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/theme@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/theme/-/theme-3.0.0.tgz#f6fdef28dbd77d26557f16a7f18e8ffbf401f2b7"
+  integrity sha512-pPz0JwGSI7j8sZ6Nk5aTLGgfPe6AppwPOV+yX6JlnPu8DuybJJ/Lw2s2/B9kdq2O3jtAhOat2lNz1AQaWQ827g==
+  dependencies:
+    "@react-md/utils" "^3.0.0"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/tooltip@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/tooltip/-/tooltip-3.0.1.tgz#eda6a052a63f72d5e07f06f2b3befdea19e608b4"
+  integrity sha512-AW+hI8UhF1qXnzBmMAC1mtPgmMj7ZRwUlK4w7Kix7tiw5fujZtiAOo5RX87qzOvF9QZHrAiehTWZoX7HYOD4PQ==
+  dependencies:
+    "@react-md/portal" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/transition@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/transition/-/transition-3.0.1.tgz#acf601102307108786d9a63f99a36644061f78e5"
+  integrity sha512-YFck92E+2fqfNAlsHa7S7xlQgFNitzjx5tj89parbABt2eoc0P5IEi9fo+z4Ki+1LRq/dDYiFRq4ldQI8VlEKw==
+  dependencies:
+    "@react-md/portal" "^3.0.0"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    "@types/react-transition-group" "^4.4.2"
+    classnames "^2.3.1"
+    react-transition-group "^4.4.2"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/tree@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-md/tree/-/tree-3.0.1.tgz#3ba2e67495cf0054146beeb7ad8a938fde417d0b"
+  integrity sha512-HLbRl8t5iOrpvScTXQbHHVXNEcUi8J4jTbfZRaFB2hum4/YgiYYBuIgnqiaC1daHPBIZ98ujFktrZnaHhlSI3w==
+  dependencies:
+    "@react-md/icon" "^3.0.0"
+    "@react-md/list" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/typography@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/typography/-/typography-3.0.0.tgz#ba7700051004bc2d1bded9b3c48cc16efabe5e5c"
+  integrity sha512-i4Kkx2VRmNMaDNXj3pR64au35vnWb0i55NFWPE4zKmE5g1OvJdnQHhskK68uMSXwuINx/DzyS7X9aI4RxIDPwQ==
+  dependencies:
+    "@react-md/theme" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+    classnames "^2.3.1"
+  optionalDependencies:
+    prop-types ">= 15.6"
+
+"@react-md/utils@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-md/utils/-/utils-3.0.0.tgz#a72f64932841de41e584a5d8ba441378140e34ae"
+  integrity sha512-wvZkDXHyQE/iaO+8MytxifbASIB9A2GbjwU4mIXVsRKjWbGdiC51OtoeLJTcf8R/l8iS5So4pRvS3vVmSbNxZg==
+  dependencies:
+    "@juggle/resize-observer" "^3.3.0"
+    classnames "^2.3.1"
+
 "@types/json-schema@^7.0.7":
   version "7.0.9"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
@@ -269,12 +735,24 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/prismjs@^1.16.6":
+  version "1.16.6"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.6.tgz#377054f72f671b36dbe78c517ce2b279d83ecc40"
+  integrity sha512-dTvnamRITNqNkqhlBd235kZl3KfVJQQoT5jkXeiWSBK7i4/TLKBNLV0S1wOt8gy4E2TY722KLtdmv2xc6+Wevg==
+
 "@types/prop-types@*":
   version "15.7.4"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react@^17.0.19":
+"@types/react-transition-group@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.2.tgz#38890fd9db68bf1f2252b99a942998dc7877c5b3"
+  integrity sha512-KibDWL6nshuOJ0fu8ll7QnV/LVTo3PzQ9aCPnRUYPfX7eZohHwLIdNHj7pftanREzHNP4/nJa8oeM73uSiavMQ==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^17.0.19":
   version "17.0.19"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
   integrity sha512-sX1HisdB1/ZESixMTGnMxH9TDe8Sk709734fEQZzCV/4lSu9kJCPbo2PbTRoZM+53Pp0P10hYVyReUueGwUi4A==
@@ -431,7 +909,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-anymatch@~3.1.1:
+anymatch@~3.1.1, anymatch@~3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.2.tgz#c0557c096af32f106198f4f4e2a383537e378716"
   integrity sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==
@@ -546,6 +1024,11 @@ axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
   integrity sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==
+
+babel-plugin-prismjs@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-prismjs/-/babel-plugin-prismjs-2.1.0.tgz#ade627896106326ad04d6d77fba92877618de571"
+  integrity sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -759,6 +1242,21 @@ chokidar@3.5.1:
   optionalDependencies:
     fsevents "~2.3.1"
 
+"chokidar@>=3.0.0 <4.0.0":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
+  integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
+  dependencies:
+    anymatch "~3.1.2"
+    braces "~3.0.2"
+    glob-parent "~5.1.2"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/cipher-base/-/cipher-base-1.0.4.tgz#8760e4ecc272f4c363532f926d874aae2c1397de"
@@ -771,6 +1269,11 @@ classnames@2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -1045,6 +1548,14 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dom-helpers@^5.0.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.1.tgz#d9400536b2bf8225ad98fe052e029451ac40e902"
+  integrity sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+    csstype "^3.0.2"
 
 domain-browser@4.19.0:
   version "4.19.0"
@@ -1508,7 +2019,7 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fsevents@~2.3.1:
+fsevents@~2.3.1, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -1549,7 +2060,7 @@ get-stream@^6.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
-glob-parent@^5.1.2, glob-parent@~5.1.0:
+glob-parent@^5.1.2, glob-parent@~5.1.0, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
   integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
@@ -2703,6 +3214,11 @@ prettier@^2.3.2:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.2.tgz#ef280a05ec253712e486233db5c6f23441e7342d"
   integrity sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==
 
+prismjs@^1.24.1:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.24.1.tgz#c4d7895c4d6500289482fa8936d9cdd192684036"
+  integrity sha512-mNPsedLuk90RVJioIky8ANZEwYm5w9LcvCXrxHlwf4fNVSn8jEipMybMkWUyyF0JhnC+C4VcOVSBuHRKs1L5Ow==
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -2718,7 +3234,7 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-prop-types@^15.7.2:
+"prop-types@>= 15.6", prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -2825,10 +3341,59 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-md@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-md/-/react-md-3.0.1.tgz#74ccda4a5d747ba8f0fa060f2585beaa1eb920b0"
+  integrity sha512-XGStDVTNKPPkEINE6aRTqO7/bbsVlWhEx9Yk1EuneyuLlBoxq/2MyjQcEPPlTQOJAUFoDXerAk1I+PF+QaFmYA==
+  dependencies:
+    "@react-md/alert" "^3.0.1"
+    "@react-md/app-bar" "^3.0.1"
+    "@react-md/autocomplete" "^3.0.1"
+    "@react-md/avatar" "^3.0.0"
+    "@react-md/badge" "^3.0.1"
+    "@react-md/button" "^3.0.1"
+    "@react-md/card" "^3.0.1"
+    "@react-md/chip" "^3.0.1"
+    "@react-md/dialog" "^3.0.1"
+    "@react-md/divider" "^3.0.0"
+    "@react-md/elevation" "^3.0.1"
+    "@react-md/expansion-panel" "^3.0.1"
+    "@react-md/form" "^3.0.1"
+    "@react-md/icon" "^3.0.0"
+    "@react-md/layout" "^3.0.1"
+    "@react-md/link" "^3.0.1"
+    "@react-md/list" "^3.0.1"
+    "@react-md/material-icons" "^3.0.0"
+    "@react-md/media" "^3.0.0"
+    "@react-md/menu" "^3.0.1"
+    "@react-md/overlay" "^3.0.1"
+    "@react-md/portal" "^3.0.0"
+    "@react-md/progress" "^3.0.1"
+    "@react-md/sheet" "^3.0.1"
+    "@react-md/states" "^3.0.1"
+    "@react-md/table" "^3.0.1"
+    "@react-md/tabs" "^3.0.1"
+    "@react-md/theme" "^3.0.0"
+    "@react-md/tooltip" "^3.0.1"
+    "@react-md/transition" "^3.0.1"
+    "@react-md/tree" "^3.0.1"
+    "@react-md/typography" "^3.0.0"
+    "@react-md/utils" "^3.0.0"
+
 react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-transition-group@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
+  integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    dom-helpers "^5.0.1"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
 
 react@^17.0.2:
   version "17.0.2"
@@ -2881,6 +3446,13 @@ readdirp@~3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.5.0.tgz#9ba74c019b15d365278d2e91bb8c48d7b4d42c9e"
   integrity sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
+  dependencies:
+    picomatch "^2.2.1"
+
+readdirp@~3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.6.0.tgz#74a370bd857116e245b29cc97340cd431a02a6c7"
+  integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
 
@@ -2992,6 +3564,13 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+
+sass@^1.39.0:
+  version "1.39.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.39.0.tgz#6c64695d1c437767c8f1a4e471288e831f81d035"
+  integrity sha512-F4o+RhJkNOIG0b6QudYU8c78ZADKZjKDk5cyrf8XTKWfrgbtyVVXImFstJrc+1pkQDCggyidIOytq6gS4gCCZg==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
 
 scheduler@^0.20.2:
   version "0.20.2"

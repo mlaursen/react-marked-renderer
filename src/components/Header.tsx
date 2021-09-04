@@ -21,7 +21,9 @@ export function Header(props: PlaygroundOptionsProps): ReactElement | null {
       <AppBar height="dense">
         <AppBarTitle>React Marked Renderer - Playground</AppBarTitle>
         <a
+          rel="noreferrer"
           href="https://github.com/mlaursen/react-marked-renderer"
+          target="_blank"
           className={useActionClassName({
             first: true,
             inheritColor: true,

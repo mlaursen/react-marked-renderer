@@ -128,9 +128,14 @@ export function PlaygroundOptions({
                 <FormMessage id={customRenderersMessageId}>
                   Updates the markdown preview to no longer use the default
                   renderers and instead use renderers from{" "}
-                  <Link href="https://react-md.dev">react-md</Link>. You can
-                  view the custom renderers{" "}
-                  <Link href="https://github.com/mlaursen/react-marked-renderer/tree/main/src/components/renderers.tsx">
+                  <Link href="https://react-md.dev" target="_blank">
+                    react-md
+                  </Link>
+                  . You can view the custom renderers{" "}
+                  <Link
+                    href="https://github.com/mlaursen/react-marked-renderer/tree/main/src/components/renderers.tsx"
+                    target="_blank"
+                  >
                     here
                   </Link>
                   .

@@ -135,8 +135,11 @@ ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
 
   task: function Task({ defaultChecked, tokens, children }) {
     const id = useSluggedId(`${getTokensText(tokens)}-task`);
+    // add a key so the state updates correctly if someone modifies the markdown
+    // checked state instead of clicking the checkbox. Only useful if the
+    // preview is persistent while updating the markdown.
     return (
-      <li className={styles.task}>
+      <li key={`${defaultChecked}`} className={styles.task}>
         <Checkbox id={id} defaultChecked={defaultChecked} label={children} />
       </li>
     );

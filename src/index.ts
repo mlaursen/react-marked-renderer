@@ -1,12 +1,28 @@
-export { Slugger } from "marked";
+export {
+  default as marked,
+  lexer,
+  Lexer,
+  parse,
+  parseInline,
+  parser,
+  Parser,
+  Slugger,
+  Tokenizer,
+  walkTokens,
+} from "marked";
+export type {
+  MarkedExtension,
+  MarkedOptions,
+  RendererExtension,
+  RendererObject,
+  SluggerOptions,
+  Token,
+  Tokens,
+  TokensList,
+} from "marked";
 
 export * from "./Markdown";
 export * from "./renderers";
 export * from "./types";
-export {
-  DEFAULT_RENDERERS,
-  TokenRenderer,
-  TokensRenderer,
-  useRenderers,
-} from "./useRenderer";
+export * from "./useRenderers";
 export * from "./useSlugger";

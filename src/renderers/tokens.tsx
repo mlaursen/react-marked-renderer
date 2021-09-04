@@ -1,54 +1,6 @@
-// NOTE: The components in this file are here because of one or more of the
-// following:
-// - rely on the useRenderers hook which causes circular import errors
-// - recursively call other renderers
-
 import type { Token } from "marked";
-import { createContext, ReactElement, useContext } from "react";
-
-import {
-  BlockquoteRenderer,
-  BrRenderer,
-  CodeBlockRenderer,
-  CodeSpanRenderer,
-  DelRenderer,
-  EmRenderer,
-  HeadingRenderer,
-  HrRenderer,
-  HtmlRenderer,
-  ImageRenderer,
-  LinkRenderer,
-  ListItemRenderer,
-  ListRenderer,
-  ParagraphRenderer,
-  SpaceRenderer,
-  StrongRenderer,
-  TableRenderer,
-  TagRenderer,
-  TbodyRenderer,
-  TdRenderer,
-  TextRenderer,
-  TheadRenderer,
-  ThRenderer,
-  TrRenderer,
-} from "./renderers";
-import type { Renderers, TaskRendererProps } from "./types";
-import { getTokensText, useSluggedId } from "./useSlugger";
-
-/** @internal */
-function getDepth(depth: number): 1 | 2 | 3 | 4 | 5 | 6 {
-  switch (depth) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-      return depth;
-    default:
-      return 6;
-  }
-}
+import { ReactElement } from "react";
+import { useRenderers } from "../useRenderers";
 
 export interface TokensRendererProps {
   tokens: readonly Token[];
@@ -65,6 +17,21 @@ export function TokensRenderer({ tokens }: TokensRendererProps): ReactElement {
       ))}
     </>
   );
+}
+
+/** @internal */
+function getDepth(depth: number): 1 | 2 | 3 | 4 | 5 | 6 {
+  switch (depth) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      return depth;
+    default:
+      return 6;
+  }
 }
 
 export interface TokenRendererProps {
@@ -257,99 +224,4 @@ export function TokenRenderer({
 
       return null;
   }
-}
-
-/**
- * The default implementation for rendering the {@link Tokens.List} by
- * rendering:
- *
- * ```tsx
- * const id = useSluggedId(`${getTokensText(props.tokens)}-task`);
- * const { listitem: ListItem } = useRenderers();
- *
- * <ListItem {...props}>
- *   <input id={id} type="checkbox" defaultChecked={defaultChecked} />
- *   <label htmlFor={id}>{children}</label>
- * </ListItem>
- * ```
- *
- * @remarks You'll most likely need to implement a custom renderer for this
- * since the default styles aren't very pretty.
- */
-export function TaskRenderer({
-  defaultChecked,
-  children,
-  ...props
-}: TaskRendererProps): ReactElement {
-  const id = useSluggedId(`${getTokensText(props.tokens)}-task`);
-  const { listitem: ListItem } = useRenderers();
-
-  return (
-    <ListItem {...props}>
-      <input id={id} type="checkbox" defaultChecked={defaultChecked} />
-      <label htmlFor={id}>{children}</label>
-    </ListItem>
-  );
-}
-
-/**
- * All of the default renderer implementations.
- */
-export const DEFAULT_RENDERERS: Renderers = {
-  // presentational
-  br: BrRenderer,
-  hr: HrRenderer,
-  space: SpaceRenderer,
-
-  // text-like
-  em: EmRenderer,
-  del: DelRenderer,
-  link: LinkRenderer,
-  text: TextRenderer,
-  strong: StrongRenderer,
-  heading: HeadingRenderer,
-  paragraph: ParagraphRenderer,
-  blockquote: BlockquoteRenderer,
-
-  // code
-  codeblock: CodeBlockRenderer,
-  codespan: CodeSpanRenderer,
-
-  // media-like
-  img: ImageRenderer,
-
-  // lists
-  list: ListRenderer,
-  listitem: ListItemRenderer,
-  task: TaskRenderer,
-
-  // tables
-  table: TableRenderer,
-  thead: TheadRenderer,
-  tbody: TbodyRenderer,
-  tr: TrRenderer,
-  th: ThRenderer,
-  td: TdRenderer,
-
-  // others
-  tag: TagRenderer,
-  html: HtmlRenderer,
-};
-
-const context = createContext<Renderers>(DEFAULT_RENDERERS);
-
-/** @internal */
-export const { Provider: MarkdownRendererProvider } = context;
-context.displayName = "MarkdownRenderer";
-
-/**
- * This hooks is mostly an internal hook for creating some reasonable renderer
- * defaults for the {@link Renderers.list} and {@link Renderers.table}. It is
- * used to get the current implementation for all the renderers that were
- * provided to the {@link Markdown} component.
- *
- * @returns the current renderers
- */
-export function useRenderers(): Renderers {
-  return useContext(context);
 }

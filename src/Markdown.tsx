@@ -1,12 +1,8 @@
-import type { ReactElement } from "react";
 import { getDefaults, lexer, MarkedOptions, Slugger } from "marked";
-
+import type { ReactElement } from "react";
+import { DEFAULT_RENDERERS, TokensRenderer } from "./renderers";
 import type { Renderers } from "./types";
-import {
-  DEFAULT_RENDERERS,
-  MarkdownRendererProvider,
-  TokensRenderer,
-} from "./useRenderer";
+import { MarkdownRendererProvider } from "./useRenderers";
 import { MarkdownSluggerProvider } from "./useSlugger";
 
 export interface MarkdownProps {

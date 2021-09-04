@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { lexer, Slugger } from "marked";
+import { getDefaults, lexer, MarkedOptions, Slugger } from "marked";
 
 import type { Renderers } from "./types";
 import {
@@ -15,6 +15,29 @@ export interface MarkdownProps {
    * and rendered in react components.
    */
   markdown: string;
+
+  /**
+   * Any options to use while parsing the markdown string.
+   *
+   * Note: This will always be called as:
+   *
+   * ```ts
+   * const tokens = lexer(markdown, {
+   *   ...marked.getDefaults(),
+   *   mangle: false,
+   *   ...options,
+   * });
+   * ```
+   *
+   * The default options are always merged with the new options since most of
+   * the time you only want to change a few options instead of all of them.
+   * `marked` does not merge by default, so everything omitted will be set to
+   * `false`.
+   *
+   * In addition, the `mangle` option is set to `false` by default since it
+   * would prevent emails from being displayed correctly.
+   */
+  options?: MarkedOptions;
 
   /**
    * An optional slugger to provide that generates unique ids for different
@@ -138,21 +161,21 @@ export interface MarkdownProps {
  *   // languages
  *   codeblock: function CodeBlock({ lang, text }) {
  *     const highlight = useCallback(
- *       (instance: HTMLPreElement | null) => {
+ *       (instance: HTMLElement ) => {
  *         if (!instance || !text) {
  *           return;
  *         }
  *
  *         highlightElement(instance);
  *       },
- *       [text]
- *       // text is added to the dependency array so that the code will be
- *       // re-highlighted if the text changes. this is only really required if
- *       // creating a "real-time" markdown previewer
+ *       []
  *     );
  *
+ *     // a key is added to the `<pre>` element so that the code will be
+ *     // re-highlighted if the text or language changes. This is only really
+ *     // required if creating a "real-time" markdown previewer
  *     return (
- *       <pre className={`language-${lang}`}>
+ *       <pre key={`${lang}${text}`} className={`language-${lang}`}>
  *         <code ref={highlight}>{text}</code>
  *       </pre>
  *     );
@@ -171,11 +194,16 @@ export interface MarkdownProps {
  * ```
  */
 export function Markdown({
+  options,
   slugger,
   markdown,
   renderers = DEFAULT_RENDERERS,
 }: MarkdownProps): ReactElement {
-  const tokens = lexer(markdown);
+  const tokens = lexer(markdown, {
+    ...getDefaults(),
+    mangle: false,
+    ...options,
+  });
   return (
     <MarkdownRendererProvider
       value={{

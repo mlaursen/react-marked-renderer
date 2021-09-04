@@ -17,14 +17,18 @@ import { useSluggedId } from "../useSlugger";
  * rendering:
  *
  * ```tsx
- * <>{children}</>
+ * <>{children || raw}</>
  * ```
+ *
+ * @remarks This defaults to using `raw` instead of the sanitized `text` because
+ * React already handles the sanitization. If the `text` is used, the generated
+ * text would display html entities instead of the correct string.
  */
 export function TextRenderer({
+  raw,
   children,
-  text,
 }: TextRendererProps): ReactElement {
-  return <>{children || text}</>;
+  return <>{children || raw}</>;
 }
 
 /**

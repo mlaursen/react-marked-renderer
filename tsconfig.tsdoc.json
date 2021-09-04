@@ -5,6 +5,5 @@
     "skipLibCheck": false,
     "isolatedModules": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/pages/**/*", "src/components/**/*", "**/__tests__/**"]
+  "include": ["src"]
 }

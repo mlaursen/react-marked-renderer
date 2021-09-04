@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "prebuild": "node ./typedoc.js",
     "typecheck": "tsc -p tsconfig.check.json",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "start": "next dev",
     "build": "next build"
   },

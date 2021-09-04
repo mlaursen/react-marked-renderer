@@ -3,6 +3,5 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "isolatedModules": false
-  },
-  "include": ["src", "next-env.d.ts", "styles.d.ts"]
+  }
 }

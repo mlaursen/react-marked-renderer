@@ -9,3 +9,9 @@
 body > div {
   height: 100%;
 }
+
+:root {
+  @include rmd-utils-desktop-media {
+    @include rmd-tooltip-dense-theme;
+  }
+}

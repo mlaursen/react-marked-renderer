@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "skipLibCheck": false,
+    "isolatedModules": false
+  },
+  "include": ["src/*.tsx", "src/*.ts"]
+}

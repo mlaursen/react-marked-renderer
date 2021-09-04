@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
+    "prebuild": "typedoc",
     "typecheck": "tsc -p tsconfig.check.json",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "next dev",
@@ -34,6 +35,7 @@
     "react-dom": "^17.0.2",
     "react-md": "^3.0.1",
     "sass": "^1.39.0",
+    "typedoc": "^0.21.9",
     "typescript": "^4.4.2"
   },
   "peerDependencies": {

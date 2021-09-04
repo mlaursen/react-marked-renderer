@@ -20,6 +20,7 @@ node_modules/
 
 # generated output
 /.next
+/public/tsdocs
 /es
 /lib
 /dist

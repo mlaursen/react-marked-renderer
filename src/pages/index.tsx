@@ -151,7 +151,7 @@ export default function Playground(): ReactElement {
   );
 
   const editorProps: MarkdownEditorProps = {
-    placeholder: DEFAULT_VALUE,
+    placeholder: "# Enter some markdown here!",
     defaultValue: DEFAULT_VALUE,
     onChange: (event) => updateMarkdown(event.currentTarget.value, setMarkdown),
   };

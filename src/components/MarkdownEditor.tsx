@@ -24,7 +24,7 @@ export function MarkdownEditor({
 }: MarkdownEditorProps): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState(defaultValue);
-  const lines = value.match(/\r?\n/g)?.length ?? 0 + 1;
+  const lines = value.match(/\r?\n/g)?.length;
 
   return (
     <>
@@ -34,9 +34,12 @@ export function MarkdownEditor({
         })}
         ref={ref}
       >
-        {Array.from({ length: lines }, (_, i) => (
-          <span key={i} className={styles.line} />
-        ))}
+        {Array.from(
+          { length: typeof lines === "number" ? lines + 1 : 1 },
+          (_, i) => (
+            <span key={i} className={styles.line} />
+          )
+        )}
       </div>
       <TextArea
         aria-label="Editor"

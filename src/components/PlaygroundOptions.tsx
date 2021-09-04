@@ -3,7 +3,6 @@ import {
   AppBarAction,
   Button,
   Checkbox,
-  CloseSVGIcon,
   Dialog,
   DialogContent,
   DialogFooter,
@@ -15,9 +14,7 @@ import {
   Grid,
   GridCell,
   Link,
-  ListboxOption,
   ProvidedNumberFieldMessageProps,
-  Select,
   Text,
   TextFieldWithMessage,
 } from "react-md";
@@ -36,16 +33,9 @@ const splitViewMessageId = `${splitViewId}-message`;
 const customRenderersId = `${baseId}-custom-renderers`;
 const customRenderersMessageId = `${customRenderersId}-message`;
 
-export type PlaygroundTheme = "light" | "dark" | "auto";
-const themes: ListboxOption[] = [
-  { label: "Light", value: "light" },
-  { label: "Dark", value: "dark" },
-  { label: "Auto", value: "auto" },
-];
-
 export interface PlaygroundOptionsProps {
-  theme: PlaygroundTheme;
-  setTheme: Dispatch<SetStateAction<PlaygroundTheme>>;
+  darkTheme: boolean;
+  setDarkTheme: Dispatch<SetStateAction<boolean>>;
   intervalProps: ProvidedNumberFieldMessageProps;
   resetUpdateInterval(): void;
   splitView: boolean;
@@ -61,8 +51,8 @@ export function PlaygroundOptions({
   setSplitView,
   customRenderers,
   setCustomRenderers,
-  theme,
-  setTheme,
+  darkTheme,
+  setDarkTheme,
 }: PlaygroundOptionsProps): ReactElement {
   const [visible, setVisible] = useState(false);
   const hide = (): void => setVisible(false);
@@ -77,6 +67,7 @@ export function PlaygroundOptions({
         Options
       </AppBarAction>
       <Dialog
+        modal
         id={dialogId}
         aria-labelledby={titleId}
         visible={visible}
@@ -84,17 +75,15 @@ export function PlaygroundOptions({
       >
         <DialogHeader>
           <DialogTitle id={titleId}>Playground Options</DialogTitle>
-          <AppBarAction onClick={hide} first last>
-            <CloseSVGIcon />
-          </AppBarAction>
         </DialogHeader>
         <DialogContent>
           <Form
             className={styles.form}
             id={formId}
             onReset={(event) => {
+              // prevent default since it causes some weird issues with checkboxes
               event.preventDefault();
-              setTheme("light");
+              setDarkTheme(false);
               setSplitView(true);
               setCustomRenderers(false);
               resetUpdateInterval();
@@ -143,14 +132,13 @@ export function PlaygroundOptions({
               </GridCell>
               <Divider />
               <GridCell>
-                <Select
+                <Checkbox
                   id={themeId}
-                  value={theme}
-                  onChange={(nextTheme) =>
-                    setTheme(nextTheme as PlaygroundTheme)
+                  label="Dark Theme"
+                  checked={darkTheme}
+                  onChange={(event) =>
+                    setDarkTheme(event.currentTarget.checked)
                   }
-                  options={themes}
-                  label="Theme"
                 />
                 <FormMessage id={themeMessageId}>
                   <Text
@@ -177,8 +165,13 @@ export function PlaygroundOptions({
           <Button form={formId} type="reset" theme="secondary">
             Reset
           </Button>
-          <Button form={formId} type="submit" theme="primary">
-            Close
+          <Button
+            form={formId}
+            type="submit"
+            theme="primary"
+            disabled={intervalProps.error}
+          >
+            Apply
           </Button>
         </DialogFooter>
       </Dialog>

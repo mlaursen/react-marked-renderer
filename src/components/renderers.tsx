@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { highlightElement, languages } from "prismjs";
 import cn from "classnames";
 import {
@@ -83,8 +83,6 @@ export const renderers: Partial<Renderers> = {
   },
 
   codeblock: function CodeBlock({ lang = "", text }) {
-    const pre = useRef<HTMLElement | null>(null);
-
     let language = lang || "none";
     if (lang === "markdown") {
       language = "markdown";
@@ -92,21 +90,13 @@ export const renderers: Partial<Renderers> = {
       language = "shell";
     }
     const invalid = !PRISM_LANGUAGES.includes(language);
+
     let message: string | undefined;
     if (invalid) {
       message = `Valid languages are:
 ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
 `;
     }
-
-    const highlight = useCallback((instance: HTMLElement | null) => {
-      if (!instance) {
-        return;
-      }
-
-      pre.current = instance.parentElement;
-      highlightElement(instance);
-    }, []);
 
     return (
       <pre
@@ -116,7 +106,17 @@ ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
           [styles.invalid]: invalid,
         })}
       >
-        <code ref={highlight}>{text}</code>
+        <code
+          ref={useCallback((instance: HTMLElement | null) => {
+            if (!instance) {
+              return;
+            }
+
+            highlightElement(instance);
+          }, [])}
+        >
+          {text}
+        </code>
       </pre>
     );
   },

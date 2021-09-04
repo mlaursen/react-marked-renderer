@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import cn from "classnames";
 import {
   Grid,
   GridCell,
@@ -15,19 +16,12 @@ import {
   throttle,
   useNumberField,
 } from "react-md";
-import cn from "classnames";
 
-import { Header } from "../components/Header";
-import {
-  MarkdownEditor,
-  MarkdownEditorProps,
-} from "../components/MarkdownEditor";
-import {
-  MarkdownPreview,
-  MarkdownPreviewProps,
-} from "../components/MarkdownPreview";
-import { PlaygroundOptionsProps } from "../components/PlaygroundOptions";
-import styles from "./index.module.scss";
+import { Header } from "./Header";
+import { MarkdownEditor, MarkdownEditorProps } from "./MarkdownEditor";
+import { MarkdownPreview, MarkdownPreviewProps } from "./MarkdownPreview";
+import styles from "./Playground.module.scss";
+import { PlaygroundOptionsProps } from "./PlaygroundOptions";
 
 const tabs = ["Editor", "Preview"];
 const DEFAULT_VALUE = `# Heading 1
@@ -120,23 +114,24 @@ export default function Playground(): ReactElement {
     helpText: UPDATE_INTERVAL_HELP_TEXT,
     defaultValue: 0,
     updateOnChange: false,
+    validateOnChange: true,
   });
   const [splitView, setSplitView] = useState(true);
   const [customRenderers, setCustomRenderers] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark" | "auto">("light");
+  const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     const html = document.querySelector("html");
-    if (!html) {
+    if (!html || !darkTheme) {
       return;
     }
 
-    const className = `${theme}-theme`;
+    const className = "dark-theme";
     html.classList.add(className);
     return () => {
       html.classList.remove(className);
     };
-  }, [theme]);
+  }, [darkTheme]);
 
   const [markdown, setMarkdown] = useState(DEFAULT_VALUE);
   const updateMarkdown = useMemo(
@@ -151,8 +146,9 @@ export default function Playground(): ReactElement {
   );
 
   const editorProps: MarkdownEditorProps = {
+    splitView,
     placeholder: "# Enter some markdown here!",
-    defaultValue: DEFAULT_VALUE,
+    defaultValue: markdown,
     onChange: (event) => updateMarkdown(event.currentTarget.value, setMarkdown),
   };
   const previewProps: MarkdownPreviewProps = {
@@ -166,8 +162,8 @@ export default function Playground(): ReactElement {
     setSplitView,
     customRenderers,
     setCustomRenderers,
-    theme,
-    setTheme,
+    darkTheme,
+    setDarkTheme,
   };
 
   return (

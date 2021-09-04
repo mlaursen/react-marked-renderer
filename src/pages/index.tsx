@@ -1,4 +1,3 @@
-import cn from "classnames";
 import React, {
   Dispatch,
   ReactElement,
@@ -16,6 +15,8 @@ import {
   throttle,
   useNumberField,
 } from "react-md";
+import cn from "classnames";
+
 import { Header } from "../components/Header";
 import {
   MarkdownEditor,
@@ -35,23 +36,37 @@ Here is some amazing markdown! It uses the github flavored markdown by default.
 
 ## Heading 2
 
-Create a list:
+Create an unordered list:
 
-  - value 1
-  - value 2
-  - [Link](https://reactjs.org) - and content
+- value 1
+  - value 1-2
+- value 2
+- [Link](https://reactjs.org) - and content
+
+Create an ordered list:
+
+1. Item 1
+2. Item 2
+  - Sub Item
+3. Item 3
+
+Create a task list:
+
+- [ ] Do something
+- [x] Do something else
+- [ ] Do something completely
 
 ### Heading 3
 
-Some additional text.
+> Here's a blockquote.
 
 #### Heading 4
 
-Wowza!
+Combine some *italics* and **bold** text while ~~deleting this text~~.
 
 ##### Heading 5
 
-With a table
+Create a table:
 
 | First Header  | Second Header |
 | ------------- | ------------- |
@@ -60,7 +75,35 @@ With a table
 
 ###### Heading 6
 
-Yahhhh
+Do some code like stuff:
+
+\`\`\`sh
+npm install --save react-marked-renderer
+\`\`\`
+
+or
+
+\`\`\`sh
+yarn add react-marked-renderer
+\`\`\`
+
+Some other languages:
+
+\`\`\`tsx
+/**
+ * The default implementation for rendering the {@link Tokens.List} by
+ * rendering:
+ *
+ * \`\`\`tsx
+ * <li>{children}</li>
+ * \`\`\`
+ */
+export function ListItemRenderer({
+  children,
+}: ListItemRendererProps): ReactElement {
+  return <li>{children}</li>;
+}
+\`\`\`
 `;
 
 const UPDATE_INTERVAL_HELP_TEXT = `
@@ -75,7 +118,7 @@ export default function Playground(): ReactElement {
     min: 0,
     step: 100,
     helpText: UPDATE_INTERVAL_HELP_TEXT,
-    defaultValue: 500,
+    defaultValue: 0,
     updateOnChange: false,
   });
   const [splitView, setSplitView] = useState(true);

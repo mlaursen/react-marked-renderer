@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { SVGIcon } from "react-md";
 
-export function GithubIcon(): ReactElement | null {
+export function GithubIcon(): ReactElement {
   return (
     <SVGIcon viewBox="0 0 16 16">
       <path

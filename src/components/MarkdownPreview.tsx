@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 
 import { Markdown } from "../Markdown";
-
 import styles from "./MarkdownPreview.module.scss";
 import { renderers } from "./renderers";
 

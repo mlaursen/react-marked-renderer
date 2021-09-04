@@ -1,5 +1,6 @@
-import { highlightElement } from "prismjs";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+import { highlightElement, languages } from "prismjs";
+import cn from "classnames";
 import {
   Checkbox,
   Divider,
@@ -16,6 +17,11 @@ import {
 import { Renderers } from "../types";
 import { getTokensText, useSluggedId } from "../useSlugger";
 import styles from "./renderers.module.scss";
+
+const PRISM_LANGUAGES = Object.keys(languages).filter(
+  (name) => name !== "insertBefore" && name !== "extend"
+);
+PRISM_LANGUAGES.push("none");
 
 export const renderers: Partial<Renderers> = {
   hr: function Hr() {
@@ -76,20 +82,40 @@ export const renderers: Partial<Renderers> = {
     );
   },
 
-  codeblock: function CodeBlock({ lang, text }) {
-    const highlight = useCallback(
-      (instance: HTMLPreElement | null) => {
-        if (!instance || !text) {
-          return;
-        }
+  codeblock: function CodeBlock({ lang = "", text }) {
+    const pre = useRef<HTMLElement | null>(null);
 
-        highlightElement(instance);
-      },
-      [text]
-    );
+    let language = lang || "none";
+    if (lang === "markdown") {
+      language = "markdown";
+    } else if (lang === "sh") {
+      language = "shell";
+    }
+    const invalid = !PRISM_LANGUAGES.includes(language);
+    let message: string | undefined;
+    if (invalid) {
+      message = `Valid languages are:
+${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
+`;
+    }
+
+    const highlight = useCallback((instance: HTMLElement | null) => {
+      if (!instance) {
+        return;
+      }
+
+      pre.current = instance.parentElement;
+      highlightElement(instance);
+    }, []);
 
     return (
-      <pre className={`language-${lang}`}>
+      <pre
+        data-languages={message}
+        key={`${text}${lang}`}
+        className={cn(`language-${language}`, {
+          [styles.invalid]: invalid,
+        })}
+      >
         <code ref={highlight}>{text}</code>
       </pre>
     );

@@ -25,3 +25,24 @@
   list-style: none;
   margin-left: -2.5rem;
 }
+
+.invalid {
+  min-height: 15rem;
+  position: relative;
+
+  &::after {
+    @include rmd-theme(color, text-primary-on-dark);
+    @include rmd-utils-scroll;
+
+    background-color: $rmd-black-base;
+    bottom: 0;
+    content: attr(data-languages);
+    display: flex;
+    left: 0;
+    padding: 1rem 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    white-space: pre-line;
+  }
+}

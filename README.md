@@ -15,6 +15,18 @@ Or with [yarn](https://yarnpkg.com)
 yarn add react react-marked-renderer
 ```
 
+## Features
+
+- render almost everything that is available by GitHub flavored markdown out of
+  the box
+  - the only exception is rendering `html` code itself
+- allow custom renderers to implement complex components if desired or custom
+  styles
+- allows code highlighting
+  - allow code language aliases/resolution with `getLanguage`
+  - in the browser with `highlightElement` (can be asynchronous)
+  - in node environments with `highlightCode` (synchronous only)
+
 ## Usage
 
 The main component within this library is the `Markdown` component.
@@ -104,39 +116,18 @@ render(
 );
 ```
 
-### Code Highlighting (PrismJS)
+### PrismJS Code Highlighting (Browser)
 
-Since there are a few different code highlighting libraries, this will need to
-be implemented manually with your library of choice for the `codeblock` and/or
-`codespan` custom renderers.
+To be able to highlight code in the browser, provide a `highlightElement`
+function that will modify a `<code>` element to be highlighted:
 
 ```tsx
 import { render } from "react-dom";
 import { Markdown, Renderers } from "react-marked-renderer";
-import { highlightElement } from "prismjs";
+import Prism from "prismjs";
+// import prism theme/components or use babel-plugin-prismjs
 
 const renderers: Partial<Renderers> = {
-  // Note: You might need to update the `lang` to be one of the known Prism
-  // languages
-  codeblock: function CodeBlock({ lang, text }) {
-    const highlight = useCallback((instance: HTMLElement) => {
-      if (!instance || !text) {
-        return;
-      }
-
-      highlightElement(instance);
-    }, []);
-
-    // a key is added to the `<pre>` element so that the code will be
-    // re-highlighted if the text or language changes. This is only really
-    // required if creating a "real-time" markdown previewer
-    return (
-      <pre key={`${lang}${text}`} className={`language-${lang}`}>
-        <code ref={highlight}>{text}</code>
-      </pre>
-    );
-  },
-
   codespan: function CodeSpan({ children }) {
     // just so it gets some prism styling
     return <code className="language-none">{children}</code>;
@@ -144,7 +135,60 @@ const renderers: Partial<Renderers> = {
 };
 
 render(
-  <Markdown markdown={markdown} renderers={renderers} />,
+  <Markdown
+    markdown={markdown}
+    renderers={renderers}
+    highlightElement={Prism.highlightElement}
+  />,
+  document.getElementById("root")
+);
+```
+
+### PrismJS Code Highlighting (Node and Browser)
+
+If you want to highlight code in a node environment or allow the code to be
+highlighted for SSR and in the browser, provide a `highlightCode` function:
+
+```tsx
+import { render } from "react-dom";
+import {
+  CodeGetCodeLanguage,
+  DangerouslyHighlight,
+  Markdown,
+  Renderers,
+} from "react-marked-renderer";
+import Prism from "prismjs";
+
+const renderers: Partial<Renderers> = {
+  codespan: function CodeSpan({ children }) {
+    // just so it gets some prism styling
+    return <code className="language-none">{children}</code>;
+  },
+};
+
+const getLanguage: GetCodeLanguage = (lang, _rawCode) => {
+  // allow aliases
+  lang = lang === "sh" ? "shell" : lang;
+
+  // if the Prism doesn't support the language, default to nothing instead
+  // of crashing
+  if (!Prism.languages[lang]) {
+    return "";
+  }
+
+  return lang;
+};
+
+const highlightCode: DangerouslyHighlightCode = (code, lang) =>
+  Prism.highlight(code, Prism.languages[lang], lang);
+
+render(
+  <Markdown
+    markdown={markdown}
+    renderers={renderers}
+    getLanguage={getLanguage}
+    highlightCode={highlightCode}
+  />,
   document.getElementById("root")
 );
 ```

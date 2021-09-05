@@ -3,7 +3,8 @@ import { AppBar, AppBarTitle, FunctionsSVGIcon, Tabs } from "react-md";
 
 import { AppBarLink } from "./AppBarLink";
 import { GithubIcon } from "./GithubIcon";
-import { PlaygroundOptions, PlaygroundOptionsProps } from "./PlaygroundOptions";
+import { PlaygroundOptions } from "./PlaygroundOptions";
+import { PlaygroundOptionsProps } from "./useConfig";
 
 export function Header(props: PlaygroundOptionsProps): ReactElement | null {
   const { splitView } = props;

@@ -14,7 +14,6 @@ import {
   TabPanels,
   TabsManager,
   throttle,
-  useNumberField,
 } from "react-md";
 
 import { DEFAULT_MARKDOWN } from "../constants";
@@ -22,30 +21,13 @@ import { Header } from "./Header";
 import { MarkdownEditor, MarkdownEditorProps } from "./MarkdownEditor";
 import { MarkdownPreview, MarkdownPreviewProps } from "./MarkdownPreview";
 import styles from "./Playground.module.scss";
-import { PlaygroundOptionsProps } from "./PlaygroundOptions";
+import { useConfig } from "./useConfig";
 
 const tabs = ["Editor", "Preview"];
 
-const UPDATE_INTERVAL_HELP_TEXT = `
-The amount of time (in ms) before the preview window should be updated. This
-only really needs to be changed if the page becomes unresponsive while
-  making markdown changes.
-`;
-
 export default function Playground(): ReactElement {
-  const [updateInterval, intervalProps, { reset }] = useNumberField({
-    id: "update-interval",
-    min: 0,
-    step: 100,
-    helpText: UPDATE_INTERVAL_HELP_TEXT,
-    defaultValue: 0,
-    updateOnChange: false,
-    validateOnChange: true,
-  });
-  const [splitView, setSplitView] = useState(true);
-  const [customRenderers, setCustomRenderers] = useState(false);
-  const [darkTheme, setDarkTheme] = useState(false);
-
+  const { darkTheme, splitView, customRenderers, updateInterval, headerProps } =
+    useConfig();
   useEffect(() => {
     const html = document.querySelector("html");
     if (!html || !darkTheme) {
@@ -81,20 +63,10 @@ export default function Playground(): ReactElement {
     markdown,
     customRenderers,
   };
-  const optionsProps: PlaygroundOptionsProps = {
-    intervalProps,
-    resetUpdateInterval: reset,
-    splitView,
-    setSplitView,
-    customRenderers,
-    setCustomRenderers,
-    darkTheme,
-    setDarkTheme,
-  };
 
   return (
     <TabsManager tabs={tabs} tabsId="editor-tabs">
-      <Header {...optionsProps} />
+      <Header {...headerProps} />
       {splitView ? (
         <Grid
           gutter="0px"

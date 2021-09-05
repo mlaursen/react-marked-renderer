@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import {
   AppBarAction,
   Button,
@@ -14,12 +14,15 @@ import {
   Grid,
   GridCell,
   Link,
-  ProvidedNumberFieldMessageProps,
+  MoreVertSVGIcon,
   Text,
   TextFieldWithMessage,
+  Tooltip,
+  useTooltip,
 } from "react-md";
 
 import styles from "./PlaygroundOptions.module.scss";
+import { PlaygroundOptionsProps } from "./useConfig";
 
 const baseId = "playground-options";
 const actionId = `${baseId}-view`;
@@ -33,17 +36,6 @@ const splitViewMessageId = `${splitViewId}-message`;
 const customRenderersId = `${baseId}-custom-renderers`;
 const customRenderersMessageId = `${customRenderersId}-message`;
 
-export interface PlaygroundOptionsProps {
-  darkTheme: boolean;
-  setDarkTheme: Dispatch<SetStateAction<boolean>>;
-  intervalProps: ProvidedNumberFieldMessageProps;
-  resetUpdateInterval(): void;
-  splitView: boolean;
-  setSplitView: Dispatch<SetStateAction<boolean>>;
-  customRenderers: boolean;
-  setCustomRenderers: Dispatch<SetStateAction<boolean>>;
-}
-
 export function PlaygroundOptions({
   intervalProps,
   resetUpdateInterval,
@@ -56,16 +48,21 @@ export function PlaygroundOptions({
 }: PlaygroundOptionsProps): ReactElement {
   const [visible, setVisible] = useState(false);
   const hide = (): void => setVisible(false);
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: actionId,
+    onClick: () => setVisible(true),
+  });
   return (
     <>
       <AppBarAction
+        {...elementProps}
+        aria-label="Playground Options"
         id={actionId}
-        onClick={() => setVisible(true)}
         last
-        buttonType="text"
       >
-        Options
+        <MoreVertSVGIcon />
       </AppBarAction>
+      <Tooltip {...tooltipProps}>Playground Options</Tooltip>
       <Dialog
         modal
         id={dialogId}
@@ -122,7 +119,7 @@ export function PlaygroundOptions({
                   </Link>
                   . You can view the custom renderers{" "}
                   <Link
-                    href="https://github.com/mlaursen/react-marked-renderer/tree/main/src/components/renderers.tsx"
+                    href="https://github.com/mlaursen/react-marked-renderer/tree/main/components/renderers.tsx"
                     target="_blank"
                   >
                     here

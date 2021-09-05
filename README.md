@@ -1,4 +1,4 @@
-# React Marked Renderer
+# React Marked Renderer [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-marked-renderer/blob/main/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-marked-renderer/branch/main/graph/badge.svg?token=R4XGTOIVU0)](https://codecov.io/gh/mlaursen/react-marked-renderer) [![Validate](https://github.com/mlaursen/react-marked-renderer/actions/workflows/validate.yml/badge.svg)](https://github.com/mlaursen/react-marked-renderer/actions/workflows/validate.yml)
 
 A low-level component wrapper for [marked](https://github.com/markedjs/marked)
 that renders as [React](https://reactjs.org) components instead of strings.

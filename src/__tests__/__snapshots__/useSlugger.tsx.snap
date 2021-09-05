@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useSlugger should generate a correct id for text 1`] = `
+<h3
+  data-testid="heading"
+  id="some-content"
+>
+  Heading
+</h3>
+`;
+
+exports[`useSlugger should generate a correct id for text 2`] = `
+<h3
+  data-testid="heading"
+  id="b"
+>
+  Heading
+</h3>
+`;
+
+exports[`useSlugger should generate the correct id for tokens 1`] = `
+<h3
+  data-testid="heading"
+  id="some-content-link-text"
+>
+  Heading
+</h3>
+`;

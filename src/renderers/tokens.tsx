@@ -30,6 +30,7 @@ function getDepth(depth: number): 1 | 2 | 3 | 4 | 5 | 6 {
     case 6:
       return depth;
     default:
+      /* istanbul ignore next */
       return 6;
   }
 }
@@ -162,6 +163,7 @@ export function TokenRenderer({
         </List>
       );
     }
+    /* istanbul ignore next */
     case "list_item":
       return (
         <ListItem {...token}>
@@ -216,6 +218,7 @@ export function TokenRenderer({
         </Table>
       );
     }
+    /* istanbul ignore next */
     default:
       if (process.env.NODE_ENV !== "production") {
         // eslint-disable-next-line no-console

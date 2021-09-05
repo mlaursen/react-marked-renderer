@@ -7,13 +7,14 @@
       {
         "languages": [
           "javascript",
-          "typescript",
           "jsx",
+          "typescript",
           "tsx",
           "css",
           "scss",
           "css-extras",
           "markup",
+          "markdown",
           "bash",
           "diff",
           "git",

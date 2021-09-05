@@ -128,7 +128,12 @@ export function BlockquoteRenderer({
  */
 export function LinkRenderer({
   href,
+  title,
   children,
 }: LinkRendererProps): ReactElement {
-  return <a href={href}>{children}</a>;
+  return (
+    <a href={href} title={title}>
+      {children}
+    </a>
+  );
 }

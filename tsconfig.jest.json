@@ -2,9 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx",
+    "target": "es5",
+    "module": "commonjs",
     "skipLibCheck": false,
     "isolatedModules": false
-  },
-  "include": ["src"],
-  "exclude": ["**/__tests__/**"]
+  }
 }

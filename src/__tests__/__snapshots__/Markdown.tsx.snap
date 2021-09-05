@@ -1,0 +1,1056 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown should be able to render all six heading types 1`] = `
+<div>
+  <h1
+    id="heading-1"
+  >
+    Heading 1
+  </h1>
+  <h2
+    id="heading-2"
+  >
+    Heading 2
+  </h2>
+  <h3
+    id="heading-3"
+  >
+    Heading 3
+  </h3>
+  <h4
+    id="heading-4"
+  >
+    Heading 4
+  </h4>
+  <h5
+    id="heading-5"
+  >
+    Heading 5
+  </h5>
+  <h6
+    id="heading-6"
+  >
+    Heading 6
+  </h6>
+</div>
+`;
+
+exports[`Markdown should be able to render blockquotes 1`] = `
+<div>
+  <blockquote>
+    <p>
+      This is text in a blockquote
+    </p>
+  </blockquote>
+</div>
+`;
+
+exports[`Markdown should be able to render breaks (<br>) 1`] = `
+<div>
+  <p>
+    Trailing two spaces to force break
+    <br />
+    Second Line of text with trailing slash to force break
+    <br />
+    Third line of text
+  </p>
+   
+  <p>
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br />
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br />
+    Fine Link Line
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render code blocks with or without languages 1`] = `
+<div>
+  <pre>
+    <code>
+      const x = "y";
+    </code>
+  </pre>
+   
+  <pre>
+    <code>
+      yarn add some-package
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`Markdown should be able to render emphasis (italic) text 1`] = `
+<div>
+  <p>
+    <em>
+      Using Single Underscore
+    </em>
+  </p>
+   
+  <p>
+    <em>
+      Using Single Asterisk
+    </em>
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render horizontal rules and <br /> tags 1`] = `
+<div>
+  <p>
+    Text Above HR
+  </p>
+   
+  <hr />
+  <p>
+    Text Below HR
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render images 1`] = `
+<div>
+  <p>
+    <img
+      alt=""
+      src="image.jpeg"
+    />
+    
+
+    <img
+      alt="alt text"
+      src="image.jpeg"
+    />
+    
+
+    <img
+      alt="alt text"
+      src="image.jpeg"
+      title="With Title!"
+    />
+    
+
+    <img
+      alt="absolute path"
+      src="/image.jpeg"
+    />
+    
+
+    <img
+      alt="relative path"
+      src="./image.jpeg"
+    />
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render inline code 1`] = `
+<div>
+  <p>
+    This has some 
+    <code>
+      inline code
+    </code>
+     to see.
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render links that reference specific ids 1`] = `
+<div>
+  <p>
+    <a
+      href="#heading-1"
+    >
+      heading-1
+    </a>
+    
+
+    <a
+      href="#heading-2"
+      title="Goto heading-2"
+    >
+      heading-2
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render links with or without references 1`] = `
+<div>
+  <p>
+    Automatically 
+    <a
+      href="https://example.com"
+    >
+      https://example.com
+    </a>
+     without brackets.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com"
+    >
+      Brackets Link
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com"
+      title="Custom Title"
+    >
+      Brackets Link with title
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com/mlaursen"
+    >
+      Referenced Link Matching case
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com/mlaursen/react-marked-renderer"
+    >
+      ReFeRENced LInk IGNORing cAsE
+    </a>
+     with text afterwards.
+  </p>
+   
+</div>
+`;
+
+exports[`Markdown should be able to render nested blockquotes 1`] = `
+<div>
+  <blockquote>
+    <p>
+      Root Blockquote
+    </p>
+    <blockquote>
+      <p>
+        Nested Blockquote
+      </p>
+    </blockquote>
+  </blockquote>
+</div>
+`;
+
+exports[`Markdown should be able to render nested lists 1`] = `
+<div>
+  <ol>
+    <li>
+      Ordered Item 1
+      <ol>
+        <li>
+          Ordered Subitem 1
+        </li>
+        <li>
+          Ordered Subitem 2
+          <ul>
+            <li>
+              Three Down Hyphen
+            </li>
+          </ul>
+          <ul>
+            <li>
+              Three Down Asterisk
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`Markdown should be able to render ordered lists 1`] = `
+<div>
+  <ol>
+    <li>
+      Ordered Item 1
+    </li>
+    <li>
+      Ordered Item 2
+    </li>
+    <li>
+      Ordered Item 3
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`Markdown should be able to render strikethrough (deleted) text 1`] = `
+<div>
+  <p>
+    <del>
+      This text has strikethroughs
+    </del>
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render strong (bold) text 1`] = `
+<div>
+  <p>
+    <em>
+      <strong>
+        Using Triple Underscore
+      </strong>
+    </em>
+    _
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Using Triple Asterisk
+      </strong>
+    </em>
+  </p>
+</div>
+`;
+
+exports[`Markdown should be able to render tables 1`] = `
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          First Header
+        </th>
+        <th>
+          Second Header
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          First Header
+        </th>
+        <th>
+          Second Header
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Markdown should be able to render task lists 1`] = `
+<div>
+  <ul>
+    <li>
+      <input
+        id="unchecked-task-task"
+        type="checkbox"
+      />
+      <label
+        for="unchecked-task-task"
+      >
+        Unchecked Task
+      </label>
+    </li>
+    <li>
+      <input
+        checked=""
+        id="checked-task-lowercase-task"
+        type="checkbox"
+      />
+      <label
+        for="checked-task-lowercase-task"
+      >
+        Checked Task Lowercase
+      </label>
+    </li>
+    <li>
+      <input
+        checked=""
+        id="checked-task-uppercase-task"
+        type="checkbox"
+      />
+      <label
+        for="checked-task-uppercase-task"
+      >
+        Checked Task Uppercase
+      </label>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Markdown should be able to render unordered lists 1`] = `
+<div>
+  <ul>
+    <li>
+      Item 1
+    </li>
+    <li>
+      Item 2
+    </li>
+    <li>
+      Item 3
+    </li>
+  </ul>
+   
+  <ul>
+    <li>
+      Asterisk Item 1
+    </li>
+    <li>
+      Asterisk Item 2
+    </li>
+    <li>
+      Asterisk Item 3
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Markdown should be able to rendering h1 elements with equal signs 1`] = `
+<div>
+  <h1
+    id="three-equals"
+  >
+    Three equals
+  </h1>
+  <h1
+    id="three-or-more-equals"
+  >
+    Three or more equals
+  </h1>
+</div>
+`;
+
+exports[`Markdown should be able to rendering h1 elements with hyphens 1`] = `
+<div>
+  <h2
+    id="three-hyphens"
+  >
+    Three hyphens
+  </h2>
+  <h2
+    id="three-or-more-hyphens"
+  >
+    Three or more hyphens
+  </h2>
+</div>
+`;
+
+exports[`custom renderer should be able to use a custom renderer 1`] = `
+<div>
+  <h1
+    class="rmd-typography rmd-typography--headline-1"
+    id="heading-1"
+  >
+    Heading 1
+  </h1>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Here is some amazing markdown! It uses the github flavored markdown by default.
+  </p>
+   
+  <h2
+    class="rmd-typography rmd-typography--headline-2"
+    id="heading-2"
+  >
+    Heading 2
+  </h2>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Create an unordered list:
+  </p>
+   
+  <ul>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      value 1
+      <ul>
+        <li
+          class="rmd-typography rmd-typography--body-1"
+        >
+          value 1-2
+        </li>
+      </ul>
+    </li>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      value 2
+    </li>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      <a
+        class="rmd-link"
+        href="https://reactjs.org"
+      >
+        Link
+      </a>
+       - and content
+    </li>
+  </ul>
+   
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Create an ordered list:
+  </p>
+   
+  <ol>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      Item 1
+    </li>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      Item 2
+    </li>
+  </ol>
+  <ul>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      Sub Item
+    </li>
+  </ul>
+  <ol>
+    <li
+      class="rmd-typography rmd-typography--body-1"
+    >
+      Item 3
+    </li>
+  </ol>
+   
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Create a task list:
+  </p>
+   
+  <ul>
+    <li
+      class="task"
+    >
+      <div
+        class="rmd-toggle-container"
+      >
+        <span
+          class="rmd-toggle"
+        >
+          <input
+            class="rmd-toggle__input"
+            id="do-something-task"
+            type="checkbox"
+          />
+          <span
+            class="rmd-toggle__icon rmd-toggle__icon--overlay"
+          >
+            <i
+              aria-hidden="true"
+              class="rmd-icon rmd-icon--font material-icons"
+            >
+              check_box
+            </i>
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+        <label
+          class="rmd-label"
+          for="do-something-task"
+        >
+          Do something
+        </label>
+      </div>
+    </li>
+    <li
+      class="task"
+    >
+      <div
+        class="rmd-toggle-container"
+      >
+        <span
+          class="rmd-toggle"
+        >
+          <input
+            checked=""
+            class="rmd-toggle__input"
+            id="do-something-else-task"
+            type="checkbox"
+          />
+          <span
+            class="rmd-toggle__icon rmd-toggle__icon--overlay"
+          >
+            <i
+              aria-hidden="true"
+              class="rmd-icon rmd-icon--font material-icons"
+            >
+              check_box
+            </i>
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+        <label
+          class="rmd-label"
+          for="do-something-else-task"
+        >
+          Do something else
+        </label>
+      </div>
+    </li>
+    <li
+      class="task"
+    >
+      <div
+        class="rmd-toggle-container"
+      >
+        <span
+          class="rmd-toggle"
+        >
+          <input
+            class="rmd-toggle__input"
+            id="do-something-completely-task"
+            type="checkbox"
+          />
+          <span
+            class="rmd-toggle__icon rmd-toggle__icon--overlay"
+          >
+            <i
+              aria-hidden="true"
+              class="rmd-icon rmd-icon--font material-icons"
+            >
+              check_box
+            </i>
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+        <label
+          class="rmd-label"
+          for="do-something-completely-task"
+        >
+          Do something completely
+        </label>
+      </div>
+    </li>
+  </ul>
+   
+  <h3
+    class="rmd-typography rmd-typography--headline-3"
+    id="heading-3"
+  >
+    Heading 3
+  </h3>
+  <blockquote
+    class="blockquote"
+  >
+    <p
+      class="rmd-typography rmd-typography--body-1"
+    >
+      Here's a blockquote.
+    </p>
+  </blockquote>
+  <h4
+    class="rmd-typography rmd-typography--headline-4"
+    id="heading-4"
+  >
+    Heading 4
+  </h4>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Combine some 
+    <em>
+      italics
+    </em>
+     and 
+    <strong>
+      bold
+    </strong>
+     text while 
+    <del>
+      deleting this text
+    </del>
+    .
+  </p>
+   
+  <h5
+    class="rmd-typography rmd-typography--headline-5"
+    id="heading-5"
+  >
+    Heading 5
+  </h5>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Create a table:
+  </p>
+   
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <thead
+        class="rmd-thead"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <th
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            scope="col"
+          >
+            First Header
+          </th>
+          <th
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            scope="col"
+          >
+            Second Header
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Content Cell
+          </td>
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Content Cell
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Content Cell
+          </td>
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Content Cell
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h6
+    class="rmd-typography rmd-typography--headline-6"
+    id="heading-6"
+  >
+    Heading 6
+  </h6>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Do some code like stuff:
+  </p>
+   
+  <pre
+    class=" language-bash"
+    tabindex="0"
+  >
+    <code
+      class=" language-bash"
+    >
+      <span
+        class="token function"
+      >
+        npm
+      </span>
+       
+      <span
+        class="token function"
+      >
+        install
+      </span>
+       --save react-marked-renderer
+    </code>
+  </pre>
+   
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    or
+  </p>
+   
+  <pre
+    class=" language-bash"
+    tabindex="0"
+  >
+    <code
+      class=" language-bash"
+    >
+      <span
+        class="token function"
+      >
+        yarn
+      </span>
+       
+      <span
+        class="token function"
+      >
+        add
+      </span>
+       react-marked-renderer
+    </code>
+  </pre>
+   
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Some other languages:
+  </p>
+   
+  <pre
+    class=" language-tsx"
+    tabindex="0"
+  >
+    <code
+      class=" language-tsx"
+    >
+      <span
+        class="token comment"
+      >
+        /**
+ * The default implementation for rendering the {@link Tokens.List} by
+ * rendering:
+ *
+ * \`\`\`tsx
+ * &lt;li&gt;{children}&lt;/li&gt;
+ * \`\`\`
+ */
+      </span>
+      
+
+      <span
+        class="token keyword"
+      >
+        export
+      </span>
+       
+      <span
+        class="token keyword"
+      >
+        function
+      </span>
+       
+      <span
+        class="token function"
+      >
+        ListItemRenderer
+      </span>
+      <span
+        class="token punctuation"
+      >
+        (
+      </span>
+      <span
+        class="token parameter"
+      >
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+  children
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token operator"
+        >
+          :
+        </span>
+         ListItemRendererProps
+      </span>
+      <span
+        class="token punctuation"
+      >
+        )
+      </span>
+      <span
+        class="token operator"
+      >
+        :
+      </span>
+       ReactElement 
+      <span
+        class="token punctuation"
+      >
+        {
+      </span>
+      
+  
+      <span
+        class="token keyword"
+      >
+        return
+      </span>
+       
+      <span
+        class="token tag"
+      >
+        <span
+          class="token tag"
+        >
+          <span
+            class="token punctuation"
+          >
+            &lt;
+          </span>
+          li
+        </span>
+        <span
+          class="token punctuation"
+        >
+          &gt;
+        </span>
+      </span>
+      <span
+        class="token punctuation"
+      >
+        {
+      </span>
+      children
+      <span
+        class="token punctuation"
+      >
+        }
+      </span>
+      <span
+        class="token tag"
+      >
+        <span
+          class="token tag"
+        >
+          <span
+            class="token punctuation"
+          >
+            &lt;/
+          </span>
+          li
+        </span>
+        <span
+          class="token punctuation"
+        >
+          &gt;
+        </span>
+      </span>
+      <span
+        class="token punctuation"
+      >
+        ;
+      </span>
+      
+
+      <span
+        class="token punctuation"
+      >
+        }
+      </span>
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`html support should not be able to render foldable text (details) 1`] = `<div />`;
+
+exports[`html support should not be able to render tags? 1`] = `
+<div>
+  <h1
+    id="heading--text"
+  >
+    Heading 
+     Text
+  </h1>
+</div>
+`;

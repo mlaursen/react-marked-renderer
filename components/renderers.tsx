@@ -83,17 +83,15 @@ export const renderers: Partial<Renderers> = {
   },
 
   codeblock: function CodeBlock({ lang = "", text }) {
-    let language = lang || "none";
-    if (lang === "markdown") {
-      language = "markdown";
-    } else if (lang === "sh") {
-      language = "shell";
-    }
-    const invalid = !PRISM_LANGUAGES.includes(language);
+    // allow `sh` alias for bash
+    lang = lang === "sh" ? "bash" : lang;
+    const invalid = !PRISM_LANGUAGES.includes(lang);
 
     let message: string | undefined;
     if (invalid) {
-      message = `Valid languages are:
+      message = `Invalid language: "${lang}"
+
+Valid languages for the playground are:
 ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
 `;
     }
@@ -102,7 +100,7 @@ ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
       <pre
         data-languages={message}
         key={`${text}${lang}`}
-        className={cn(`language-${language}`, {
+        className={cn(`language-${lang}`, {
           [styles.invalid]: invalid,
         })}
       >

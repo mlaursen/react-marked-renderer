@@ -1,5 +1,6 @@
 import { getDefaults, lexer, MarkedOptions, Slugger } from "marked";
 import type { ReactElement } from "react";
+
 import { DEFAULT_RENDERERS, TokensRenderer } from "./renderers";
 import type { Renderers } from "./types";
 import { MarkdownRendererProvider } from "./useRenderers";

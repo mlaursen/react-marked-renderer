@@ -76,6 +76,38 @@ export function getTokensText(
  * This is a reasonable default for generating unique ids for elements in the
  * {@link Markdown} component.
  *
+ * @example
+ * Simple Example
+ * ```tsx
+ * const text = "This is some heading text";
+ * const id = useSluggedId(text);
+ * // "this-is-some-heading-text"
+ * ```
+ *
+ * @example
+ * Using Tokens
+ * ```tsx
+ * const tokens: readonly Token[] = [
+ *   { type: "text", text: "Some content", raw: "Some content" },
+ *   {
+ *     type: "link",
+ *     text: "Link Text",
+ *     raw: "[Link Text](https://example.com)",
+ *     href: "https://example.com",
+ *     title: "",
+ *     tokens: [
+ *       {
+ *         type: "text",
+ *         raw: "Link Text",
+ *         text: "Link Text",
+ *       },
+ *     ],
+ *   },
+ * ];
+ * const id = useSluggedId(tokens);
+ * // "some-content-link-text"
+ * ```
+ *
  * @see {@link Slugger}
  * @param textOrTokens - The text or list of {@link Token} to convert to a
  * unique id

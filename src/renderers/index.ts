@@ -6,4 +6,3 @@ export * from "./media";
 export * from "./presentational";
 export * from "./table";
 export * from "./text";
-export * from "./tokens";

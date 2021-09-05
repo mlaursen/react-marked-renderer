@@ -1,15 +1,4 @@
-export {
-  default as marked,
-  lexer,
-  Lexer,
-  parse,
-  parseInline,
-  parser,
-  Parser,
-  Slugger,
-  Tokenizer,
-  walkTokens,
-} from "marked";
+export { default as marked } from "marked";
 export type {
   MarkedExtension,
   MarkedOptions,
@@ -21,8 +10,4 @@ export type {
   TokensList,
 } from "marked";
 
-export * from "./Markdown";
-export * from "./renderers";
-export * from "./types";
-export * from "./useRenderers";
-export * from "./useSlugger";
+export * from "./index.umd";

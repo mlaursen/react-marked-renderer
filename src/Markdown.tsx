@@ -1,7 +1,8 @@
-import { getDefaults, lexer, MarkedOptions, Slugger } from "marked";
+import marked from "marked";
 import type { ReactElement } from "react";
 
-import { DEFAULT_RENDERERS, TokensRenderer } from "./renderers";
+import { DEFAULT_RENDERERS } from "./renderers";
+import { TokensRenderer } from "./renderers/tokens";
 import type { Renderers } from "./types";
 import { MarkdownRendererProvider } from "./useRenderers";
 import { MarkdownSluggerProvider } from "./useSlugger";
@@ -34,7 +35,7 @@ export interface MarkdownProps {
    * In addition, the `mangle` option is set to `false` by default since it
    * would prevent emails from being displayed correctly.
    */
-  options?: MarkedOptions;
+  options?: marked.MarkedOptions;
 
   /**
    * An optional slugger to provide that generates unique ids for different
@@ -68,7 +69,7 @@ export interface MarkdownProps {
    * );
    * ```
    */
-  slugger?: Slugger;
+  slugger?: marked.Slugger;
 
   /** {@inheritDoc Renderers} */
   renderers?: Partial<Renderers>;
@@ -208,8 +209,8 @@ export function Markdown({
   markdown,
   renderers = DEFAULT_RENDERERS,
 }: MarkdownProps): ReactElement {
-  const tokens = lexer(markdown, {
-    ...getDefaults(),
+  const tokens = marked.lexer(markdown, {
+    ...marked.getDefaults(),
     mangle: false,
     ...options,
   });

@@ -1,4 +1,4 @@
-import { Slugger, Token } from "marked";
+import marked from "marked";
 import {
   createContext,
   ReactElement,
@@ -7,7 +7,7 @@ import {
   useMemo,
 } from "react";
 
-const context = createContext(new Slugger());
+const context = createContext(new marked.Slugger());
 const { Provider } = context;
 context.displayName = "MarkdownSlugger";
 
@@ -17,7 +17,7 @@ context.displayName = "MarkdownSlugger";
  *
  * @returns the current {@link Slugger} for the {@link Markdown} component.
  */
-export function useSlugger(): Slugger {
+export function useSlugger(): marked.Slugger {
   return useContext(context);
 }
 
@@ -46,7 +46,7 @@ export interface TokensTextOptions {
  * @returns the text content for the list of tokens
  */
 export function getTokensText(
-  tokens: readonly Token[],
+  tokens: readonly marked.Token[],
   { depth = 0, maxDepth = -1 }: TokensTextOptions = {}
 ): string {
   return tokens.reduce((s, token) => {
@@ -113,7 +113,9 @@ export function getTokensText(
  * unique id
  * @returns a unique id that can be applied to a component
  */
-export function useSluggedId(textOrTokens: string | readonly Token[]): string {
+export function useSluggedId(
+  textOrTokens: string | readonly marked.Token[]
+): string {
   const text =
     typeof textOrTokens === "string"
       ? textOrTokens
@@ -127,7 +129,7 @@ export function useSluggedId(textOrTokens: string | readonly Token[]): string {
 
 /** @internal */
 interface MarkdownSluggerProviderProps {
-  slugger?: Slugger;
+  slugger?: marked.Slugger;
   children: ReactNode;
 }
 
@@ -136,6 +138,9 @@ export function MarkdownSluggerProvider({
   children,
   slugger: propSlugger,
 }: MarkdownSluggerProviderProps): ReactElement {
-  const slugger = useMemo(() => propSlugger ?? new Slugger(), [propSlugger]);
+  const slugger = useMemo(
+    () => propSlugger ?? new marked.Slugger(),
+    [propSlugger]
+  );
   return <Provider value={slugger}>{children}</Provider>;
 }

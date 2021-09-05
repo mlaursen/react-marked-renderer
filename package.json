@@ -9,6 +9,11 @@
   "module": "./dist/index.ejs",
   "browser": "./dist/index.min.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "sideEffects": false,
   "scripts": {
     "prepare": "husky install",
     "prebuild": "npm-run-all -p lint typecheck api-docs",

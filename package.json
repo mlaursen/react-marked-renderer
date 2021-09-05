@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "prebuild": "npm-run-all ci api-docs",
+    "prebuild": "npm-run-all -p lint typecheck api-docs",
     "ci": "npm-run-all lint typecheck test",
     "api-docs": "node ./typedoc.js",
     "typecheck": "tsc -p tsconfig.check.json",

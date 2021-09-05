@@ -107,8 +107,18 @@ export interface MarkdownProps {
  *   Markdown,
  *   Renderers,
  * } from "react-marked-renderer";
+ * import { BrowserRouter as Router, Link } from "react-router-dom";
  *
  * const renderers: Partial<Renderers> = {
+ *   link: function CustomLink({ href, title, children }: LinkRendererProps) {
+ *     // make links use html5 history and not cause reloads
+ *     return (
+ *       <Link to={href} title={title}>
+ *         {children}
+ *       </Link>
+ *     );
+ *   },
+ *
  *   blockquote: function Blockquote({ children }) {
  *     return <blockquote className="custom">{children}</blockquote>;
  *   },
@@ -122,7 +132,7 @@ export interface MarkdownProps {
  *         <input
  *           id={id}
  *           checked={checked}
- *           onChange={event => setChecked(event.currentTarget.checked)}
+ *           onChange={(event) => setChecked(event.currentTarget.checked)}
  *         />
  *         <label htmlFor={d}>{children}</label>
  *       </li>
@@ -137,11 +147,13 @@ export interface MarkdownProps {
  *
  *     // or just return the default renderer
  *     return <ListRenderer {...props} />;
- *   }
+ *   },
  * };
  *
  * render(
- *   <Markdown markdown={markdown} renderers={renderers} />,
+ *   <Router>
+ *     <Markdown markdown={markdown} renderers={renderers} />
+ *   </Router>,
  *   document.getElementById("root")
  * );
  * ```

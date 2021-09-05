@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "prebuild": "node ./typedoc.js",
+    "prebuild": "npm-run-all ci api-docs",
+    "ci": "npm-run-all lint typecheck test",
+    "api-docs": "node ./typedoc.js",
     "typecheck": "tsc -p tsconfig.check.json",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
@@ -36,6 +38,7 @@
     "jest-watch-typeahead": "^0.6.4",
     "lint-staged": "^11.1.2",
     "next": "^11.1.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "prismjs": "^1.24.1",
     "react": "^17.0.2",

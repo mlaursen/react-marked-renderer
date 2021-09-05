@@ -1,7 +1,11 @@
 # React Marked Renderer
 
-A [React](https://reactjs.org) component library for the
-[marked](https://github.com/markedjs/marked) library.
+A low-level component wrapper for [marked](https://github.com/markedjs/marked)
+that renders as [React](https://reactjs.org) components instead of strings.
+
+> This package will also re-export everything from `marked` so it does not need
+> to be added as a dependency in your app if additional markdown behavior must
+> be implemented.
 
 ## Installation
 
@@ -18,6 +22,10 @@ yarn add react react-marked-renderer
 ## Usage
 
 The main component within this library is the `Markdown` component.
+
+> Check out the [Markdown tests](./src/__tests__/Markdown.tsx) and
+> [Markdown snapshots](./src/__tests__/__snapshots__/Markdown.tsx.snap) to see
+> the default functionality.
 
 ### Simple Example
 
@@ -37,6 +45,9 @@ render(<Markdown markdown={markdown} />, document.getElementById("root"));
 
 ### Custom Renderers
 
+Since the default renderers add no styles, you can define your own renderers to
+add styles or additional functionality.
+
 ```tsx
 import { useState } from "react";
 import { render } from "react-dom";
@@ -46,8 +57,18 @@ import {
   Markdown,
   Renderers,
 } from "react-marked-renderer";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const renderers: Partial<Renderers> = {
+  link: function CustomLink({ href, title, children }: LinkRendererProps) {
+    // make links use html5 history and not cause reloads
+    return (
+      <Link to={href} title={title}>
+        {children}
+      </Link>
+    );
+  },
+
   blockquote: function Blockquote({ children }) {
     return <blockquote className="custom">{children}</blockquote>;
   },
@@ -80,12 +101,18 @@ const renderers: Partial<Renderers> = {
 };
 
 render(
-  <Markdown markdown={markdown} renderers={renderers} />,
+  <Router>
+    <Markdown markdown={markdown} renderers={renderers} />
+  </Router>,
   document.getElementById("root")
 );
 ```
 
 ### Code Highlighting (PrismJS)
+
+Since there are a few different code highlighting libraries, this will need to
+be implemented manually with your library of choice for the `codeblock` and/or
+`codespan` custom renderers.
 
 ```tsx
 import { render } from "react-dom";
@@ -125,3 +152,9 @@ render(
   document.getElementById("root")
 );
 ```
+
+## What's the Use-case?
+
+This library mostly came up since I like to write documentation sites in
+markdown, but also apply custom styles as well as linking to other documentation
+pages using html5 history (no full page reloads).

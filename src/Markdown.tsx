@@ -1,13 +1,18 @@
 import marked from "marked";
 import type { ReactElement } from "react";
 
+import { DEFAULT_MARKDOWN_OPTIONS, MarkdownConfigProvier } from "./context";
 import { DEFAULT_RENDERERS } from "./renderers";
 import { TokensRenderer } from "./renderers/tokens";
-import type { Renderers } from "./types";
-import { MarkdownRendererProvider } from "./useRenderers";
-import { MarkdownSluggerProvider } from "./useSlugger";
+import type {
+  DangerouslyHighlightCode,
+  HighlightCodeOptions,
+  HighlightElement,
+  Renderers,
+  ValidMarkedOptions,
+} from "./types";
 
-export interface MarkdownProps {
+export interface BaseMarkdownProps extends HighlightCodeOptions {
   /**
    * The markdown to be parsed by [marked](https://github.com/markedjs/marked)
    * and rendered in react components.
@@ -35,7 +40,7 @@ export interface MarkdownProps {
    * In addition, the `mangle` option is set to `false` by default since it
    * would prevent emails from being displayed correctly.
    */
-  options?: marked.MarkedOptions;
+  options?: ValidMarkedOptions;
 
   /**
    * An optional slugger to provide that generates unique ids for different
@@ -74,6 +79,26 @@ export interface MarkdownProps {
   /** {@inheritDoc Renderers} */
   renderers?: Partial<Renderers>;
 }
+
+/**
+ * All the props for the {@link Markdown} component that ensures that both of
+ * the {@link HighlightCodeOptions} are not provided at the same time.
+ */
+export type MarkdownProps = BaseMarkdownProps &
+  (
+    | {
+        highlightCode: DangerouslyHighlightCode;
+        highlightElement?: never;
+      }
+    | {
+        highlightCode?: never;
+        highlightElement: HighlightElement;
+      }
+    | {
+        highlightCode?: never;
+        highlightElement?: never;
+      }
+  );
 
 /**
  * This component renders markdown as react components.
@@ -164,33 +189,9 @@ export interface MarkdownProps {
  * ```tsx
  * import { render } from "react-dom";
  * import { Markdown, Renderers } from "react-marked-renderer";
- * import { highlightElement } from "prismjs";
+ * import Prism from "prismjs";
  *
  * const renderers: Partial<Renderers> = {
- *   // Note: You might need to update the `lang` to be one of the known Prism
- *   // languages
- *   codeblock: function CodeBlock({ lang, text }) {
- *     const highlight = useCallback(
- *       (instance: HTMLElement ) => {
- *         if (!instance || !text) {
- *           return;
- *         }
- *
- *         highlightElement(instance);
- *       },
- *       []
- *     );
- *
- *     // a key is added to the `<pre>` element so that the code will be
- *     // re-highlighted if the text or language changes. This is only really
- *     // required if creating a "real-time" markdown previewer
- *     return (
- *       <pre key={`${lang}${text}`} className={`language-${lang}`}>
- *         <code ref={highlight}>{text}</code>
- *       </pre>
- *     );
- *   },
- *
  *   codespan: function CodeSpan({ children }) {
  *     // just so it gets some prism styling
  *     return <code className="language-none">{children}</code>
@@ -198,32 +199,91 @@ export interface MarkdownProps {
  * };
  *
  * render(
- *   <Markdown markdown={markdown} renderers={renderers} />,
+ *   <Markdown
+ *     markdown={markdown}
+ *     renderers={renderers}
+ *     highlightElement={Prism.highlightElement}
+ *   />,
+ *   document.getElementById("root")
+ * );
+ * ```
+ *
+ * @example
+ * SSR Code Highlighting (PrismJS)
+ * ```tsx
+ * import { render } from "react-dom";
+ * import {
+ *   CodeGetCodeLanguage,
+ *   DangerouslyHighlight,
+ *   Markdown,
+ *   Renderers
+ * } from "react-marked-renderer";
+ * import Prism from "prismjs";
+ *
+ * const renderers: Partial<Renderers> = {
+ *   codespan: function CodeSpan({ children }) {
+ *     // just so it gets some prism styling
+ *     return <code className="language-none">{children}</code>
+ *   }
+ * };
+ *
+ * const getLanguage: GetCodeLanguage = (lang, _rawCode) => {
+ *   // allow aliases
+ *   lang = lang === "sh" ? "shell" : lang;
+ *
+ *   // if the Prism doesn't support the language, default to nothing instead
+ *   // of crashing
+ *   if (!Prism.languages[lang]) {
+ *     return "";
+ *   }
+ *
+ *   return lang;
+ * };
+ *
+ * const highlightCode: DangerouslyHighlightCode = (code, lang) =>
+ *   Prism.highlight(code, Prism.languages[lang], lang);
+ *
+ * render(
+ *   <Markdown
+ *     markdown={markdown}
+ *     renderers={renderers}
+ *     getLanguage={getLanguage}
+ *     highlightCode={highlightCode}
+ *   />,
  *   document.getElementById("root")
  * );
  * ```
  */
 export function Markdown({
   options,
-  slugger,
+  // have to create a new slugger each render since the seen count would keep
+  // incrementing with react-refresh
+  slugger = new marked.Slugger(),
   markdown,
-  renderers = DEFAULT_RENDERERS,
+  renderers,
+  getLanguage,
+  highlightCode,
+  highlightElement,
 }: MarkdownProps): ReactElement {
-  const tokens = marked.lexer(markdown, {
-    ...marked.getDefaults(),
-    mangle: false,
+  const resolvedOptions: marked.MarkedOptions = {
+    ...DEFAULT_MARKDOWN_OPTIONS,
     ...options,
-  });
+  };
+
+  const tokens = marked.lexer(markdown, resolvedOptions);
   return (
-    <MarkdownRendererProvider
-      value={{
+    <MarkdownConfigProvier
+      options={resolvedOptions}
+      slugger={slugger}
+      renderers={{
         ...DEFAULT_RENDERERS,
         ...renderers,
       }}
+      getLanguage={getLanguage}
+      highlightCode={highlightCode}
+      highlightElement={highlightElement}
     >
-      <MarkdownSluggerProvider slugger={slugger}>
-        <TokensRenderer tokens={tokens} />
-      </MarkdownSluggerProvider>
-    </MarkdownRendererProvider>
+      <TokensRenderer tokens={tokens} />
+    </MarkdownConfigProvier>
   );
 }

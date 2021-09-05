@@ -14,8 +14,7 @@ import {
   Text,
 } from "react-md";
 
-import { Renderers } from "../src/types";
-import { getTokensText, useSluggedId } from "../src/useSlugger";
+import { getTokensText, useSluggedId, Renderers } from "../src";
 import styles from "./renderers.module.scss";
 
 const PRISM_LANGUAGES = Object.keys(languages).filter(

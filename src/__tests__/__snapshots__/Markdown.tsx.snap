@@ -1,5 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Markdown should be able to highlight code with the highlightCode option 1`] = `
+<div>
+  <pre
+    class="language-markup"
+  >
+    <code
+      class="language-markup"
+    >
+      const x = "y";
+    </code>
+  </pre>
+   
+  <pre
+    class="language-bash"
+  >
+    <code
+      class="language-bash"
+    >
+      <span
+        class="token function"
+      >
+        yarn
+      </span>
+       
+      <span
+        class="token function"
+      >
+        add
+      </span>
+       some-package
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`Markdown should be able to highlight code with the highlightElement option 1`] = `
+<div>
+  <pre
+    class=" language-none"
+    tabindex="0"
+  >
+    <code
+      class=" language-none"
+    >
+      const x = "y";
+    </code>
+  </pre>
+   
+  <pre
+    class=" language-sh"
+    tabindex="0"
+  >
+    <code
+      class=" language-sh"
+    >
+      yarn add some-package
+    </code>
+  </pre>
+</div>
+`;
+
 exports[`Markdown should be able to render all six heading types 1`] = `
 <div>
   <h1
@@ -81,8 +142,12 @@ exports[`Markdown should be able to render code blocks with or without languages
     </code>
   </pre>
    
-  <pre>
-    <code>
+  <pre
+    class="language-sh"
+  >
+    <code
+      class="language-sh"
+    >
       yarn add some-package
     </code>
   </pre>

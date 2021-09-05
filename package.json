@@ -39,6 +39,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
     "@mlaursen/changelog-preset": "^1.1.0",
     "@mlaursen/eslint-config": "^1.1.4",
     "@next/eslint-plugin-next": "^11.1.2",

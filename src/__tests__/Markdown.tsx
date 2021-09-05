@@ -5,8 +5,9 @@ import {
   getAllByRole as globalGetAllByRole,
   render,
 } from "@testing-library/react";
+
 // required for custom renderers
-import "prismjs";
+import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-markdown";
@@ -18,6 +19,7 @@ import "prismjs/components/prism-tsx";
 import { renderers } from "../../components/renderers";
 import { DEFAULT_MARKDOWN } from "../../constants";
 import { Markdown } from "../Markdown";
+import { DangerouslyHighlightCode, GetCodeLanguage } from "../types";
 
 const HEADING_MARKDOWN = `
 # Heading 1
@@ -367,6 +369,41 @@ describe("Markdown", () => {
 
     expect(code.textContent).toBe("inline code");
     expect(p.textContent).toBe("This has some inline code to see.");
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to highlight code with the highlightCode option", () => {
+    const getLanguage: GetCodeLanguage = (lang) => {
+      lang = lang === "sh" ? "bash" : lang;
+      if (!Prism.languages[lang]) {
+        return "markup";
+      }
+
+      return lang;
+    };
+
+    const highlightCode: DangerouslyHighlightCode = (code, lang) => {
+      return Prism.highlight(code, Prism.languages[lang], lang);
+    };
+    const { container } = render(
+      <Markdown
+        markdown={CODE_BLOCK_MARKDOWN}
+        getLanguage={getLanguage}
+        highlightCode={highlightCode}
+      />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to highlight code with the highlightElement option", () => {
+    const { container } = render(
+      <Markdown
+        markdown={CODE_BLOCK_MARKDOWN}
+        highlightElement={Prism.highlightElement}
+      />
+    );
 
     expect(container).toMatchSnapshot();
   });

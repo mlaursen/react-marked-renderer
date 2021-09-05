@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 
+import { useSluggedId } from "../context";
 import type {
   BlockquoteRendererProps,
   DelRendererProps,
@@ -10,7 +11,6 @@ import type {
   StrongRendererProps,
   TextRendererProps,
 } from "../types";
-import { useSluggedId } from "../useSlugger";
 
 /**
  * The default implementation for rendering the {@link Tokens.Text} by

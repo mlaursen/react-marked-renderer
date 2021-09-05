@@ -1,4 +1,3 @@
-export { default as marked } from "marked";
 export type {
   MarkedExtension,
   MarkedOptions,
@@ -10,4 +9,8 @@ export type {
   TokensList,
 } from "marked";
 
-export * from "./index.umd";
+export * from "./context";
+export * from "./Markdown";
+export * from "./renderers";
+export * from "./renderers/tokens";
+export * from "./types";

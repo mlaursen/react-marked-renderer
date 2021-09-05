@@ -1,4 +1,3 @@
-import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { babel } from '@rollup/plugin-babel';
@@ -13,19 +12,23 @@ const globals = {
 };
 
 const extensions = ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.tsx'];
-const external = ['react', 'react-dom'];
+const external = Object.keys(globals);
 
 function createConfig(umd) {
   return {
-    input: `./src/index${umd ? '.umd' : ''}.ts`,
-    external: umd ? external : [],
+    input: './src/index.ts',
+    external,
     plugins: [
       resolve({ extensions }),
       commonjs(),
       babel({
         babelHelpers: 'runtime',
         extensions,
-        configFile: path.resolve(__dirname, '.babelrc'),
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-react',
+          '@babel/preset-typescript',
+        ],
         include: ['src/**/*'],
       }),
       replace({

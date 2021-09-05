@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
 
+import { getTokensText, useSluggedId } from "../context";
 import type {
   ListItemRendererProps,
   ListRendererProps,
   TaskRendererProps,
 } from "../types";
-import { getTokensText, useSluggedId } from "../useSlugger";
 
 /**
  * The default implementation for rendering the {@link Tokens.List} by

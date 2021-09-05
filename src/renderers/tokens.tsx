@@ -1,6 +1,7 @@
 import type { Token } from "marked";
-import { ReactElement } from "react";
-import { useRenderers } from "../useRenderers";
+import type { ReactElement } from "react";
+
+import { useMarkdownConfig, useRenderers } from "../context";
 
 export interface TokensRendererProps {
   tokens: readonly Token[];
@@ -41,7 +42,7 @@ export interface TokenRendererProps {
 
 /**
  * This component is mostly an internal component that renders each parsed
- * token from {@link marked}.
+ * token from `marked`.
  */
 export function TokenRenderer({
   token,
@@ -73,6 +74,7 @@ export function TokenRenderer({
     th: Th,
     td: Td,
   } = useRenderers();
+  const { getLanguage } = useMarkdownConfig();
   switch (token.type) {
     case "space":
       return <Space {...token} />;
@@ -93,6 +95,7 @@ export function TokenRenderer({
         </Del>
       );
     case "text":
+      /* istanbul ignore next */
       if ("inLink" in token) {
         return <Tag {...token}>{token.text}</Tag>;
       }
@@ -109,7 +112,11 @@ export function TokenRenderer({
         </Strong>
       );
     case "code":
-      return <Code {...token}>{token.text}</Code>;
+      return (
+        <Code {...token} lang={getLanguage(token.lang ?? "", token.raw)}>
+          {token.text}
+        </Code>
+      );
     case "codespan":
       return <Codespan {...token}>{token.text}</Codespan>;
     case "heading": {
@@ -171,6 +178,7 @@ export function TokenRenderer({
         </ListItem>
       );
     case "html": {
+      /* istanbul ignore next */
       if ("inLink" in token) {
         return <Tag {...token}>{token.text}</Tag>;
       }

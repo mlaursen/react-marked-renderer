@@ -3,10 +3,6 @@
 A low-level component wrapper for [marked](https://github.com/markedjs/marked)
 that renders as [React](https://reactjs.org) components instead of strings.
 
-> This package will also re-export everything from `marked` so it does not need
-> to be added as a dependency in your app if additional markdown behavior must
-> be implemented.
-
 ## Installation
 
 ```sh

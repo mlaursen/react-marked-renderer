@@ -21,7 +21,8 @@ export interface PresentationRenderers {
   space: ComponentType<SpaceRendererProps>;
 }
 
-export type CodeBlockRendererProps = Tokens.Code & ChildrenProvided;
+export type CodeBlockRendererProps = Tokens.Code &
+  ChildrenProvided & { lang: string };
 export type CodeSpanRendererProps = Tokens.Codespan & ChildrenProvided;
 
 /**
@@ -148,3 +149,94 @@ export interface Renderers
     ListRenderers,
     TableRenderers,
     HtmlLikeRenderers {}
+
+/**
+ * A function that should highlight all the code within an `HTMLElement`. This
+ * should normally just be something like `Prism.highlightElement` or
+ * `HighlightJS.highlightElement`.
+ *
+ * @param element - The `<code>` element that should be highlighted
+ */
+export type HighlightElement = (element: HTMLElement) => Promise<void> | void;
+
+/**
+ * This function is mostly used if you'd like to be able to have the code
+ * highlighted via `dangerouslySetInnerHTML` so that the code can be highlighted
+ * in node environments.
+ *
+ * @example
+ * PrismJS Example
+ * ```tsx
+ * <Markdown highlightCode={Prism.highlightCode} markown={markdown} />
+ * ```
+ *
+ * @param code - The raw code string to turn into an HTML string
+ * @param language - The current code language or an empty string
+ * @returns the html to dangerously set within a `<code>` tag
+ */
+export type DangerouslyHighlightCode = (
+  code: string,
+  language: string
+) => string;
+
+/**
+ * A function that can be used to get the language for a block of code or
+ * allow different aliases.
+ *
+ * @example
+ * Simple Example
+ * ```ts
+ * const getLanguage: GetCodeLanguage = (raw, suggestedLanguage) => {
+ *   switch (suggestedLanguage) {
+ *     case "":
+ *       // default to markup
+ *       return "markup";
+ *     case "sh":
+ *       // allow sh to be an alias for shell
+ *       return "shell";
+ *     default:
+ *       return suggestedLanguage;
+ *   }
+ * }
+ * ```
+ *
+ * @defaultValue = `(lang) => lang`
+ * @param lang - The language suggested by `marked`
+ * @param rawCode - The raw code source
+ * @returns The language to use
+ */
+export type GetCodeLanguage = (lang: string, rawCode: string) => string;
+
+export interface HighlightCodeOptions {
+  /** {@inheritDoc GetCodeLanguage} */
+  getLanguage?: GetCodeLanguage;
+
+  /** {@inheritDoc DangerouslyHighlightCode} */
+  highlightCode?: DangerouslyHighlightCode;
+  /** {@inheritDoc HighlightElement} */
+  highlightElement?: HighlightElement;
+}
+
+/**
+ * A re-export of the {@link MarkedOptions} that works with this package's API.
+ */
+export type ValidMarkedOptions = Omit<
+  marked.MarkedOptions,
+  "highlight" | "sanitize" | "sanitizer"
+>;
+
+export interface MarkdownConfig extends HighlightCodeOptions {
+  /** {@inheritDoc ValidMarkedOptions} */
+  options: ValidMarkedOptions;
+
+  /** {@inheritDoc marked.Slugger} */
+  slugger: marked.Slugger;
+
+  /** {@inheritDoc Renderers} */
+  renderers: Renderers;
+}
+
+/** @internal */
+export interface MarkdownConfigContext extends MarkdownConfig {
+  getLanguage: GetCodeLanguage;
+}

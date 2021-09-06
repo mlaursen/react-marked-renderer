@@ -1,15 +1,15 @@
 import Prism from "prismjs";
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import { DangerouslyHighlightCode, GetCodeLanguage, Markdown } from "../src";
 import styles from "./MarkdownPreview.module.scss";
 import { renderers } from "./renderers";
-import type { MarkdownPreviewProps } from "./useConfig";
+import { usePlayground } from "./usePlayground";
 
 const getLanguage: GetCodeLanguage = (lang) => {
   lang = lang === "sh" ? "bash" : lang;
   if (!Prism.languages[lang]) {
-    return "";
+    return "none";
   }
 
   return lang;
@@ -18,17 +18,15 @@ const getLanguage: GetCodeLanguage = (lang) => {
 const highlightCode: DangerouslyHighlightCode = (code, lang) =>
   Prism.highlight(code, Prism.languages[lang], lang);
 
-export function MarkdownPreview({
-  markdown,
-  customRenderers,
-}: MarkdownPreviewProps): ReactElement {
+export function MarkdownPreview(): ReactElement {
+  const { markdown, customRenderers } = usePlayground();
   return (
-    <div className={styles.container}>
+    <div id="preview-panel" className={styles.container}>
       <Markdown
         markdown={markdown}
         renderers={customRenderers ? renderers : undefined}
         getLanguage={getLanguage}
-        highlightCode={highlightCode}
+        highlightCode={customRenderers ? highlightCode : undefined}
       />
     </div>
   );

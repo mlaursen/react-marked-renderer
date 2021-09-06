@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { SVGIcon } from "react-md";
 
 export function GithubIcon(): ReactElement {

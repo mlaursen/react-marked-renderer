@@ -3,6 +3,11 @@
 A low-level component wrapper for [marked](https://github.com/markedjs/marked)
 that renders as [React](https://reactjs.org) components instead of strings.
 
+Check out the [playground website](https://react-marked-renderer.vercel.app/) to
+see how markdown is rendered with the default renderers or custom renderers and
+the
+[API Documentation](https://react-marked-renderer.vercel.app/tsdocs/index.html).
+
 ## Installation
 
 ```sh

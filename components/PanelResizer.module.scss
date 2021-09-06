@@ -1,0 +1,18 @@
+@use "../everything" as *;
+
+.separator {
+  @include rmd-divider-theme(background-color);
+  $width: 0.25rem;
+
+  bottom: 0;
+  grid-row-start: 2;
+  left: calc(var(--percentage, 50%) - #{$width * 0.5});
+  position: absolute;
+  top: 0;
+  width: $width;
+  z-index: 2;
+
+  &:hover {
+    cursor: col-resize;
+  }
+}

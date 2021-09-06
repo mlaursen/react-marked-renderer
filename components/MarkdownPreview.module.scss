@@ -1,6 +1,8 @@
 @use '../everything' as *;
 
 .container {
+  @include rmd-utils-scroll;
+
   padding: 2rem;
 
   :global {

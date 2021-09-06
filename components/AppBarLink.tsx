@@ -25,6 +25,7 @@ export function AppBarLink({
   const { elementProps, tooltipProps } = useTooltip({
     baseId: id,
   });
+
   return (
     <>
       <a

@@ -22,7 +22,7 @@ import {
 } from "react-md";
 
 import styles from "./PlaygroundOptions.module.scss";
-import { PlaygroundOptionsProps } from "./useConfig";
+import type { PlaygroundOptionsProps } from "./useConfig";
 
 const baseId = "playground-options";
 const actionId = `${baseId}-view`;

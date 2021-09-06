@@ -87,12 +87,12 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
 export type MarkdownProps = BaseMarkdownProps &
   (
     | {
-        highlightCode: DangerouslyHighlightCode;
+        highlightCode?: DangerouslyHighlightCode;
         highlightElement?: never;
       }
     | {
         highlightCode?: never;
-        highlightElement: HighlightElement;
+        highlightElement?: HighlightElement;
       }
     | {
         highlightCode?: never;

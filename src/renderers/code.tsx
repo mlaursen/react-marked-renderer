@@ -1,7 +1,179 @@
-import { DOMAttributes, ReactElement, ReactNode, useCallback } from "react";
+import type { Tokens } from "marked";
+import marked from "marked";
+import {
+  ComponentType,
+  createContext,
+  DOMAttributes,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 
-import { useMarkdownConfig } from "../context";
-import type { CodeBlockRendererProps, CodeSpanRendererProps } from "../types";
+/**
+ * A function that should highlight all the code within an `HTMLElement`. This
+ * should normally just be something like `Prism.highlightElement` or
+ * `HighlightJS.highlightElement`.
+ *
+ * @param element - The `<code>` element that should be highlighted
+ */
+export type HighlightElement = (element: HTMLElement) => Promise<void> | void;
+
+/**
+ * This function is mostly used if you'd like to be able to have the code
+ * highlighted via `dangerouslySetInnerHTML` so that the code can be highlighted
+ * in node environments.
+ *
+ * @example
+ * PrismJS Example
+ * ```tsx
+ * <Markdown highlightCode={Prism.highlightCode} markdown={markdown} />
+ * ```
+ *
+ * @param code - The raw code string to turn into an HTML string
+ * @param language - The current code language or an empty string
+ * @returns the html to dangerously set within a `<code>` tag
+ */
+export type DangerouslyHighlightCode = (
+  code: string,
+  language: string
+) => string;
+
+/**
+ * A function that can be used to get the language for a block of code or
+ * allow different aliases.
+ *
+ * @example
+ * Simple Example
+ * ```ts
+ * const getLanguage: GetCodeLanguage = (raw, suggestedLanguage) => {
+ *   switch (suggestedLanguage) {
+ *     case "":
+ *       // default to markup
+ *       return "markup";
+ *     case "sh":
+ *       // allow sh to be an alias for shell
+ *       return "shell";
+ *     default:
+ *       return suggestedLanguage;
+ *   }
+ * }
+ * ```
+ *
+ * @defaultValue = `(lang) => lang`
+ * @param lang - The language suggested by `marked`
+ * @param rawCode - The raw code source
+ * @returns The language to use
+ */
+export type GetCodeLanguage = (lang: string, rawCode: string) => string;
+
+export interface HighlightCodeOptions {
+  /** {@inheritDoc GetCodeLanguage} */
+  getLanguage?: GetCodeLanguage;
+
+  /** {@inheritDoc DangerouslyHighlightCode} */
+  highlightCode?: DangerouslyHighlightCode;
+  /** {@inheritDoc HighlightElement} */
+  highlightElement?: HighlightElement;
+}
+
+/**
+ * This type ensures that both the `highlightCode` an `highlightElement`
+ * functions cannot be provided at the same time.
+ */
+export type ValidHighlightCodeOptions =
+  | {
+      highlightCode?: DangerouslyHighlightCode;
+      highlightElement?: never;
+    }
+  | {
+      highlightCode?: never;
+      highlightElement?: HighlightElement;
+    }
+  | {
+      highlightCode?: never;
+      highlightElement?: never;
+    };
+
+export type MarkedOptions = Omit<
+  marked.MarkedOptions,
+  "highlight" | "sanitize" | "sanitizer"
+>;
+
+export interface MarkdownCodeOptions
+  extends MarkedOptions,
+    HighlightCodeOptions {}
+
+/** @internal */
+export interface MarkdownCodeContext extends MarkdownCodeOptions {
+  getLanguage: GetCodeLanguage;
+}
+
+export const DEFAULT_MARKDOWN_OPTIONS: MarkedOptions = {
+  baseUrl: "",
+  breaks: false,
+  gfm: true,
+  headerIds: true,
+  headerPrefix: "",
+  langPrefix: "language-",
+  mangle: false,
+  pedantic: false,
+  silent: false,
+  smartLists: false,
+  smartypants: false,
+  xhtml: false,
+};
+
+/** @internal */
+export const DEFAULT_GET_LANGUAGE: GetCodeLanguage = (lang) => lang;
+
+/** @internal */
+const context = createContext<MarkdownCodeContext>({
+  ...DEFAULT_MARKDOWN_OPTIONS,
+  getLanguage: DEFAULT_GET_LANGUAGE,
+});
+context.displayName = "MarkdownCode";
+const { Provider } = context;
+
+/**
+ *
+ * @returns the current markdown configuration
+ */
+export function useMarkdownConfig(): Readonly<MarkdownCodeContext> {
+  return useContext(context);
+}
+
+/** @internal */
+export interface MarkdownCodeProviderProps extends HighlightCodeOptions {
+  children: ReactNode;
+  options: MarkedOptions;
+}
+
+/** @internal */
+export function MarkdownCodeProvider({
+  children,
+  options,
+  getLanguage = DEFAULT_GET_LANGUAGE,
+  highlightCode,
+  highlightElement,
+}: MarkdownCodeProviderProps): ReactElement {
+  const value = useMemo<MarkdownCodeContext>(
+    () => ({
+      ...options,
+      getLanguage,
+      highlightCode,
+      highlightElement,
+    }),
+    [getLanguage, highlightCode, highlightElement, options]
+  );
+
+  return <Provider value={value}>{children}</Provider>;
+}
+
+export interface CodeSpanRendererProps extends Tokens.Codespan {
+  children: ReactNode;
+}
 
 /**
  * The default implementation for rendering the {@link Tokens.Codespan} by
@@ -15,6 +187,11 @@ export function CodeSpanRenderer({
   children,
 }: CodeSpanRendererProps): ReactElement {
   return <code>{children}</code>;
+}
+
+export interface CodeBlockRendererProps extends Tokens.Code {
+  lang: string;
+  children: ReactNode;
 }
 
 /**
@@ -31,8 +208,7 @@ export function CodeBlockRenderer({
   text,
   children: propChildren,
 }: CodeBlockRendererProps): ReactElement {
-  const { options, highlightCode, highlightElement } = useMarkdownConfig();
-  const { langPrefix } = options;
+  const { langPrefix, highlightCode, highlightElement } = useMarkdownConfig();
 
   let key: string | undefined;
   let children: ReactNode;
@@ -74,3 +250,15 @@ export function CodeBlockRenderer({
     </pre>
   );
 }
+
+export interface CodeRenderers {
+  /** @see {@link CodeSpanRenderer} for default implementation */
+  codespan: ComponentType<CodeSpanRendererProps>;
+  /** @see {@link CodeBlockRenderer} for default implementation */
+  codeblock: ComponentType<CodeBlockRendererProps>;
+}
+
+export const CODE_RENDERERS: CodeRenderers = {
+  codespan: CodeSpanRenderer,
+  codeblock: CodeBlockRenderer,
+};

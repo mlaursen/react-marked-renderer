@@ -1,74 +1,6 @@
+import type { Slugger, Token } from "marked";
 import marked from "marked";
 import { createContext, ReactElement, ReactNode, useContext } from "react";
-
-import { DEFAULT_RENDERERS } from "./renderers";
-import type {
-  GetCodeLanguage,
-  MarkdownConfig,
-  MarkdownConfigContext,
-  Renderers,
-  ValidMarkedOptions,
-} from "./types";
-
-export const DEFAULT_MARKDOWN_OPTIONS: ValidMarkedOptions = {
-  ...marked.getDefaults(),
-  mangle: false,
-};
-
-/** @internal */
-const DEFAULT_GET_LANGUAGE: GetCodeLanguage = (lang) => lang;
-
-/** @internal */
-const context = createContext<MarkdownConfigContext>({
-  slugger: new marked.Slugger(),
-  options: DEFAULT_MARKDOWN_OPTIONS,
-  getLanguage: DEFAULT_GET_LANGUAGE,
-  renderers: DEFAULT_RENDERERS,
-});
-context.displayName = "MarkdownConfig";
-
-const { Provider } = context;
-
-/** @internal */
-export interface MarkdownConfigProviderProps extends MarkdownConfig {
-  children: ReactNode;
-}
-
-/** @internal */
-export function MarkdownConfigProvier({
-  options,
-  slugger,
-  getLanguage = DEFAULT_GET_LANGUAGE,
-  highlightCode,
-  highlightElement,
-  children,
-  renderers,
-}: MarkdownConfigProviderProps): ReactElement {
-  // TODO: _Might_ have to look into optimizing setting the provider if there
-  // are too many re-renderers due to the context never being shallow-equal
-  return (
-    <Provider
-      value={{
-        options,
-        slugger,
-        renderers,
-        getLanguage,
-        highlightCode,
-        highlightElement,
-      }}
-    >
-      {children}
-    </Provider>
-  );
-}
-
-/**
- * Gets the current markown config that was provided to the {@link Markdown}
- * component.
- */
-export function useMarkdownConfig(): MarkdownConfigContext {
-  return useContext(context);
-}
 
 export interface TokensTextOptions {
   /**
@@ -95,7 +27,7 @@ export interface TokensTextOptions {
  * @returns the text content for the list of tokens
  */
 export function getTokensText(
-  tokens: readonly marked.Token[],
+  tokens: readonly Token[],
   { depth = 0, maxDepth = -1 }: TokensTextOptions = {}
 ): string {
   return tokens.reduce((s, token) => {
@@ -119,6 +51,19 @@ export function getTokensText(
 
     return s;
   }, "");
+}
+
+const context = createContext<Slugger>(new marked.Slugger());
+context.displayName = "MarkdownSlugger";
+const { Provider } = context;
+
+/**
+ * This is mostly an internal hook to get the current slugger, but it can be
+ * used if the {@link useSluggedId} does not work for your use-case and you need
+ * access to the full `Slugger`
+ */
+export function useMarkdownSlugger(): Slugger {
+  return useContext(context);
 }
 
 /**
@@ -169,20 +114,22 @@ export function useSluggedId(
       ? textOrTokens
       : getTokensText(textOrTokens);
 
-  const { slugger } = useMarkdownConfig();
+  const slugger = useMarkdownSlugger();
   const seen = slugger.seen[text];
   const id = slugger.slug(text);
   return seen > 1 ? `${id}-${seen}` : id;
 }
 
-/**
- * This hooks is mostly an internal hook for creating some reasonable renderer
- * defaults for the {@link Renderers.list} and {@link Renderers.table}. It is
- * used to get the current implementation for all the renderers that were
- * provided to the {@link Markdown} component.
- *
- * @returns the current renderers
- */
-export function useRenderers(): Renderers {
-  return useMarkdownConfig().renderers;
+/** @internal */
+export interface MarkdownSluggerProviderProps {
+  children: ReactNode;
+  slugger: Slugger;
+}
+
+/** @internal */
+export function MarkdownSluggerProvider({
+  children,
+  slugger,
+}: MarkdownSluggerProviderProps): ReactElement {
+  return <Provider value={slugger}>{children}</Provider>;
 }

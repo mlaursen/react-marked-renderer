@@ -1,11 +1,11 @@
-import type { ReactElement } from "react";
+import type { Tokens } from "marked";
+import type { ComponentType, ReactElement, ReactNode } from "react";
 
-import { getTokensText, useSluggedId } from "../context";
-import type {
-  ListItemRendererProps,
-  ListRendererProps,
-  TaskRendererProps,
-} from "../types";
+import { getTokensText, useSluggedId } from "../useSluggedId";
+
+export interface ListRendererProps extends Tokens.List {
+  children: ReactNode;
+}
 
 /**
  * The default implementation for rendering the {@link Tokens.List} by
@@ -25,6 +25,11 @@ export function ListRenderer({
   return <Component>{children}</Component>;
 }
 
+export interface ListItemRendererProps
+  extends Omit<Tokens.ListItem, "checked" | "task"> {
+  children: ReactNode;
+}
+
 /**
  * The default implementation for rendering the {@link Tokens.List} by
  * rendering:
@@ -37,6 +42,10 @@ export function ListItemRenderer({
   children,
 }: ListItemRendererProps): ReactElement {
   return <li>{children}</li>;
+}
+
+export interface TaskRendererProps extends ListItemRendererProps {
+  defaultChecked: boolean;
 }
 
 /**
@@ -69,3 +78,21 @@ export function TaskRenderer({
     </li>
   );
 }
+
+/**
+ * These types of renderers are used for rendering lists.
+ */
+export interface ListRenderers {
+  /** @see {@link ListRenderer} for default implementation */
+  list: ComponentType<ListRendererProps>;
+  /** @see {@link ListItemRenderer} for default implementation */
+  listitem: ComponentType<ListItemRendererProps>;
+  /** @see {@link TaskRenderer} for default implementation */
+  task: ComponentType<TaskRendererProps>;
+}
+
+export const LIST_RENDERERS: ListRenderers = {
+  list: ListRenderer,
+  listitem: ListItemRenderer,
+  task: TaskRenderer,
+};

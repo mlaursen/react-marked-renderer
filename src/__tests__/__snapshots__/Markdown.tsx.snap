@@ -170,6 +170,18 @@ exports[`Markdown should be able to render emphasis (italic) text 1`] = `
 </div>
 `;
 
+exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`] = `
+<div>
+  <p>
+    Here is some 
+    \\*
+     escaped 
+    \\*
+     stuff.
+  </p>
+</div>
+`;
+
 exports[`Markdown should be able to render horizontal rules and <br /> tags 1`] = `
 <div>
   <p>

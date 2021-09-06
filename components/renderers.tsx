@@ -14,7 +14,12 @@ import {
   Text,
 } from "react-md";
 
-import { getTokensText, useSluggedId, Renderers } from "../src";
+import {
+  getTokensText,
+  useSluggedId,
+  MarkdownRenderers,
+  DEFAULT_MARKDOWN_RENDERERS,
+} from "../src";
 import styles from "./renderers.module.scss";
 
 const PRISM_LANGUAGES = Object.keys(languages).filter(
@@ -22,7 +27,8 @@ const PRISM_LANGUAGES = Object.keys(languages).filter(
 );
 PRISM_LANGUAGES.push("none");
 
-export const renderers: Partial<Renderers> = {
+export const renderers: MarkdownRenderers = {
+  ...DEFAULT_MARKDOWN_RENDERERS,
   hr: function Hr() {
     return <Divider />;
   },

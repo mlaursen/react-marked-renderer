@@ -1,16 +1,18 @@
 import marked from "marked";
 import type { ReactElement } from "react";
 
-import { DEFAULT_MARKDOWN_OPTIONS, MarkdownConfigProvier } from "./context";
-import { DEFAULT_RENDERERS } from "./renderers";
-import { TokensRenderer } from "./renderers/tokens";
-import type {
-  DangerouslyHighlightCode,
+import {
+  DEFAULT_MARKDOWN_OPTIONS,
+  DEFAULT_MARKDOWN_RENDERERS,
   HighlightCodeOptions,
-  HighlightElement,
-  Renderers,
-  ValidMarkedOptions,
-} from "./types";
+  MarkdownCodeProvider,
+  MarkdownRenderers,
+  MarkdownRenderersProvider,
+  MarkedOptions,
+  TokensRenderer,
+  ValidHighlightCodeOptions,
+} from "./renderers";
+import { MarkdownSluggerProvider } from "./useSluggedId";
 
 export interface BaseMarkdownProps extends HighlightCodeOptions {
   /**
@@ -40,7 +42,7 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
    * In addition, the `mangle` option is set to `false` by default since it
    * would prevent emails from being displayed correctly.
    */
-  options?: ValidMarkedOptions;
+  options?: Readonly<MarkedOptions>;
 
   /**
    * An optional slugger to provide that generates unique ids for different
@@ -76,29 +78,15 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
    */
   slugger?: marked.Slugger;
 
-  /** {@inheritDoc Renderers} */
-  renderers?: Partial<Renderers>;
+  /** {@inheritDoc MarkdownRenderers} */
+  renderers?: Readonly<MarkdownRenderers>;
 }
 
 /**
  * All the props for the {@link Markdown} component that ensures that both of
  * the {@link HighlightCodeOptions} are not provided at the same time.
  */
-export type MarkdownProps = BaseMarkdownProps &
-  (
-    | {
-        highlightCode?: DangerouslyHighlightCode;
-        highlightElement?: never;
-      }
-    | {
-        highlightCode?: never;
-        highlightElement?: HighlightElement;
-      }
-    | {
-        highlightCode?: never;
-        highlightElement?: never;
-      }
-  );
+export type MarkdownProps = BaseMarkdownProps & ValidHighlightCodeOptions;
 
 /**
  * This component renders markdown as react components.
@@ -255,35 +243,29 @@ export type MarkdownProps = BaseMarkdownProps &
  * ```
  */
 export function Markdown({
-  options,
+  options = DEFAULT_MARKDOWN_OPTIONS,
   // have to create a new slugger each render since the seen count would keep
   // incrementing with react-refresh
   slugger = new marked.Slugger(),
   markdown,
-  renderers,
+  renderers = DEFAULT_MARKDOWN_RENDERERS,
   getLanguage,
   highlightCode,
   highlightElement,
 }: MarkdownProps): ReactElement {
-  const resolvedOptions: marked.MarkedOptions = {
-    ...DEFAULT_MARKDOWN_OPTIONS,
-    ...options,
-  };
-
-  const tokens = marked.lexer(markdown, resolvedOptions);
+  const tokens = marked.lexer(markdown, options);
   return (
-    <MarkdownConfigProvier
-      options={resolvedOptions}
-      slugger={slugger}
-      renderers={{
-        ...DEFAULT_RENDERERS,
-        ...renderers,
-      }}
+    <MarkdownCodeProvider
+      options={options}
       getLanguage={getLanguage}
       highlightCode={highlightCode}
       highlightElement={highlightElement}
     >
-      <TokensRenderer tokens={tokens} />
-    </MarkdownConfigProvier>
+      <MarkdownSluggerProvider slugger={slugger}>
+        <MarkdownRenderersProvider renderers={renderers}>
+          <TokensRenderer tokens={tokens} />
+        </MarkdownRenderersProvider>
+      </MarkdownSluggerProvider>
+    </MarkdownCodeProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { getTokensText } from "../context";
+import { getTokensText } from "../useSluggedId";
 
 describe("getTokensText", () => {
   // this is just used to catch line 71

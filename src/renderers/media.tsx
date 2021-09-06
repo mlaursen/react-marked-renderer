@@ -1,6 +1,7 @@
-import type { ReactElement } from "react";
+import type { Tokens } from "marked";
+import type { ComponentType, ReactElement } from "react";
 
-import type { ImageRendererProps } from "../types";
+export type ImageRendererProps = Tokens.Image;
 
 /**
  * The default implementation for rendering the {@link Tokens.Image} by
@@ -18,3 +19,15 @@ export function ImageRenderer({
   // eslint-disable-next-line @next/next/no-img-element
   return <img src={href} alt={text || ""} title={title || undefined} />;
 }
+
+/**
+ * These types of renderers are used for rendering media-like elements.
+ */
+export interface MediaRenderers {
+  /** @see {@link ImageRenderer} for default implementation */
+  img: ComponentType<ImageRendererProps>;
+}
+
+export const MEDIA_RENDERERS: MediaRenderers = {
+  img: ImageRenderer,
+};

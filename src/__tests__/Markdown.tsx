@@ -5,21 +5,19 @@ import {
   getAllByRole as globalGetAllByRole,
   render,
 } from "@testing-library/react";
-
-// required for custom renderers
 import Prism from "prismjs";
 import "prismjs/components/prism-bash";
-import "prismjs/components/prism-markup";
-import "prismjs/components/prism-markdown";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-markdown";
+import "prismjs/components/prism-markup";
 import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-typescript";
 
 import { renderers } from "../../components/renderers";
 import { DEFAULT_MARKDOWN } from "../../constants";
 import { Markdown } from "../Markdown";
-import { DangerouslyHighlightCode, GetCodeLanguage } from "../types";
+import type { DangerouslyHighlightCode, GetCodeLanguage } from "../renderers";
 
 const HEADING_MARKDOWN = `
 # Heading 1
@@ -94,6 +92,10 @@ ___Using Triple Underscore____
 
 const STRIKETHROUGH_TEXT_MARKDOWN = `
 ~~This text has strikethroughs~~
+`;
+
+const ESCAPED_MARKDOWN = `
+Here is some \\* escaped \\* stuff.
 `;
 
 const BR_MARKDOWN = `
@@ -330,6 +332,12 @@ describe("Markdown", () => {
       <Markdown markdown={STRIKETHROUGH_TEXT_MARKDOWN} />
     );
     expect(document.querySelector("del")).toBeInTheDocument();
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render escaped (backslash-prefixed) text", () => {
+    const { container } = render(<Markdown markdown={ESCAPED_MARKDOWN} />);
 
     expect(container).toMatchSnapshot();
   });

@@ -1,16 +1,11 @@
-import type { ReactElement } from "react";
+import type { Tokens } from "marked";
+import type { ComponentType, ReactElement, ReactNode } from "react";
 
-import { useSluggedId } from "../context";
-import type {
-  BlockquoteRendererProps,
-  DelRendererProps,
-  EmRendererProps,
-  HeadingRendererProps,
-  LinkRendererProps,
-  ParagraphRendererProps,
-  StrongRendererProps,
-  TextRendererProps,
-} from "../types";
+import { useSluggedId } from "../useSluggedId";
+
+export interface TextRendererProps extends Tokens.Text {
+  children: ReactNode;
+}
 
 /**
  * The default implementation for rendering the {@link Tokens.Text} by
@@ -31,6 +26,10 @@ export function TextRenderer({
   return <>{children || raw}</>;
 }
 
+export interface EmRendererProps extends Tokens.Em {
+  children: ReactNode;
+}
+
 /**
  * The default implementation for rendering the {@link Tokens.Em} by rendering:
  *
@@ -42,6 +41,10 @@ export function EmRenderer({ children }: EmRendererProps): ReactElement {
   return <em>{children}</em>;
 }
 
+export interface DelRendererProps extends Tokens.Del {
+  children: ReactNode;
+}
+
 /**
  * The default implementation for rendering the {@link Tokens.Del} by rendering:
  *
@@ -51,6 +54,10 @@ export function EmRenderer({ children }: EmRendererProps): ReactElement {
  */
 export function DelRenderer({ children }: DelRendererProps): ReactElement {
   return <del>{children}</del>;
+}
+
+export interface StrongRendererProps extends Tokens.Strong {
+  children: ReactNode;
 }
 
 /**
@@ -65,6 +72,11 @@ export function StrongRenderer({
   children,
 }: StrongRendererProps): ReactElement {
   return <strong>{children}</strong>;
+}
+
+export interface HeadingRendererProps extends Tokens.Heading {
+  depth: 1 | 2 | 3 | 4 | 5 | 6;
+  children: ReactNode;
 }
 
 /**
@@ -90,6 +102,10 @@ export function HeadingRenderer({
   return <Component id={id}>{children}</Component>;
 }
 
+export interface ParagraphRendererProps extends Tokens.Paragraph {
+  children: ReactNode;
+}
+
 /**
  * The default implementation for rendering the {@link Tokens.Paragraph} by
  * rendering:
@@ -104,6 +120,10 @@ export function ParagraphRenderer({
   return <p>{children}</p>;
 }
 
+export interface BlockquoteRendererProps extends Tokens.Blockquote {
+  children: ReactNode;
+}
+
 /**
  * The default implementation for rendering the {@link Tokens.Blockquote} by
  * rendering:
@@ -116,6 +136,10 @@ export function BlockquoteRenderer({
   children,
 }: BlockquoteRendererProps): ReactElement {
   return <blockquote>{children}</blockquote>;
+}
+
+export interface LinkRendererProps extends Tokens.Link {
+  children: ReactNode;
 }
 
 /**
@@ -137,3 +161,37 @@ export function LinkRenderer({
     </a>
   );
 }
+
+/**
+ * These types of renderers normally render simple text, but can contain other
+ * elements.
+ */
+export interface TextRenderers {
+  /** @see {@link EmRenderer} for default implementation */
+  em: ComponentType<EmRendererProps>;
+  /** @see {@link DelRenderer} for default implementation */
+  del: ComponentType<DelRendererProps>;
+  /** @see {@link LinkRenderer} for default implementation */
+  link: ComponentType<LinkRendererProps>;
+  /** @see {@link TextRenderer} for default implementation */
+  text: ComponentType<TextRendererProps>;
+  /** @see {@link StrongRenderer} for default implementation */
+  strong: ComponentType<StrongRendererProps>;
+  /** @see {@link HeadingRenderer} for default implementation */
+  heading: ComponentType<HeadingRendererProps>;
+  /** @see {@link ParagraphRenderer} for default implementation */
+  paragraph: ComponentType<ParagraphRendererProps>;
+  /** @see {@link BlockquoteRenderer} for default implementation */
+  blockquote: ComponentType<BlockquoteRendererProps>;
+}
+
+export const TEXT_RENDERERS: TextRenderers = {
+  em: EmRenderer,
+  del: DelRenderer,
+  link: LinkRenderer,
+  text: TextRenderer,
+  strong: StrongRenderer,
+  heading: HeadingRenderer,
+  paragraph: ParagraphRenderer,
+  blockquote: BlockquoteRenderer,
+};

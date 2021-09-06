@@ -1,7 +1,8 @@
 import type { Token } from "marked";
 import type { ReactElement } from "react";
 
-import { useMarkdownConfig, useRenderers } from "../context";
+import { useMarkdownConfig } from "./code";
+import { useMarkdownRenderers } from "./useMarkdownRenderers";
 
 export interface TokensRendererProps {
   tokens: readonly Token[];
@@ -49,6 +50,7 @@ export function TokenRenderer({
 }: TokenRendererProps): ReactElement | null {
   const {
     space: Space,
+    escape: Escape,
     em: Em,
     br: Br,
     hr: Hr,
@@ -73,7 +75,7 @@ export function TokenRenderer({
     tr: Tr,
     th: Th,
     td: Td,
-  } = useRenderers();
+  } = useMarkdownRenderers();
   const { getLanguage } = useMarkdownConfig();
   switch (token.type) {
     case "space":
@@ -226,6 +228,8 @@ export function TokenRenderer({
         </Table>
       );
     }
+    case "escape":
+      return <Escape {...token} />;
     /* istanbul ignore next */
     default:
       if (process.env.NODE_ENV !== "production") {

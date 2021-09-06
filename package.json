@@ -16,9 +16,10 @@
   "sideEffects": false,
   "scripts": {
     "prepare": "husky install",
-    "prebuild": "npm-run-all -p lint typecheck api-docs",
+    "prebuild": "npm-run-all -p lint typecheck api-docs create-env",
     "clean-dist": "rimraf dist",
     "ci": "npm-run-all lint typecheck test",
+    "create-env": "node createEnv.js",
     "api-docs": "node ./typedoc.js",
     "bundle": "rollup -c rollup.config.js",
     "update-version": "standard-version",

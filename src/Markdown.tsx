@@ -8,7 +8,7 @@ import {
   MarkdownCodeProvider,
   MarkdownRenderers,
   MarkdownRenderersProvider,
-  MarkedOptions,
+  MarkdownOptions,
   TokensRenderer,
   ValidHighlightCodeOptions,
 } from "./renderers";
@@ -42,7 +42,7 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
    * In addition, the `mangle` option is set to `false` by default since it
    * would prevent emails from being displayed correctly.
    */
-  options?: Readonly<MarkedOptions>;
+  options?: Readonly<MarkdownOptions>;
 
   /**
    * An optional slugger to provide that generates unique ids for different

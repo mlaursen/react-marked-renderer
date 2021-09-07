@@ -61,7 +61,7 @@ exports[`Markdown should be able to highlight code with the highlightElement opt
 </div>
 `;
 
-exports[`Markdown should be able to render all six heading types 1`] = `
+exports[`Markdown should be able to render all six heading types with or without ids 1`] = `
 <div>
   <h1
     id="heading-1"
@@ -91,6 +91,29 @@ exports[`Markdown should be able to render all six heading types 1`] = `
   <h6
     id="heading-6"
   >
+    Heading 6
+  </h6>
+</div>
+`;
+
+exports[`Markdown should be able to render all six heading types with or without ids 2`] = `
+<div>
+  <h1>
+    Heading 1
+  </h1>
+  <h2>
+    Heading 2
+  </h2>
+  <h3>
+    Heading 3
+  </h3>
+  <h4>
+    Heading 4
+  </h4>
+  <h5>
+    Heading 5
+  </h5>
+  <h6>
     Heading 6
   </h6>
 </div>
@@ -179,6 +202,36 @@ exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`]
     \\*
      stuff.
   </p>
+</div>
+`;
+
+exports[`Markdown should be able to render h1 elements with equal signs 1`] = `
+<div>
+  <h1
+    id="three-equals"
+  >
+    Three equals
+  </h1>
+  <h1
+    id="three-or-more-equals"
+  >
+    Three or more equals
+  </h1>
+</div>
+`;
+
+exports[`Markdown should be able to render h2 elements with hyphens 1`] = `
+<div>
+  <h2
+    id="three-hyphens"
+  >
+    Three hyphens
+  </h2>
+  <h2
+    id="three-or-more-hyphens"
+  >
+    Three or more hyphens
+  </h2>
 </div>
 `;
 
@@ -387,20 +440,16 @@ exports[`Markdown should be able to render strikethrough (deleted) text 1`] = `
 exports[`Markdown should be able to render strong (bold) text 1`] = `
 <div>
   <p>
-    <em>
-      <strong>
-        Using Triple Underscore
-      </strong>
-    </em>
+    <strong>
+      Using Double Underscore
+    </strong>
     _
   </p>
    
   <p>
-    <em>
-      <strong>
-        Using Triple Asterisk
-      </strong>
-    </em>
+    <strong>
+      Using Double Asterisk
+    </strong>
   </p>
 </div>
 `;
@@ -470,6 +519,106 @@ exports[`Markdown should be able to render tables 1`] = `
 </div>
 `;
 
+exports[`Markdown should be able to render tables with complex markdown 1`] = `
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th
+          align="left"
+        >
+          Left-aligned
+        </th>
+        <th
+          align="center"
+        >
+          Center-aligned
+        </th>
+        <th
+          align="right"
+        >
+          Right-aligned
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          align="left"
+        >
+          <code>
+            git status
+          </code>
+        </td>
+        <td
+          align="center"
+        >
+          List all 
+          <em>
+            new or modified
+          </em>
+           files
+        </td>
+        <td
+          align="right"
+        />
+      </tr>
+      <tr>
+        <td
+          align="left"
+        >
+          <code>
+            git diff
+          </code>
+        </td>
+        <td
+          align="center"
+        >
+          Show file differences that 
+          <strong>
+            haven't been
+          </strong>
+           staged
+        </td>
+        <td
+          align="right"
+        />
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Character
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Backtick
+        </td>
+        <td>
+          \`
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Pipe
+        </td>
+        <td>
+          |
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
 exports[`Markdown should be able to render task lists 1`] = `
 <div>
   <ul>
@@ -512,6 +661,68 @@ exports[`Markdown should be able to render task lists 1`] = `
 </div>
 `;
 
+exports[`Markdown should be able to render text that combines emphasis, strong, and strikethrough text 1`] = `
+<div>
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <strong>
+      <em>
+        Should be emphasis and bold.
+      </em>
+    </strong>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <strong>
+      <em>
+        Should be emphasis and bold.
+      </em>
+    </strong>
+  </p>
+   
+  <p>
+    <del>
+      <strong>
+        <em>
+          Should be emphasis, bold, and strikethrough.
+        </em>
+      </strong>
+    </del>
+  </p>
+</div>
+`;
+
 exports[`Markdown should be able to render unordered lists 1`] = `
 <div>
   <ul>
@@ -537,36 +748,6 @@ exports[`Markdown should be able to render unordered lists 1`] = `
       Asterisk Item 3
     </li>
   </ul>
-</div>
-`;
-
-exports[`Markdown should be able to rendering h1 elements with equal signs 1`] = `
-<div>
-  <h1
-    id="three-equals"
-  >
-    Three equals
-  </h1>
-  <h1
-    id="three-or-more-equals"
-  >
-    Three or more equals
-  </h1>
-</div>
-`;
-
-exports[`Markdown should be able to rendering h1 elements with hyphens 1`] = `
-<div>
-  <h2
-    id="three-hyphens"
-  >
-    Three hyphens
-  </h2>
-  <h2
-    id="three-or-more-hyphens"
-  >
-    Three or more hyphens
-  </h2>
 </div>
 `;
 

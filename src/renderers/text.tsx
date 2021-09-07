@@ -2,6 +2,7 @@ import type { Tokens } from "marked";
 import type { ComponentType, ReactElement, ReactNode } from "react";
 
 import { useSluggedId } from "../useSluggedId";
+import { useMarkdownConfig } from "./code";
 
 export interface TextRendererProps extends Tokens.Text {
   children: ReactNode;
@@ -97,9 +98,10 @@ export function HeadingRenderer({
   tokens,
   children,
 }: HeadingRendererProps): ReactElement {
+  const { headerIds } = useMarkdownConfig();
   const id = useSluggedId(tokens);
   const Component = `h${depth}` as const;
-  return <Component id={id}>{children}</Component>;
+  return <Component id={headerIds ? id : undefined}>{children}</Component>;
 }
 
 export interface ParagraphRendererProps extends Tokens.Paragraph {

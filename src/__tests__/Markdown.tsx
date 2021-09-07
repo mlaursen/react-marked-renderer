@@ -17,7 +17,12 @@ import "prismjs/components/prism-typescript";
 import { renderers } from "../../components/renderers";
 import { DEFAULT_MARKDOWN } from "../../constants";
 import { Markdown } from "../Markdown";
-import type { DangerouslyHighlightCode, GetCodeLanguage } from "../renderers";
+import {
+  DangerouslyHighlightCode,
+  DEFAULT_MARKDOWN_OPTIONS,
+  GetCodeLanguage,
+  MarkdownOptions,
+} from "../renderers";
 
 const HEADING_MARKDOWN = `
 # Heading 1
@@ -85,13 +90,29 @@ _Using Single Underscore_
 `;
 
 const BOLD_TEXT_MARKDOWN = `
-___Using Triple Underscore____
+__Using Double Underscore___
 
-***Using Triple Asterisk***
+**Using Double Asterisk**
 `;
 
 const STRIKETHROUGH_TEXT_MARKDOWN = `
 ~~This text has strikethroughs~~
+`;
+
+const EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN = `
+___Should be emphasis and bold.___
+
+***Should be emphasis and bold.***
+
+*__Should be emphasis and bold.__*
+
+__*Should be emphasis and bold.*__
+
+_**Should be emphasis and bold.**_
+
+**_Should be emphasis and bold._**
+
+~~**_Should be emphasis, bold, and strikethrough._**~~
 `;
 
 const ESCAPED_MARKDOWN = `
@@ -181,6 +202,20 @@ Content Cell  | Content Cell
 | Content Cell  | Content Cell  |
 `;
 
+// https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
+const TABLE_COMPLEX_MARKDOWN = `
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| \`git status\` | List all *new or modified* files |
+| \`git diff\` | Show file differences that **haven't been** staged |
+
+
+| Name     | Character |
+| ---      | ---       |
+| Backtick | \`         |
+| Pipe     | \\|        |
+`;
+
 const FOLDABLE_TEXT_MARKDOWN = `
 <details>
 <summary>Title 1</summary>
@@ -193,8 +228,8 @@ const FOLDABLE_TEXT_MARKDOWN = `
 `;
 
 describe("Markdown", () => {
-  it("should be able to render all six heading types", () => {
-    const { container, getByRole } = render(
+  it("should be able to render all six heading types with or without ids", () => {
+    const { container, getByRole, rerender } = render(
       <Markdown markdown={HEADING_MARKDOWN} />
     );
     const heading1 = getByRole("heading", { name: "Heading 1" });
@@ -205,16 +240,40 @@ describe("Markdown", () => {
     const heading6 = getByRole("heading", { name: "Heading 6" });
 
     expect(heading1.tagName).toBe("H1");
+    expect(heading1).toHaveAttribute("id", "heading-1");
     expect(heading2.tagName).toBe("H2");
+    expect(heading2).toHaveAttribute("id", "heading-2");
     expect(heading3.tagName).toBe("H3");
+    expect(heading3).toHaveAttribute("id", "heading-3");
     expect(heading4.tagName).toBe("H4");
+    expect(heading4).toHaveAttribute("id", "heading-4");
     expect(heading5.tagName).toBe("H5");
+    expect(heading5).toHaveAttribute("id", "heading-5");
     expect(heading6.tagName).toBe("H6");
+    expect(heading6).toHaveAttribute("id", "heading-6");
+    expect(container).toMatchSnapshot();
 
+    const options: MarkdownOptions = {
+      ...DEFAULT_MARKDOWN_OPTIONS,
+      headerIds: false,
+    };
+    rerender(<Markdown options={options} markdown={HEADING_MARKDOWN} />);
+    expect(heading1.tagName).toBe("H1");
+    expect(heading1).not.toHaveAttribute("id");
+    expect(heading2.tagName).toBe("H2");
+    expect(heading2).not.toHaveAttribute("id");
+    expect(heading3.tagName).toBe("H3");
+    expect(heading3).not.toHaveAttribute("id");
+    expect(heading4.tagName).toBe("H4");
+    expect(heading4).not.toHaveAttribute("id");
+    expect(heading5.tagName).toBe("H5");
+    expect(heading5).not.toHaveAttribute("id");
+    expect(heading6.tagName).toBe("H6");
+    expect(heading6).not.toHaveAttribute("id");
     expect(container).toMatchSnapshot();
   });
 
-  it("should be able to rendering h1 elements with equal signs", () => {
+  it("should be able to render h1 elements with equal signs", () => {
     const { container, getByRole } = render(
       <Markdown markdown={HEADING_1_WITH_EQUALS_MARKDOWN} />
     );
@@ -229,7 +288,7 @@ describe("Markdown", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should be able to rendering h1 elements with hyphens", () => {
+  it("should be able to render h2 elements with hyphens", () => {
     const { container, getByRole } = render(
       <Markdown markdown={HEADING_2_WITH_HYPHENS_MARKDOWN} />
     );
@@ -298,8 +357,8 @@ describe("Markdown", () => {
 
   it("should be able to render blockquotes", () => {
     const { container } = render(<Markdown markdown={BLOCKQUOTE_MARKDOWN} />);
-    expect(container).toMatchSnapshot();
     expect(document.querySelector("blockquote")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to render nested blockquotes", () => {
@@ -307,6 +366,9 @@ describe("Markdown", () => {
       <Markdown markdown={NESTED_BLOCKQUOTE_MARKDOWN} />
     );
     expect(document.querySelectorAll("blockquote")?.length).toBe(2);
+    expect(
+      document.querySelector("blockquote")?.querySelector("blockquote")
+    ).not.toBe(null);
 
     expect(container).toMatchSnapshot();
   });
@@ -333,6 +395,13 @@ describe("Markdown", () => {
     );
     expect(document.querySelector("del")).toBeInTheDocument();
 
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render text that combines emphasis, strong, and strikethrough text", () => {
+    const { container } = render(
+      <Markdown markdown={EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN} />
+    );
     expect(container).toMatchSnapshot();
   });
 
@@ -502,6 +571,13 @@ describe("Markdown", () => {
 
   it("should be able to render tables", () => {
     const { container } = render(<Markdown markdown={TABLE_MARKDOWN} />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render tables with complex markdown", () => {
+    const { container } = render(
+      <Markdown markdown={TABLE_COMPLEX_MARKDOWN} />
+    );
     expect(container).toMatchSnapshot();
   });
 });

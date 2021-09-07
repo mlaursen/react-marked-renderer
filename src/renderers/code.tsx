@@ -96,13 +96,13 @@ export type ValidHighlightCodeOptions =
       highlightElement?: never;
     };
 
-export type MarkedOptions = Omit<
+export type MarkdownOptions = Omit<
   marked.MarkedOptions,
   "highlight" | "sanitize" | "sanitizer"
 >;
 
 export interface MarkdownCodeOptions
-  extends MarkedOptions,
+  extends MarkdownOptions,
     HighlightCodeOptions {}
 
 /** @internal */
@@ -110,7 +110,7 @@ export interface MarkdownCodeContext extends MarkdownCodeOptions {
   getLanguage: GetCodeLanguage;
 }
 
-export const DEFAULT_MARKDOWN_OPTIONS: MarkedOptions = {
+export const DEFAULT_MARKDOWN_OPTIONS: MarkdownOptions = {
   baseUrl: "",
   breaks: false,
   gfm: true,
@@ -147,7 +147,7 @@ export function useMarkdownConfig(): Readonly<MarkdownCodeContext> {
 /** @internal */
 export interface MarkdownCodeProviderProps extends HighlightCodeOptions {
   children: ReactNode;
-  options: MarkedOptions;
+  options: MarkdownOptions;
 }
 
 /** @internal */

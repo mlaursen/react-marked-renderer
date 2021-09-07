@@ -16,7 +16,6 @@ import { usePlayground } from "./usePlayground";
 
 const getFileParser: GetFileParser = () => "readAsText";
 const extensions = [
-  "",
   "md",
   "txt",
   "js",

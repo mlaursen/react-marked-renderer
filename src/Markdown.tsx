@@ -24,23 +24,8 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
   /**
    * Any options to use while parsing the markdown string.
    *
-   * Note: This will always be called as:
-   *
-   * ```ts
-   * const tokens = lexer(markdown, {
-   *   ...marked.getDefaults(),
-   *   mangle: false,
-   *   ...options,
-   * });
-   * ```
-   *
-   * The default options are always merged with the new options since most of
-   * the time you only want to change a few options instead of all of them.
-   * `marked` does not merge by default, so everything omitted will be set to
-   * `false`.
-   *
-   * In addition, the `mangle` option is set to `false` by default since it
-   * would prevent emails from being displayed correctly.
+   * @see {@link DEFAULT_MARKDOWN_OPTIONS}
+   * @defaultValue `DEFAULT_MARKDOWN_OPTIONS`
    */
   options?: Readonly<MarkdownOptions>;
 
@@ -75,6 +60,8 @@ export interface BaseMarkdownProps extends HighlightCodeOptions {
    *   document.getElementById("root")
    * );
    * ```
+   *
+   * @defaultValue = `new marked.Slugger()`
    */
   slugger?: marked.Slugger;
 
@@ -116,15 +103,17 @@ export type MarkdownProps = BaseMarkdownProps & ValidHighlightCodeOptions;
  * import { useState } from "react";
  * import { render } from "react-dom";
  * import {
+ *   DEFAULT_MARKDOWN_RENDERERS,
  *   ListRenderer,
- *   getTokensText,
  *   Markdown,
  *   Renderers,
+ *   getTokensText,
  * } from "react-marked-renderer";
  * import { BrowserRouter as Router, Link } from "react-router-dom";
  *
- * const renderers: Partial<Renderers> = {
- *   link: function CustomLink({ href, title, children }: LinkRendererProps) {
+ * const renderers: Renderers = {
+ *   ...DEFAULT_MARKDOWN_RENDERERS,
+ *   link: function CustomLink({ href, title, children }) {
  *     // make links use html5 history and not cause reloads
  *     return (
  *       <Link to={href} title={title}>
@@ -173,17 +162,23 @@ export type MarkdownProps = BaseMarkdownProps & ValidHighlightCodeOptions;
  * ```
  *
  * @example
- * Code Highlighting (PrismJS)
+ * PrismJS Code Highlighting (Browser)
  * ```tsx
  * import { render } from "react-dom";
- * import { Markdown, Renderers } from "react-marked-renderer";
+ * import {
+ *   DEFAULT_MARKDOWN_RENDERERS,
+ *   Markdown,
+ *   Renderers,
+ * } from "react-marked-renderer";
  * import Prism from "prismjs";
+ * // import prism theme/components or use `babel-plugin-prismjs`
  *
- * const renderers: Partial<Renderers> = {
+ * const renderers: Renderers = {
+ *   ...DEFAULT_MARKDOWN_RENDERERS,
  *   codespan: function CodeSpan({ children }) {
  *     // just so it gets some prism styling
- *     return <code className="language-none">{children}</code>
- *   }
+ *     return <code className="language-none">{children}</code>;
+ *   },
  * };
  *
  * render(
@@ -197,22 +192,24 @@ export type MarkdownProps = BaseMarkdownProps & ValidHighlightCodeOptions;
  * ```
  *
  * @example
- * SSR Code Highlighting (PrismJS)
+ * PrismJS Code Highlighting (Node an Browser)
  * ```tsx
  * import { render } from "react-dom";
  * import {
- *   CodeGetCodeLanguage,
+ *   DEFAULT_MARKDOWN_RENDERERS,
  *   DangerouslyHighlight,
+ *   GetCodeLanguage,
  *   Markdown,
- *   Renderers
+ *   Renderers,
  * } from "react-marked-renderer";
  * import Prism from "prismjs";
  *
- * const renderers: Partial<Renderers> = {
+ * const renderers: Renderers = {
+ *   ...DEFAULT_MARKDOWN_RENDERERS,
  *   codespan: function CodeSpan({ children }) {
  *     // just so it gets some prism styling
- *     return <code className="language-none">{children}</code>
- *   }
+ *     return <code className="language-none">{children}</code>;
+ *   },
  * };
  *
  * const getLanguage: GetCodeLanguage = (lang, _rawCode) => {
@@ -222,7 +219,7 @@ export type MarkdownProps = BaseMarkdownProps & ValidHighlightCodeOptions;
  *   // if the Prism doesn't support the language, default to nothing instead
  *   // of crashing
  *   if (!Prism.languages[lang]) {
- *     return "";
+ *     return "none";
  *   }
  *
  *   return lang;

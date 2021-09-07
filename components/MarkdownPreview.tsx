@@ -25,7 +25,7 @@ export function MarkdownPreview(): ReactElement {
       <Markdown
         markdown={markdown}
         renderers={customRenderers ? renderers : undefined}
-        getLanguage={getLanguage}
+        getLanguage={customRenderers ? undefined : getLanguage}
         highlightCode={customRenderers ? highlightCode : undefined}
       />
     </div>

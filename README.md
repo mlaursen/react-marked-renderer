@@ -14,7 +14,7 @@ the
 npm install react react-marked-renderer
 ```
 
-Or with [yarn](https://yarnpkg.com)
+Or with [yarn](https://yarnpkg.com):
 
 ```sh
 yarn add react react-marked-renderer
@@ -65,15 +65,17 @@ add styles or additional functionality.
 import { useState } from "react";
 import { render } from "react-dom";
 import {
+  DEFAULT_MARKDOWN_RENDERERS,
   ListRenderer,
-  getTokensText,
   Markdown,
   Renderers,
+  getTokensText,
 } from "react-marked-renderer";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-const renderers: Partial<Renderers> = {
-  link: function CustomLink({ href, title, children }: LinkRendererProps) {
+const renderers: Renderers = {
+  ...DEFAULT_MARKDOWN_RENDERERS,
+  link: function CustomLink({ href, title, children }) {
     // make links use html5 history and not cause reloads
     return (
       <Link to={href} title={title}>
@@ -128,11 +130,16 @@ function that will modify a `<code>` element to be highlighted:
 
 ```tsx
 import { render } from "react-dom";
-import { Markdown, Renderers } from "react-marked-renderer";
+import {
+  DEFAULT_MARKDOWN_RENDERERS,
+  Markdown,
+  Renderers,
+} from "react-marked-renderer";
 import Prism from "prismjs";
-// import prism theme/components or use babel-plugin-prismjs
+// import prism theme/components or use `babel-plugin-prismjs`
 
-const renderers: Partial<Renderers> = {
+const renderers: Renderers = {
+  ...DEFAULT_MARKDOWN_RENDERERS,
   codespan: function CodeSpan({ children }) {
     // just so it gets some prism styling
     return <code className="language-none">{children}</code>;
@@ -157,14 +164,16 @@ highlighted for SSR and in the browser, provide a `highlightCode` function:
 ```tsx
 import { render } from "react-dom";
 import {
-  CodeGetCodeLanguage,
+  DEFAULT_MARKDOWN_RENDERERS,
   DangerouslyHighlight,
+  GetCodeLanguage,
   Markdown,
   Renderers,
 } from "react-marked-renderer";
 import Prism from "prismjs";
 
-const renderers: Partial<Renderers> = {
+const renderers: Renderers = {
+  ...DEFAULT_MARKDOWN_RENDERERS,
   codespan: function CodeSpan({ children }) {
     // just so it gets some prism styling
     return <code className="language-none">{children}</code>;
@@ -178,7 +187,7 @@ const getLanguage: GetCodeLanguage = (lang, _rawCode) => {
   // if the Prism doesn't support the language, default to nothing instead
   // of crashing
   if (!Prism.languages[lang]) {
-    return "";
+    return "none";
   }
 
   return lang;

@@ -11,6 +11,9 @@ import {
 import { TableRenderers, TABLE_RENDERERS } from "./table";
 import { TextRenderers, TEXT_RENDERERS } from "./text";
 
+/**
+ * @see {@link DEFAULT_MARKDOWN_RENDERERS} for the default implementation
+ */
 export interface MarkdownRenderers
   extends CodeRenderers,
     HtmlRenderers,
@@ -20,6 +23,17 @@ export interface MarkdownRenderers
     TableRenderers,
     TextRenderers {}
 
+/**
+ * The default implementation for the {@link MarkdownRenderers}
+ *
+ * @see {@link CODE_RENDERERS}
+ * @see {@link HTML_RENDERERS}
+ * @see {@link LIST_RENDERERS}
+ * @see {@link MEDIA_RENDERERS}
+ * @see {@link PRESENTATIONAL_RENDERERS}
+ * @see {@link TABLE_RENDERERS}
+ * @see {@link TEXT_RENDERERS}
+ */
 export const DEFAULT_MARKDOWN_RENDERERS: MarkdownRenderers = {
   ...CODE_RENDERERS,
   ...HTML_RENDERERS,

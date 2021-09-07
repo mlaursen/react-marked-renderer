@@ -25,7 +25,6 @@ import styles from "./renderers.module.scss";
 const PRISM_LANGUAGES = Object.keys(languages).filter(
   (name) => name !== "insertBefore" && name !== "extend"
 );
-PRISM_LANGUAGES.push("none");
 
 export const renderers: MarkdownRenderers = {
   ...DEFAULT_MARKDOWN_RENDERERS,
@@ -87,10 +86,10 @@ export const renderers: MarkdownRenderers = {
     );
   },
 
-  codeblock: function CodeBlock({ lang = "", text }) {
+  codeblock: function CodeBlock({ lang, text }) {
     // allow `sh` alias for bash
     lang = lang === "sh" ? "bash" : lang;
-    const invalid = !PRISM_LANGUAGES.includes(lang);
+    const invalid = lang && !PRISM_LANGUAGES.includes(lang);
 
     let message: string | undefined;
     if (invalid) {
@@ -99,6 +98,8 @@ export const renderers: MarkdownRenderers = {
 Valid languages for the playground are:
 ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
 `;
+
+      lang = "none";
     }
 
     return (

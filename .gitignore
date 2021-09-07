@@ -12,18 +12,20 @@ coverage
 
 # Dependency directories
 node_modules/
+
 # TypeScript cache
 *.tsbuildinfo
 
+# For creating github releases
+.env.github
+
+# For vercel deployments
 .env.production.local
 
 # Output of 'npm pack'
 *.tgz
 
 # generated output
+/dist
 /.next
 /public/tsdocs
-/es
-/lib
-/dist
-/types

@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {
-      tsconfig: './tsconfig.jest.json',
+      tsconfig: './tsconfig.node.json',
     },
   },
   moduleNameMapper: {

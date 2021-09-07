@@ -1,66 +1,19 @@
 import cn from "classnames";
 import { ReactElement, useEffect, useState } from "react";
-import {
-  GetFileParser,
-  getSplitFileUploads,
-  useDropzone,
-  useFileUpload,
-  Text,
-  TextContainer,
-  FileUploadSVGIcon,
-} from "react-md";
+import { FileUploadSVGIcon, Text, TextContainer, useDropzone } from "react-md";
 
-import { ErrorModal } from "./ErrorModal";
 import styles from "./FileDropzone.module.scss";
-import { usePlayground } from "./usePlayground";
+import { useUpload } from "./useUpload";
 
-const getFileParser: GetFileParser = () => "readAsText";
-const extensions = [
-  "md",
-  "txt",
-  "js",
-  "jsx",
-  "ts",
-  "tsx",
-  "json",
-  "yml",
-  "yaml",
-] as const;
-
-export function FileDropzone(): ReactElement {
-  const { setMarkdown } = usePlayground();
+export function FileDropzone(): ReactElement | null {
+  const { onDrop } = useUpload();
   const [enabled, setEnabled] = useState(false);
-  const { onDrop, stats, reset, errors, clearErrors } = useFileUpload({
-    maxFiles: 1,
-    getFileParser,
-    extensions,
-    onDrop() {
+  const [isOver, handlers] = useDropzone({
+    onDrop(event) {
       setEnabled(false);
+      onDrop(event);
     },
   });
-  const [isOver, handlers] = useDropzone({
-    onDrop,
-    onDragEnter: reset,
-  });
-
-  const { complete } = getSplitFileUploads(stats);
-  const [current] = complete;
-  const type = current?.file.type?.replace(/^.*\//, "");
-  const fileContents = current?.result;
-  useEffect(() => {
-    if (typeof fileContents !== "string") {
-      return;
-    }
-
-    let contents = fileContents;
-    if (type !== "markdown" && type) {
-      contents = `\`\`\`${type}
-${fileContents}\`\`\`
-`;
-    }
-
-    setMarkdown(contents);
-  }, [fileContents, setMarkdown, type]);
 
   useEffect(() => {
     if (enabled) {
@@ -77,24 +30,23 @@ ${fileContents}\`\`\`
     };
   }, [enabled]);
 
+  if (!enabled) {
+    return null;
+  }
+
   return (
-    <>
-      <ErrorModal errors={errors} clearErrors={clearErrors} />
-      {enabled && (
-        <div
-          {...handlers}
-          className={cn(styles.container, isOver && styles.hovering)}
-          onMouseLeave={() => setEnabled(false)}
-        >
-          <TextContainer>
-            <Text type="headline-5">
-              Drag and drop a text file to update the markdown text with the
-              file contents.
-            </Text>
-            <FileUploadSVGIcon />
-          </TextContainer>
-        </div>
-      )}
-    </>
+    <div
+      {...handlers}
+      className={cn(styles.container, isOver && styles.hovering)}
+      onMouseLeave={() => setEnabled(false)}
+    >
+      <TextContainer>
+        <Text type="headline-5">
+          Drag and drop a text file to update the markdown text with the file
+          contents.
+        </Text>
+        <FileUploadSVGIcon />
+      </TextContainer>
+    </div>
   );
 }

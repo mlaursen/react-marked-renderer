@@ -41,9 +41,10 @@ export function ErrorHeader({ error }: ErrorHeaderProps): ReactElement {
     );
   }
 
+  const { extensions } = error;
   return (
     <Text type="subtitle-2" margin="none">
-      Invalid file extension. Only non-minified text files are supported.
+      {`Invalid file extension. Must be one of ${extensions.join(", ")}`}
     </Text>
   );
 }

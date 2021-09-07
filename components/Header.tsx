@@ -3,6 +3,7 @@ import {
   AppBar,
   AppBarTitle,
   Brightness4SVGIcon,
+  FileInput,
   FilterFramesSVGIcon,
   FilterNoneSVGIcon,
   HelpOutlineSVGIcon,
@@ -15,6 +16,7 @@ import {
 import { AppBarAction } from "./AppBarAction";
 import { HelpDialog } from "./HelpDialog";
 import { usePlayground } from "./usePlayground";
+import { useUpload } from "./useUpload";
 
 export function Header(): ReactElement {
   const [visible, setVisible] = useState(false);
@@ -29,6 +31,7 @@ export function Header(): ReactElement {
     toggleSplitView,
     toggleCustomRenderers,
   } = usePlayground();
+  const { accept, onChange } = useUpload();
 
   return (
     <AppBar
@@ -48,6 +51,14 @@ export function Header(): ReactElement {
         >
           {splitView ? <SettingsOverscanSVGIcon /> : <ViewColumnSVGIcon />}
         </AppBarAction>
+        <FileInput
+          id="file-uploa"
+          accept={accept}
+          onChange={onChange}
+          theme="clear"
+          themeType="flat"
+          style={{ flexShrink: 0 }}
+        />
         <AppBarAction
           aria-label="Custom Renderers"
           aria-pressed={customRenderers}

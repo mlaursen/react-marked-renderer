@@ -18,7 +18,7 @@ export function MarkdownEditor(): ReactElement {
         name="editor"
         theme="none"
         value={markdown}
-        placeholder="# Enter some parkdown here!"
+        placeholder="# Enter some markdown here!"
         className={styles.editor}
         resize="none"
         animate={false}

@@ -7,6 +7,7 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useRef,
 } from "react";
 
 import { DEFAULT_MARKDOWN } from "../constants";
@@ -36,10 +37,10 @@ const noop = (): void => {
   // do nothing
 };
 
-const LOCAL_STORAGE_KEY = "playgroundState";
 export const MIN_SPLIT_PERCENTAGE = 20;
 export const MAX_SPLIT_PERCENTAGE = 80;
 const SPLIT_PERCENTAGE_INCREMENT = 1;
+const LOCAL_STORAGE_KEY = "playgroundState";
 const INITIAL_STATE: PlaygroundState = {
   markdown: DEFAULT_MARKDOWN,
   darkTheme: false,
@@ -86,10 +87,16 @@ interface SetSplitPercentageAction {
   percentage: number;
 }
 
+interface SetPlaygroundStateAction {
+  type: "setState";
+  state: PlaygroundState;
+}
+
 type PlaygroundAction =
   | SimplePlaygroundAction
   | SetMarkdownAction
-  | SetSplitPercentageAction;
+  | SetSplitPercentageAction
+  | SetPlaygroundStateAction;
 
 export function usePlayground(): Readonly<PlaygroundContext> {
   return useContext(context);
@@ -118,82 +125,62 @@ const getNextSplitPercentageState = (
   };
 };
 
+function reducer(
+  state: PlaygroundState,
+  action: PlaygroundAction
+): PlaygroundState {
+  switch (action.type) {
+    case "reset":
+      return INITIAL_STATE;
+    case "setState":
+      return action.state;
+    case "setMarkdown":
+      return {
+        ...state,
+        markdown: action.markdown,
+      };
+    case "toggleDarkTheme":
+      return {
+        ...state,
+        darkTheme: !state.darkTheme,
+      };
+    case "toggleSplitView":
+      return {
+        ...state,
+        splitView: !state.splitView,
+      };
+    case "toggleCustomRenderers":
+      return {
+        ...state,
+        customRenderers: !state.customRenderers,
+      };
+    case "setSplitPercentage":
+      return getNextSplitPercentageState(state, action.percentage);
+    case "maxSplitPercentage":
+      return getNextSplitPercentageState(state, MAX_SPLIT_PERCENTAGE);
+    case "minSplitPercentage":
+      return getNextSplitPercentageState(state, MIN_SPLIT_PERCENTAGE);
+    case "incrementSplitPercentage":
+      return getNextSplitPercentageState(
+        state,
+        state.splitPercentage + SPLIT_PERCENTAGE_INCREMENT
+      );
+    case "decrementSplitPercentage":
+      return getNextSplitPercentageState(
+        state,
+        state.splitPercentage - SPLIT_PERCENTAGE_INCREMENT
+      );
+    default:
+      return state;
+  }
+}
+
 export function PlaygroundProvider({
   children,
 }: {
   children: ReactNode;
 }): ReactElement {
-  const [state, dispatch] = useReducer(
-    (state: PlaygroundState, action: PlaygroundAction) => {
-      switch (action.type) {
-        case "reset":
-          return INITIAL_STATE;
-        case "setMarkdown":
-          return {
-            ...state,
-            markdown: action.markdown,
-          };
-        case "toggleDarkTheme":
-          return {
-            ...state,
-            darkTheme: !state.darkTheme,
-          };
-        case "toggleSplitView":
-          return {
-            ...state,
-            splitView: !state.splitView,
-          };
-        case "toggleCustomRenderers":
-          return {
-            ...state,
-            customRenderers: !state.customRenderers,
-          };
-        case "setSplitPercentage":
-          return getNextSplitPercentageState(state, action.percentage);
-        case "maxSplitPercentage":
-          return getNextSplitPercentageState(state, MAX_SPLIT_PERCENTAGE);
-        case "minSplitPercentage":
-          return getNextSplitPercentageState(state, MIN_SPLIT_PERCENTAGE);
-        case "incrementSplitPercentage":
-          return getNextSplitPercentageState(
-            state,
-            state.splitPercentage + SPLIT_PERCENTAGE_INCREMENT
-          );
-        case "decrementSplitPercentage":
-          return getNextSplitPercentageState(
-            state,
-            state.splitPercentage - SPLIT_PERCENTAGE_INCREMENT
-          );
-        default:
-          return state;
-      }
-    },
-    INITIAL_STATE,
-    (initialState) => {
-      const cached =
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (typeof cached !== "string") {
-        return initialState;
-      }
-
-      try {
-        const { darkTheme, splitView, customRenderers } = JSON.parse(cached);
-
-        return {
-          ...initialState,
-          darkTheme: validateBool(darkTheme, initialState.darkTheme),
-          splitView: validateBool(splitView, initialState.splitView),
-          customRenderers: validateBool(
-            customRenderers,
-            initialState.customRenderers
-          ),
-        };
-      } catch (e) {
-        return initialState;
-      }
-    }
-  );
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const { markdown, darkTheme, splitView, splitPercentage, customRenderers } =
     state;
 
@@ -264,8 +251,42 @@ export function PlaygroundProvider({
     ]
   );
 
+  const firstRender = useRef(true);
   useEffect(() => {
     if (typeof localStorage == "undefined") {
+      return;
+    }
+
+    if (firstRender.current) {
+      firstRender.current = false;
+
+      // try to get the initial state for localStorage and update the state with
+      // that value. this is only required since I'm not sure how to disable SSR
+      // in vercel and if one of the settings are save, it'll cause the page to
+      // be out of sync until another action occurs
+
+      const cached =
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (typeof cached !== "string") {
+        return;
+      }
+
+      try {
+        const { darkTheme, splitView, customRenderers } = JSON.parse(cached);
+        const state = {
+          ...INITIAL_STATE,
+          darkTheme: validateBool(darkTheme, INITIAL_STATE.darkTheme),
+          splitView: validateBool(splitView, INITIAL_STATE.splitView),
+          customRenderers: validateBool(
+            customRenderers,
+            INITIAL_STATE.customRenderers
+          ),
+        };
+        dispatch({ type: "setState", state });
+      } catch (e) {
+        // do nothing
+      }
       return;
     }
 

@@ -296,6 +296,60 @@ exports[`Markdown should be able to render inline code 1`] = `
 </div>
 `;
 
+exports[`Markdown should be able to render inline code that has html entities 1`] = `
+<div>
+  <p>
+    This has some 
+    <code>
+      inline code that "contains" html 'entities' and &lt;other&gt;&lt;/other&gt;
+    </code>
+  </p>
+   
+  <p>
+    Some other html entities:
+  </p>
+   
+  <ul>
+    <li>
+      <code>
+        ¢
+      </code>
+       cent
+    </li>
+    <li>
+      <code>
+        £
+      </code>
+       pound
+    </li>
+    <li>
+      <code>
+        ¥
+      </code>
+       yen
+    </li>
+    <li>
+      <code>
+        €
+      </code>
+       euro
+    </li>
+    <li>
+      <code>
+        ©
+      </code>
+       copyright
+    </li>
+    <li>
+      <code>
+        ®
+      </code>
+       registered trademark
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Markdown should be able to render links that reference specific ids 1`] = `
 <div>
   <p>

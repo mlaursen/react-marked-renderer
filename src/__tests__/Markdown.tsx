@@ -143,6 +143,19 @@ const CODE_SPAN_MARKDOWN = `
 This has some \`inline code\` to see.
 `;
 
+const CODE_SPAN_ADVANCED_MARKDOWN = `
+This has some \`inline code that "contains" html 'entities' and <other></other>\`
+
+Some other html entities:
+
+- \`¢\` cent
+- \`£\` pound
+- \`¥\` yen
+- \`€\` euro
+- \`©\` copyright
+- \`®\` registered trademark
+`;
+
 const UNORDERED_LIST_MARKDOWN = `
 - Item 1
 - Item 2
@@ -447,6 +460,17 @@ describe("Markdown", () => {
     expect(code.textContent).toBe("inline code");
     expect(p.textContent).toBe("This has some inline code to see.");
 
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render inline code that has html entities", () => {
+    const { container } = render(
+      <Markdown markdown={CODE_SPAN_ADVANCED_MARKDOWN} />
+    );
+
+    expect(container.textContent).not.toMatch(
+      /&(quot|lt|gt|amp|cent|pound|yen|euro|copy|reg);/
+    );
     expect(container).toMatchSnapshot();
   });
 

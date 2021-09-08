@@ -120,7 +120,11 @@ export function TokenRenderer({
         </Code>
       );
     case "codespan":
-      return <Codespan {...token}>{token.text}</Codespan>;
+      return (
+        <Codespan {...token}>
+          {token.raw.substring(1, token.raw.length - 1)}
+        </Codespan>
+      );
     case "heading": {
       const { depth, ...props } = token;
       return (

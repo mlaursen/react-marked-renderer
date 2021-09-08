@@ -1,4 +1,4 @@
-// vi: ft=javascript
+// vi: ft=typescript
 import { execSync } from "child_process";
 import { writeFile } from "fs";
 

@@ -80,9 +80,7 @@ ${fileContents}\`\`\`
 
     setMarkdown(contents);
     reset();
-    // TODO: Add reset to dependency array after next release
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fileContents, setMarkdown, type]);
+  }, [fileContents, reset, setMarkdown, type]);
 
   return (
     <Provider

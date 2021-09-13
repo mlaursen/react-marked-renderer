@@ -157,7 +157,7 @@ export function TokenRenderer({
       const { items } = token;
       return (
         <List {...token}>
-          {items.map(({ task, checked, ...token }, i) => {
+          {items.map(({ task, checked = false, ...token }, i) => {
             const children = <TokensRenderer tokens={token.tokens} />;
             if (task) {
               return (

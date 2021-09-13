@@ -1859,10 +1859,10 @@
   optionalDependencies:
     prop-types ">= 15.6"
 
-"@react-md/tabs@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@react-md/tabs/-/tabs-3.1.0.tgz#a240b90e6e43b097263d8d92ef46e346a42e854c"
-  integrity sha512-L9sAOfZwqSCJGAm3Igo2Xb5fjcwi5gFK5tKIWwfZEbINDY3vAG/UNytzdmdE9Yv8gSmmmj8V9fjAlnj1EadUjw==
+"@react-md/tabs@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@react-md/tabs/-/tabs-3.1.1.tgz#b29244e643b22a62f2ca634a8210a86d38b348b9"
+  integrity sha512-F2zkI+e1U93WF7iek69J8Jjtg9Vz/bPu8vGA3nX6fB7cv8kuG8hgArlW1Lv0ZDEjgJ+w8d+Twtf2BXQhEOXVNA==
   dependencies:
     "@react-md/icon" "^3.1.0"
     "@react-md/states" "^3.1.0"
@@ -6869,9 +6869,9 @@ react-is@^16.8.1:
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-md@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-md/-/react-md-3.1.0.tgz#3ff75f53cd4e258a73557c963eb42a60e8ef933e"
-  integrity sha512-R+judY62uXFIuK5yB4VI8ZWQHqYQ0PiqA+4fsviHr/bBVXK2t8igQ7cHoyFz7fObv9c4BbZUmdkH0B58Z+Aa1g==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-md/-/react-md-3.1.1.tgz#98651c4c90a8b11c0283e8573898ba7ebdfc58e0"
+  integrity sha512-vtthVnRvGnDBdddArTqQEpsKvxku1p0n4ic3oKSmYj167wPjQrc/nvRBR+aHH77RWwTCWPBqVz0Em6ybQaC3Pg==
   dependencies:
     "@react-md/alert" "^3.1.0"
     "@react-md/app-bar" "^3.1.0"
@@ -6899,7 +6899,7 @@ react-md@^3.1.0:
     "@react-md/sheet" "^3.1.0"
     "@react-md/states" "^3.1.0"
     "@react-md/table" "^3.1.0"
-    "@react-md/tabs" "^3.1.0"
+    "@react-md/tabs" "^3.1.1"
     "@react-md/theme" "^3.1.0"
     "@react-md/tooltip" "^3.1.0"
     "@react-md/transition" "^3.1.0"

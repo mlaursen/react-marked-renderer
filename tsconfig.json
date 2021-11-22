@@ -16,7 +16,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "include": ["next-env.d.ts", "styles.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]

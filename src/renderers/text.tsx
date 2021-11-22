@@ -1,10 +1,10 @@
-import type { Tokens } from "marked";
+import type { marked } from "marked";
 import type { ComponentType, ReactElement, ReactNode } from "react";
 
 import { useSluggedId } from "../useSluggedId";
 import { useMarkdownConfig } from "./code";
 
-export interface TextRendererProps extends Tokens.Text {
+export interface TextRendererProps extends marked.Tokens.Text {
   children: ReactNode;
 }
 
@@ -27,7 +27,7 @@ export function TextRenderer({
   return <>{children || raw}</>;
 }
 
-export interface EmRendererProps extends Tokens.Em {
+export interface EmRendererProps extends marked.Tokens.Em {
   children: ReactNode;
 }
 
@@ -42,7 +42,7 @@ export function EmRenderer({ children }: EmRendererProps): ReactElement {
   return <em>{children}</em>;
 }
 
-export interface DelRendererProps extends Tokens.Del {
+export interface DelRendererProps extends marked.Tokens.Del {
   children: ReactNode;
 }
 
@@ -57,7 +57,7 @@ export function DelRenderer({ children }: DelRendererProps): ReactElement {
   return <del>{children}</del>;
 }
 
-export interface StrongRendererProps extends Tokens.Strong {
+export interface StrongRendererProps extends marked.Tokens.Strong {
   children: ReactNode;
 }
 
@@ -75,7 +75,7 @@ export function StrongRenderer({
   return <strong>{children}</strong>;
 }
 
-export interface HeadingRendererProps extends Tokens.Heading {
+export interface HeadingRendererProps extends marked.Tokens.Heading {
   depth: 1 | 2 | 3 | 4 | 5 | 6;
   children: ReactNode;
 }
@@ -104,7 +104,7 @@ export function HeadingRenderer({
   return <Component id={headerIds ? id : undefined}>{children}</Component>;
 }
 
-export interface ParagraphRendererProps extends Tokens.Paragraph {
+export interface ParagraphRendererProps extends marked.Tokens.Paragraph {
   children: ReactNode;
 }
 
@@ -122,7 +122,7 @@ export function ParagraphRenderer({
   return <p>{children}</p>;
 }
 
-export interface BlockquoteRendererProps extends Tokens.Blockquote {
+export interface BlockquoteRendererProps extends marked.Tokens.Blockquote {
   children: ReactNode;
 }
 
@@ -140,7 +140,7 @@ export function BlockquoteRenderer({
   return <blockquote>{children}</blockquote>;
 }
 
-export interface LinkRendererProps extends Tokens.Link {
+export interface LinkRendererProps extends marked.Tokens.Link {
   children: ReactNode;
 }
 

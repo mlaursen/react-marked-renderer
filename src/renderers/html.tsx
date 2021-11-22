@@ -1,7 +1,7 @@
-import type { Tokens } from "marked";
+import type { marked } from "marked";
 import type { ComponentType, ReactElement, ReactNode } from "react";
 
-export interface TagRendererProps extends Tokens.Tag {
+export interface TagRendererProps extends marked.Tokens.Tag {
   children: ReactNode;
 }
 
@@ -13,7 +13,7 @@ export function TagRenderer(_props: TagRendererProps): null {
   return null;
 }
 
-export interface HtmlRendererProps extends Tokens.HTML {
+export interface HtmlRendererProps extends marked.Tokens.HTML {
   children: ReactNode;
 }
 
@@ -25,7 +25,7 @@ export function HtmlRenderer(_props: HtmlRendererProps): null {
   return null;
 }
 
-export type EscapeRendererProps = Tokens.Escape;
+export type EscapeRendererProps = marked.Tokens.Escape;
 
 /**
  * The default implementation for rendering the {@link Tokens.Escape} by

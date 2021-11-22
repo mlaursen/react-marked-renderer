@@ -28,8 +28,8 @@
     "build": "next build"
   },
   "dependencies": {
-    "@types/marked": "^3.0.1",
-    "marked": "^3.0.3"
+    "@types/marked": "^4.0.1",
+    "marked": "^4.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

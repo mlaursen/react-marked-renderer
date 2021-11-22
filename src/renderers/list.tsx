@@ -1,9 +1,9 @@
-import type { Tokens } from "marked";
+import type { marked } from "marked";
 import type { ComponentType, ReactElement, ReactNode } from "react";
 
 import { getTokensText, useSluggedId } from "../useSluggedId";
 
-export interface ListRendererProps extends Tokens.List {
+export interface ListRendererProps extends marked.Tokens.List {
   children: ReactNode;
 }
 
@@ -26,7 +26,7 @@ export function ListRenderer({
 }
 
 export interface ListItemRendererProps
-  extends Omit<Tokens.ListItem, "checked" | "task"> {
+  extends Omit<marked.Tokens.ListItem, "checked" | "task"> {
   children: ReactNode;
 }
 

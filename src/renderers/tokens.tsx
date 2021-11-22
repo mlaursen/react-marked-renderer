@@ -1,11 +1,11 @@
-import type { Token } from "marked";
+import type { marked } from "marked";
 import type { ReactElement } from "react";
 
 import { useMarkdownConfig } from "./code";
 import { useMarkdownRenderers } from "./useMarkdownRenderers";
 
 export interface TokensRendererProps {
-  tokens: readonly Token[];
+  tokens: readonly marked.Token[];
 }
 
 /**
@@ -38,7 +38,7 @@ function getDepth(depth: number): 1 | 2 | 3 | 4 | 5 | 6 {
 }
 
 export interface TokenRendererProps {
-  token: Token;
+  token: marked.Token;
 }
 
 /**

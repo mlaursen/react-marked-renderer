@@ -1,7 +1,7 @@
+import type { marked } from "marked";
 import type { ComponentType, ReactElement } from "react";
-import type { Tokens } from "marked";
 
-export type SpaceRendererProps = Tokens.Space;
+export type SpaceRendererProps = marked.Tokens.Space;
 
 /**
  * The default implementation for rendering the {@link Tokens.Hr} by rendering:
@@ -14,7 +14,7 @@ export function HrRenderer(): ReactElement {
   return <hr />;
 }
 
-export type BrRendererProps = Tokens.Br;
+export type BrRendererProps = marked.Tokens.Br;
 
 /**
  * The default implementation for rendering the {@link Tokens.Space} by
@@ -28,7 +28,7 @@ export function SpaceRenderer(): ReactElement {
   return <> </>;
 }
 
-export type HrRendererProps = Tokens.Hr;
+export type HrRendererProps = marked.Tokens.Hr;
 
 /**
  * The default implementation for rendering the {@link Tokens.Br} by rendering:

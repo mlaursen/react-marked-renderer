@@ -1,5 +1,4 @@
-import type { Slugger, Token } from "marked";
-import marked from "marked";
+import { marked, Slugger } from "marked";
 import { createContext, ReactElement, ReactNode, useContext } from "react";
 
 export interface TokensTextOptions {
@@ -27,7 +26,7 @@ export interface TokensTextOptions {
  * @returns the text content for the list of tokens
  */
 export function getTokensText(
-  tokens: readonly Token[],
+  tokens: readonly marked.Token[],
   { depth = 0, maxDepth = -1 }: TokensTextOptions = {}
 ): string {
   return tokens.reduce((s, token) => {
@@ -102,8 +101,8 @@ export function useMarkdownSlugger(): Slugger {
  * // "some-content-link-text"
  * ```
  *
- * @param textOrTokens - The text or list of {@link Token} to convert to a
- * unique id
+ * @param textOrTokens - The text or list of {@link marked.Token} to convert to
+ * a unique id
  * @returns a unique id that can be applied to a component
  */
 export function useSluggedId(

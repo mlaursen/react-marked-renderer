@@ -1,7 +1,7 @@
-import type { Tokens } from "marked";
+import type { marked } from "marked";
 import type { ComponentType, ReactElement } from "react";
 
-export type ImageRendererProps = Tokens.Image;
+export type ImageRendererProps = marked.Tokens.Image;
 
 /**
  * The default implementation for rendering the {@link Tokens.Image} by

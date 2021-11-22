@@ -1,5 +1,4 @@
-import type { Tokens } from "marked";
-import marked from "marked";
+import type { marked } from "marked";
 import {
   ComponentType,
   createContext,
@@ -171,7 +170,7 @@ export function MarkdownCodeProvider({
   return <Provider value={value}>{children}</Provider>;
 }
 
-export interface CodeSpanRendererProps extends Tokens.Codespan {
+export interface CodeSpanRendererProps extends marked.Tokens.Codespan {
   children: ReactNode;
 }
 
@@ -189,7 +188,7 @@ export function CodeSpanRenderer({
   return <code>{children}</code>;
 }
 
-export interface CodeBlockRendererProps extends Tokens.Code {
+export interface CodeBlockRendererProps extends marked.Tokens.Code {
   lang: string;
   children: ReactNode;
 }

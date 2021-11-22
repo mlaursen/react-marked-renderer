@@ -1,7 +1,7 @@
-import type { Tokens } from "marked";
+import type { marked } from "marked";
 import type { ComponentType, ReactElement, ReactNode } from "react";
 
-export interface TableRendererProps extends Tokens.Table {
+export interface TableRendererProps extends marked.Tokens.Table {
   children: ReactNode;
 }
 
@@ -17,7 +17,7 @@ export function TableRenderer({ children }: TableRendererProps): ReactElement {
   return <table>{children}</table>;
 }
 
-export interface TheadRendererProps extends Tokens.Table {
+export interface TheadRendererProps extends marked.Tokens.Table {
   children: ReactNode;
 }
 
@@ -33,7 +33,7 @@ export function TheadRenderer({ children }: TheadRendererProps): ReactElement {
   return <thead>{children}</thead>;
 }
 
-export interface TbodyRendererProps extends Tokens.Table {
+export interface TbodyRendererProps extends marked.Tokens.Table {
   children: ReactNode;
 }
 
@@ -49,7 +49,7 @@ export function TbodyRenderer({ children }: TbodyRendererProps): ReactElement {
   return <tbody>{children}</tbody>;
 }
 
-export interface TrRendererProps extends Tokens.Table {
+export interface TrRendererProps extends marked.Tokens.Table {
   children: ReactNode;
 }
 
@@ -66,8 +66,8 @@ export function TrRenderer({ children }: TrRendererProps): ReactElement {
 
 export interface ThRendererProps {
   align: "left" | "center" | "right" | undefined;
-  cell: Tokens.TableCell;
-  table: Tokens.Table;
+  cell: marked.Tokens.TableCell;
+  table: marked.Tokens.Table;
   children: ReactNode;
 }
 

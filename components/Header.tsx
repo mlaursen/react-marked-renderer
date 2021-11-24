@@ -4,6 +4,7 @@ import {
   AppBarTitle,
   Brightness4SVGIcon,
   FileInput,
+  FileUploadSVGIcon,
   FilterFramesSVGIcon,
   FilterNoneSVGIcon,
   HelpOutlineSVGIcon,
@@ -58,6 +59,7 @@ export function Header(): ReactElement {
           theme="clear"
           themeType="flat"
           style={{ flexShrink: 0 }}
+          icon={<FileUploadSVGIcon />}
         />
         <AppBarAction
           aria-label="Custom Renderers"

@@ -24,7 +24,8 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.check.json",
     "test": "jest",
-    "start": "next dev",
+    "dev": "next dev",
+    "start": "next start",
     "build": "next build"
   },
   "dependencies": {
@@ -51,7 +52,6 @@
     "@types/prismjs": "^1.16.6",
     "@types/react": "^17.0.36",
     "@types/react-dom": "^17.0.11",
-    "babel-plugin-prismjs": "^2.1.0",
     "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
     "filesize": "^8.0.6",

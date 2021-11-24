@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -21,16 +21,9 @@ export function ErrorModal({
   clearErrors,
 }: ErrorModalProps): ReactElement {
   const [visible, setVisible] = useState(false);
-  const prevErrors = useRef(errors);
-
-  // why?
-  // makes it so the errors don't disappear during the exit animation
-  if (errors !== prevErrors.current) {
-    prevErrors.current = errors;
-    if (!visible && errors.length) {
-      setVisible(true);
-    }
-  }
+  useEffect(() => {
+    setVisible(errors.length > 0);
+  }, [errors]);
 
   const onRequestClose = (): void => {
     setVisible(false);

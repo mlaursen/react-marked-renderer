@@ -1,6 +1,11 @@
 import cn from "classnames";
 import { ReactElement, useEffect, useState } from "react";
-import { FileUploadSVGIcon, Text, TextContainer, useDropzone } from "react-md";
+import {
+  FileUploadSVGIcon,
+  Typography,
+  TextContainer,
+  useDropzone,
+} from "react-md";
 
 import styles from "./FileDropzone.module.scss";
 import { useUpload } from "./useUpload";
@@ -41,10 +46,10 @@ export function FileDropzone(): ReactElement | null {
       onMouseLeave={() => setEnabled(false)}
     >
       <TextContainer>
-        <Text type="headline-5">
+        <Typography type="headline-5">
           Drag and drop a text file to update the markdown text with the file
           contents.
-        </Text>
+        </Typography>
         <FileUploadSVGIcon />
       </TextContainer>
     </div>

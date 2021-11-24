@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   Link,
-  Text,
+  Typography,
   TextContainer,
 } from "react-md";
 
@@ -72,32 +72,32 @@ export function HelpDialog({
       </DialogHeader>
       <TextContainer clone>
         <DialogContent>
-          <Text type="headline-6" margin="none">
+          <Typography type="headline-6" margin="none">
             About
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             This playground allows you to preview markdown with either the
             default renderer behavior or custom renderers using{" "}
             <Link href="https://react-md.dev">react-md</Link> for custom
             styling. Markdown can be manually typed into the editor or text
             files can be uploaded via drag-and drop.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             The website can be viewed in split-view mode (default) or in a
             tabbed view which can be useful if there isn&apos;t enough screen
             space. The split-view mode also allows for resizing the panes by
             grabbing the divider in the middle of the page.
-          </Text>
-          <Text type="headline-6" margin="top">
+          </Typography>
+          <Typography type="headline-6" margin="top">
             Useful links:
-          </Text>
+          </Typography>
           <ul>
             {links.map(({ name, href }) => (
-              <Text key={href} component="li" type="subtitle-1">
+              <Typography key={href} component="li" type="subtitle-1">
                 <Link href={href} target="_blank">
                   {name}
                 </Link>
-              </Text>
+              </Typography>
             ))}
           </ul>
         </DialogContent>

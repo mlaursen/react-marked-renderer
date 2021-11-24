@@ -11,7 +11,7 @@ import {
   TableContainer,
   TableHeader,
   TableRow,
-  Text,
+  Typography,
 } from "react-md";
 
 import {
@@ -43,7 +43,7 @@ export const renderers: MarkdownRenderers = {
   },
 
   paragraph: function Paragraph({ children }) {
-    return <Text>{children}</Text>;
+    return <Typography>{children}</Typography>;
   },
 
   heading: function Heading({ depth, tokens, children }) {
@@ -80,9 +80,9 @@ export const renderers: MarkdownRenderers = {
 
     const id = useSluggedId(tokens);
     return (
-      <Text id={id} type={type}>
+      <Typography id={id} type={type}>
         {children}
-      </Text>
+      </Typography>
     );
   },
 
@@ -130,7 +130,7 @@ ${PRISM_LANGUAGES.map((lang) => `- ${lang}`).join("\n")}
   },
 
   listitem: function ListItem({ children }) {
-    return <Text component="li">{children}</Text>;
+    return <Typography component="li">{children}</Typography>;
   },
 
   blockquote: function Blockquote({ children }) {

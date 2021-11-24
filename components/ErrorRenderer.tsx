@@ -5,7 +5,7 @@ import {
   isFileSizeError,
   List,
   SimpleListItem,
-  Text,
+  Typography,
 } from "react-md";
 
 import { ErrorHeader } from "./ErrorHeader";
@@ -36,8 +36,8 @@ export function ErrorRenderer({ error }: ErrorRendererProps): ReactElement {
   // error
   /* ^ is a {@link FileAccessError} */
   return (
-    <Text margin="none">
+    <Typography margin="none">
       File access is restricted. Try a different file or folder.
-    </Text>
+    </Typography>
   );
 }

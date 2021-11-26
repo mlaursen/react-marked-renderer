@@ -29,6 +29,7 @@ function createConfig(umd) {
           '@babel/preset-react',
           '@babel/preset-typescript',
         ],
+        plugins: ['@babel/plugin-transform-runtime'],
         include: ['src/**/*'],
       }),
       replace({

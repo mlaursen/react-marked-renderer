@@ -102,7 +102,7 @@ A token can be created at:
   loggedCommand("yarn rimraf dist");
   loggedCommand("yarn rollup -c rollup.config.js");
   loggedCommand("yarn tsc -p tsconfig.typedefs.json");
-  loggedCommand(`yarn standard-version --preset angular${type}${prerelease}`);
+  loggedCommand(`yarn standard-version${type}${prerelease}`);
 
   const { version } = JSON.parse(
     readFileSync(join(process.cwd(), "package.json"), "utf8")
@@ -115,7 +115,13 @@ A token can be created at:
 
   const releaseNotes = await getReleaseNotes(version);
 
-  loggedCommand("npm publish");
+  const { opt } = await inquirer.prompt<{ opt: string }>({
+    type: "input",
+    name: "opt",
+    message: "One Time Password (required to publish to npm)",
+  });
+
+  loggedCommand(`npm publish --otp ${opt}`);
   loggedCommand("git push --follow-tags origin main");
   const octokit = new Octokit({ auth: GITHUB_TOKEN });
   const response = await octokit.request(

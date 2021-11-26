@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.0...v1.0.1) (2021-11-26)
+
+
+### Internal Changes
+
+* **dev-deps:** Bump all dev dependencies to latest ([e2d5126](https://github.com/mlaursen/react-marked-renderer/commit/e2d51265bf5e673921c39dc913a02c8cc19acfac))
+* **dev-deps:** bump react-md to v4.0.0 ([2e07185](https://github.com/mlaursen/react-marked-renderer/commit/2e0718552ba140483ebe312c321df6ebe4d94d0a))
+* Release handles OTP and CHANGELOG has more info ([a7d565b](https://github.com/mlaursen/react-marked-renderer/commit/a7d565b7c9584ab4ebe704581fb3566f8f4e2b7e))
+* Updated package.json for new keywords ([fa09304](https://github.com/mlaursen/react-marked-renderer/commit/fa09304d01dcf68ba7c7a4439a4b88928cff8499))
+* **website:** Use React.StrictMode and new next SWC ([a3456af](https://github.com/mlaursen/react-marked-renderer/commit/a3456afa20d9d72ca9db71737f580ca6cc9e67b3))
+
 # [1.0.0](https://github.com/mlaursen/react-marked-renderer/compare/v0.2.1...v1.0.0) (2021-11-22)
 
 

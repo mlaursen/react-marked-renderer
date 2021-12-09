@@ -40,7 +40,7 @@
   "sideEffects": false,
   "dependencies": {
     "@types/marked": "^4.0.1",
-    "marked": "^4.0.4"
+    "marked": "^4.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

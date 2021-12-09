@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.1...v1.0.2) (2021-12-09)
+
+
+### Bug Fixes
+
+* **deps:** bump marked from v4.0.4 to v4.0.6 ([17a976c](https://github.com/mlaursen/react-marked-renderer/commit/17a976c434e63104f50f4ad4d46f1d2b1e56ecd9))
+
+
+### Internal Changes
+
+* **dev-deps:** bump all dev dependendencies to latest ([9f552dc](https://github.com/mlaursen/react-marked-renderer/commit/9f552dccef5bb26b716a7b8d5a366d34ed284a27))
+
 ### [1.0.1](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.0...v1.0.1) (2021-11-26)
 
 

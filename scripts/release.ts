@@ -114,14 +114,22 @@ A token can be created at:
   }
 
   const releaseNotes = await getReleaseNotes(version);
+  const { confirmed } = await inquirer.prompt<{ confirmed: boolean }>([
+    {
+      type: "confirm",
+      name: "confirmed",
+      message: `Open the authenticator app to get a one-time password and run the following command:
 
-  const { opt } = await inquirer.prompt<{ opt: string }>({
-    type: "input",
-    name: "opt",
-    message: "One Time Password (required to publish to npm)",
-  });
+npm publish --otp
+`,
+    },
+  ]);
+  if (!confirmed) {
+    console.error("Canceling the release.");
+    undo(version);
 
-  loggedCommand(`npm publish --otp ${opt}`);
+    process.exit(1);
+  }
   loggedCommand("git push --follow-tags origin main");
   const octokit = new Octokit({ auth: GITHUB_TOKEN });
   const response = await octokit.request(

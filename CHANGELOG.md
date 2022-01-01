@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.2...v1.0.3) (2022-01-01)
+
+
+### Bug Fixes
+
+* Use new React jsx transform in rollup config ([8c50275](https://github.com/mlaursen/react-marked-renderer/commit/8c502753ad15e47e53ae0b2eef0d8ea7bb5d66c5))
+
+
+### Internal Changes
+
+* **deps:** bump actions/setup-node from 2.4.1 to 2.5.0 ([b025b1b](https://github.com/mlaursen/react-marked-renderer/commit/b025b1b9a10535a40294f36bebef57ed651609df))
+* **dev-deps:** bump all dev dependencies to latest ([41cef5c](https://github.com/mlaursen/react-marked-renderer/commit/41cef5ccd55fa404ed8c17eb83acb22fda439054))
+
 ### [1.0.2](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.1...v1.0.2) (2021-12-09)
 
 

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.3...v1.0.4) (2022-01-15)
+
+
+### Bug Fixes
+
+* **deps:** bump marked to v4.0.10 ([980aa7c](https://github.com/mlaursen/react-marked-renderer/commit/980aa7ce43d5cc8c79d4fdc5ba43aeeedf70e102))
+
+
+### Internal Changes
+
+* Added some additional badges to README ([ddc5463](https://github.com/mlaursen/react-marked-renderer/commit/ddc5463fd6f11ab167ff9667ce4633171b9ae45e))
+* **deps:** Bump marked from v4.0.6 to v4.0.8 ([1c139bb](https://github.com/mlaursen/react-marked-renderer/commit/1c139bb88bfa16e7011cacd3f03029cb5c217f6b))
+* **dev-deps:** bump all dev dependencies to latest ([437516c](https://github.com/mlaursen/react-marked-renderer/commit/437516c975129dce1bc8ee858e7d1391da1353e4))
+* Update release script for manual publish ([db0c697](https://github.com/mlaursen/react-marked-renderer/commit/db0c6979a79e6924f4b5f88c6a00c9de8d8a4b33))
+* Update snapshots after latest jest and prismjs ([1238360](https://github.com/mlaursen/react-marked-renderer/commit/12383606cffeec1793ae7d0319e12a271a4a78d9))
+
 ### [1.0.3](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.2...v1.0.3) (2022-01-01)
 
 

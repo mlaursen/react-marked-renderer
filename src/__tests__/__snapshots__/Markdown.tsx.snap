@@ -2,6 +2,7 @@
 
 exports[`Markdown should be able to highlight code with the highlightCode option 1`] = `
 <div>
+   
   <pre
     class="language-markup"
   >
@@ -37,23 +38,24 @@ exports[`Markdown should be able to highlight code with the highlightCode option
 
 exports[`Markdown should be able to highlight code with the highlightElement option 1`] = `
 <div>
+   
   <pre
-    class=" language-none"
+    class="language-none"
     tabindex="0"
   >
     <code
-      class=" language-none"
+      class="language-none"
     >
       const x = "y";
     </code>
   </pre>
    
   <pre
-    class=" language-sh"
+    class="language-sh"
     tabindex="0"
   >
     <code
-      class=" language-sh"
+      class="language-sh"
     >
       yarn add some-package
     </code>
@@ -63,6 +65,7 @@ exports[`Markdown should be able to highlight code with the highlightElement opt
 
 exports[`Markdown should be able to render all six heading types with or without ids 1`] = `
 <div>
+   
   <h1
     id="heading-1"
   >
@@ -98,6 +101,7 @@ exports[`Markdown should be able to render all six heading types with or without
 
 exports[`Markdown should be able to render all six heading types with or without ids 2`] = `
 <div>
+   
   <h1>
     Heading 1
   </h1>
@@ -121,6 +125,7 @@ exports[`Markdown should be able to render all six heading types with or without
 
 exports[`Markdown should be able to render blockquotes 1`] = `
 <div>
+   
   <blockquote>
     <p>
       This is text in a blockquote
@@ -131,6 +136,7 @@ exports[`Markdown should be able to render blockquotes 1`] = `
 
 exports[`Markdown should be able to render breaks (<br>) 1`] = `
 <div>
+   
   <p>
     Trailing two spaces to force break
     <br />
@@ -159,6 +165,7 @@ exports[`Markdown should be able to render breaks (<br>) 1`] = `
 
 exports[`Markdown should be able to render code blocks with or without languages 1`] = `
 <div>
+   
   <pre>
     <code>
       const x = "y";
@@ -179,6 +186,7 @@ exports[`Markdown should be able to render code blocks with or without languages
 
 exports[`Markdown should be able to render emphasis (italic) text 1`] = `
 <div>
+   
   <p>
     <em>
       Using Single Underscore
@@ -195,6 +203,7 @@ exports[`Markdown should be able to render emphasis (italic) text 1`] = `
 
 exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`] = `
 <div>
+   
   <p>
     Here is some 
     \\*
@@ -207,6 +216,7 @@ exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`]
 
 exports[`Markdown should be able to render h1 elements with equal signs 1`] = `
 <div>
+   
   <h1
     id="three-equals"
   >
@@ -222,6 +232,7 @@ exports[`Markdown should be able to render h1 elements with equal signs 1`] = `
 
 exports[`Markdown should be able to render h2 elements with hyphens 1`] = `
 <div>
+   
   <h2
     id="three-hyphens"
   >
@@ -237,6 +248,7 @@ exports[`Markdown should be able to render h2 elements with hyphens 1`] = `
 
 exports[`Markdown should be able to render horizontal rules and <br /> tags 1`] = `
 <div>
+   
   <p>
     Text Above HR
   </p>
@@ -250,6 +262,7 @@ exports[`Markdown should be able to render horizontal rules and <br /> tags 1`] 
 
 exports[`Markdown should be able to render images 1`] = `
 <div>
+   
   <p>
     <img
       alt=""
@@ -286,6 +299,7 @@ exports[`Markdown should be able to render images 1`] = `
 
 exports[`Markdown should be able to render inline code 1`] = `
 <div>
+   
   <p>
     This has some 
     <code>
@@ -298,6 +312,7 @@ exports[`Markdown should be able to render inline code 1`] = `
 
 exports[`Markdown should be able to render inline code that has html entities 1`] = `
 <div>
+   
   <p>
     This has some 
     <code>
@@ -352,6 +367,7 @@ exports[`Markdown should be able to render inline code that has html entities 1`
 
 exports[`Markdown should be able to render links that reference specific ids 1`] = `
 <div>
+   
   <p>
     <a
       href="#heading-1"
@@ -372,6 +388,7 @@ exports[`Markdown should be able to render links that reference specific ids 1`]
 
 exports[`Markdown should be able to render links with or without references 1`] = `
 <div>
+   
   <p>
     Automatically 
     <a
@@ -424,6 +441,7 @@ exports[`Markdown should be able to render links with or without references 1`] 
 
 exports[`Markdown should be able to render nested blockquotes 1`] = `
 <div>
+   
   <blockquote>
     <p>
       Root Blockquote
@@ -439,6 +457,7 @@ exports[`Markdown should be able to render nested blockquotes 1`] = `
 
 exports[`Markdown should be able to render nested lists 1`] = `
 <div>
+   
   <ol>
     <li>
       Ordered Item 1
@@ -467,6 +486,7 @@ exports[`Markdown should be able to render nested lists 1`] = `
 
 exports[`Markdown should be able to render ordered lists 1`] = `
 <div>
+   
   <ol>
     <li>
       Ordered Item 1
@@ -483,6 +503,7 @@ exports[`Markdown should be able to render ordered lists 1`] = `
 
 exports[`Markdown should be able to render strikethrough (deleted) text 1`] = `
 <div>
+   
   <p>
     <del>
       This text has strikethroughs
@@ -493,6 +514,7 @@ exports[`Markdown should be able to render strikethrough (deleted) text 1`] = `
 
 exports[`Markdown should be able to render strong (bold) text 1`] = `
 <div>
+   
   <p>
     <strong>
       Using Double Underscore
@@ -510,6 +532,7 @@ exports[`Markdown should be able to render strong (bold) text 1`] = `
 
 exports[`Markdown should be able to render tables 1`] = `
 <div>
+   
   <table>
     <thead>
       <tr>
@@ -575,6 +598,7 @@ exports[`Markdown should be able to render tables 1`] = `
 
 exports[`Markdown should be able to render tables with complex markdown 1`] = `
 <div>
+   
   <table>
     <thead>
       <tr>
@@ -675,6 +699,7 @@ exports[`Markdown should be able to render tables with complex markdown 1`] = `
 
 exports[`Markdown should be able to render task lists 1`] = `
 <div>
+   
   <ul>
     <li>
       <input
@@ -717,6 +742,7 @@ exports[`Markdown should be able to render task lists 1`] = `
 
 exports[`Markdown should be able to render text that combines emphasis, strong, and strikethrough text 1`] = `
 <div>
+   
   <p>
     <em>
       <strong>
@@ -779,6 +805,7 @@ exports[`Markdown should be able to render text that combines emphasis, strong, 
 
 exports[`Markdown should be able to render unordered lists 1`] = `
 <div>
+   
   <ul>
     <li>
       Item 1
@@ -1137,11 +1164,11 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
   </p>
    
   <pre
-    class=" language-bash"
+    class="language-bash"
     tabindex="0"
   >
     <code
-      class=" language-bash"
+      class="language-bash"
     >
       <span
         class="token function"
@@ -1165,11 +1192,11 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
   </p>
    
   <pre
-    class=" language-bash"
+    class="language-bash"
     tabindex="0"
   >
     <code
-      class=" language-bash"
+      class="language-bash"
     >
       <span
         class="token function"
@@ -1193,11 +1220,11 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
   </p>
    
   <pre
-    class=" language-tsx"
+    class="language-tsx"
     tabindex="0"
   >
     <code
-      class=" language-tsx"
+      class="language-tsx"
     >
       <span
         class="token comment"
@@ -1236,34 +1263,30 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
         (
       </span>
       <span
-        class="token parameter"
+        class="token punctuation"
       >
-        <span
-          class="token punctuation"
-        >
-          {
-        </span>
-        
-  children
-        <span
-          class="token punctuation"
-        >
-          ,
-        </span>
-        
-
-        <span
-          class="token punctuation"
-        >
-          }
-        </span>
-        <span
-          class="token operator"
-        >
-          :
-        </span>
-         ListItemRendererProps
+        {
       </span>
+      
+  children
+      <span
+        class="token punctuation"
+      >
+        ,
+      </span>
+      
+
+      <span
+        class="token punctuation"
+      >
+        }
+      </span>
+      <span
+        class="token operator"
+      >
+        :
+      </span>
+       ListItemRendererProps
       <span
         class="token punctuation"
       >
@@ -1354,10 +1377,15 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
 </div>
 `;
 
-exports[`html support should not be able to render foldable text (details) 1`] = `<div />`;
+exports[`html support should not be able to render foldable text (details) 1`] = `
+<div>
+   
+</div>
+`;
 
 exports[`html support should not be able to render tags? 1`] = `
 <div>
+   
   <h1
     id="heading--text"
   >

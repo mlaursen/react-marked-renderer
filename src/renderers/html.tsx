@@ -32,11 +32,11 @@ export type EscapeRendererProps = marked.Tokens.Escape;
  * rendering:
  *
  * ```tsx
- * <>{raw}</>
+ * <>{text}</>
  * ```
  */
-export function EscapeRenderer({ raw }: EscapeRendererProps): ReactElement {
-  return <>{raw}</>;
+export function EscapeRenderer({ text }: EscapeRendererProps): ReactElement {
+  return <>{text}</>;
 }
 
 export interface HtmlRenderers {

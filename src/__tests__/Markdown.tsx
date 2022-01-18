@@ -116,7 +116,9 @@ _**Should be emphasis and bold.**_
 `;
 
 const ESCAPED_MARKDOWN = `
-Here is some \\* escaped \\* stuff.
+Here is some \\*escaped\\* stuff.
+
+Allow \\_\\_tests\\_\\_.
 `;
 
 const BR_MARKDOWN = `

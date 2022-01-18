@@ -206,10 +206,20 @@ exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`]
    
   <p>
     Here is some 
-    \\*
-     escaped 
-    \\*
+    *
+    escaped
+    *
      stuff.
+  </p>
+   
+  <p>
+    Allow 
+    _
+    _
+    tests
+    _
+    _
+    .
   </p>
 </div>
 `;

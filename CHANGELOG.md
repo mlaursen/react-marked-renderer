@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.4...v1.1.0) (2022-01-18)
+
+
+### Features
+
+* export marked object for convenience ([3aba9df](https://github.com/mlaursen/react-marked-renderer/commit/3aba9dff02f06ef7aab478eb6fffda1296465d96))
+
+
+### Bug Fixes
+
+* **renderers:** EscapeRenderer returns parsed text instead of raw text ([6baca3d](https://github.com/mlaursen/react-marked-renderer/commit/6baca3dfabcdb40feecfcf5c649494aa54026166))
+
+
+### Internal Changes
+
+* **dev-deps:** bump all dev dependencies to latest ([74da1eb](https://github.com/mlaursen/react-marked-renderer/commit/74da1eb8210f7bc6b180ac78fad88e5b42ed0275))
+
 ### [1.0.4](https://github.com/mlaursen/react-marked-renderer/compare/v1.0.3...v1.0.4) (2022-01-15)
 
 

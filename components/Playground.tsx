@@ -7,7 +7,7 @@ import { PlaygroundView } from "./PlaygroundView";
 import { PlaygroundProvider } from "./usePlayground";
 import { UploadProvider } from "./useUpload";
 
-const tabs = ["Editor", "Preview"];
+const tabs = ["Editor", "Preview"] as const;
 
 export default function Playground(): ReactElement {
   return (

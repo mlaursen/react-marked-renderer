@@ -8,10 +8,10 @@ import {
   ArrowUpwardSVGIcon,
   CheckBoxSVGIcon,
   CheckSVGIcon,
-  ConfigurableIcons,
   Configuration,
+  ConfiguredIcons,
   ErrorOutlineSVGIcon,
-  FileDownloadSVGIcon,
+  FileUploadSVGIcon,
   KeyboardArrowDownSVGIcon,
   KeyboardArrowLeftSVGIcon,
   KeyboardArrowRightSVGIcon,
@@ -21,10 +21,9 @@ import {
   RemoveRedEyeSVGIcon,
 } from "react-md";
 
-const icons: ConfigurableIcons = {
+const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
-  download: <FileDownloadSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
   error: <ErrorOutlineSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,
@@ -35,6 +34,7 @@ const icons: ConfigurableIcons = {
   radio: <RadioButtonCheckedSVGIcon />,
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
+  upload: <FileUploadSVGIcon />,
 };
 
 const DESCRIPTION =

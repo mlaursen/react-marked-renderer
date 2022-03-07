@@ -14,7 +14,7 @@ jobs:
     name: Validate Using Node 14
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
 
       - name: Run Lint and Typecheck
         uses: actions/setup-node@v2.5.1

@@ -11,7 +11,7 @@ on:
 
 jobs:
   validate:
-    name: Validate Using Node 14
+    name: Validate Using Node 16
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
       - name: Run Lint and Typecheck
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           cache: yarn
 
       - run: yarn

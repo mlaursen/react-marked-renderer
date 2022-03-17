@@ -26,6 +26,8 @@ export function PanelResizer(): ReactElement {
       return;
     }
 
+    document.body.style.userSelect = "none";
+
     const updatePosition = (event: MouseEvent): void => {
       event.preventDefault();
       event.stopPropagation();
@@ -42,6 +44,7 @@ export function PanelResizer(): ReactElement {
     window.addEventListener("mouseup", stopDragging);
 
     return () => {
+      document.body.style.userSelect = "";
       window.removeEventListener("mousemove", updatePosition);
       window.removeEventListener("mouseup", stopDragging);
     };

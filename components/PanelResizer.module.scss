@@ -1,4 +1,4 @@
-@use "../everything" as *;
+@use '../everything' as *;
 
 .separator {
   @include rmd-divider-theme(background-color);

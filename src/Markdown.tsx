@@ -1,16 +1,18 @@
 import { marked } from "marked";
 import type { ReactElement } from "react";
 
+import type {
+  HighlightCodeOptions,
+  MarkdownRenderers,
+  MarkdownOptions,
+  ValidHighlightCodeOptions,
+} from "./renderers";
 import {
   DEFAULT_MARKDOWN_OPTIONS,
   DEFAULT_MARKDOWN_RENDERERS,
-  HighlightCodeOptions,
   MarkdownCodeProvider,
-  MarkdownRenderers,
   MarkdownRenderersProvider,
-  MarkdownOptions,
   TokensRenderer,
-  ValidHighlightCodeOptions,
 } from "./renderers";
 import { MarkdownSluggerProvider } from "./useSluggedId";
 

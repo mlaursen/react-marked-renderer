@@ -28,10 +28,10 @@ import {
   Typography,
 } from "react-md";
 
+import type { MarkdownRenderers } from "../src";
 import {
   getTokensText,
   useSluggedId,
-  MarkdownRenderers,
   DEFAULT_MARKDOWN_RENDERERS,
 } from "../src";
 import styles from "./renderers.module.scss";

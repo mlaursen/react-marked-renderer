@@ -17,12 +17,12 @@ import "prismjs/components/prism-typescript";
 import { renderers } from "../../components/renderers";
 import { DEFAULT_MARKDOWN } from "../../constants";
 import { Markdown } from "../Markdown";
-import {
+import type {
   DangerouslyHighlightCode,
-  DEFAULT_MARKDOWN_OPTIONS,
   GetCodeLanguage,
   MarkdownOptions,
 } from "../renderers";
+import { DEFAULT_MARKDOWN_OPTIONS } from "../renderers";
 
 const HEADING_MARKDOWN = `
 # Heading 1

@@ -1,7 +1,8 @@
 import Prism from "prismjs";
 import type { ReactElement } from "react";
 
-import { DangerouslyHighlightCode, GetCodeLanguage, Markdown } from "../src";
+import type { DangerouslyHighlightCode, GetCodeLanguage } from "../src";
+import { Markdown } from "../src";
 import styles from "./MarkdownPreview.module.scss";
 import { renderers } from "./renderers";
 import { usePlayground } from "./usePlayground";

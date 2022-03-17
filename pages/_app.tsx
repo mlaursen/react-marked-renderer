@@ -3,13 +3,13 @@ import "./solarized-dark.css";
 import type { ReactElement } from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import type { ConfiguredIcons } from "react-md";
 import {
   ArrowDropDownSVGIcon,
   ArrowUpwardSVGIcon,
   CheckBoxSVGIcon,
   CheckSVGIcon,
   Configuration,
-  ConfiguredIcons,
   ErrorOutlineSVGIcon,
   FileUploadSVGIcon,
   KeyboardArrowDownSVGIcon,

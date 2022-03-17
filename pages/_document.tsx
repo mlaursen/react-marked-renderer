@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 const PRISM_HTML = "window.Prism=window.Prism||{};window.Prism.manual=true";

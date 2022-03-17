@@ -1,4 +1,4 @@
-@use "../everything" as *;
+@use '../everything' as *;
 
 .panels {
   @include rmd-app-bar-offset($height-type: prominent-dense-height);

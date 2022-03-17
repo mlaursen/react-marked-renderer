@@ -1,17 +1,7 @@
-import {
-  createContext,
-  ReactElement,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-} from "react";
-import {
-  FileUploadHookReturnValue,
-  GetFileParser,
-  getSplitFileUploads,
-  useFileUpload,
-} from "react-md";
+import type { ReactElement, ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo } from "react";
+import type { FileUploadHookReturnValue, GetFileParser } from "react-md";
+import { getSplitFileUploads, useFileUpload } from "react-md";
 import { ErrorModal } from "./ErrorModal";
 import { usePlayground } from "./usePlayground";
 

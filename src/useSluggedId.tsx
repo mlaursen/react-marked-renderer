@@ -1,5 +1,7 @@
-import { marked, Slugger } from "marked";
-import { createContext, ReactElement, ReactNode, useContext } from "react";
+import type { Slugger } from "marked";
+import { marked } from "marked";
+import type { ReactElement, ReactNode } from "react";
+import { createContext, useContext } from "react";
 
 export interface TokensTextOptions {
   /**

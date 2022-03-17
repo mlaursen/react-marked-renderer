@@ -1,5 +1,6 @@
 import cn from "classnames";
-import { ReactElement, useRef } from "react";
+import type { ReactElement } from "react";
+import { useRef } from "react";
 import { TextArea } from "react-md";
 
 import styles from "./MarkdownEditor.module.scss";

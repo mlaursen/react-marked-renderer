@@ -1,15 +1,20 @@
-import { createContext, ReactElement, ReactNode, useContext } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { createContext, useContext } from "react";
 
-import { CodeRenderers, CODE_RENDERERS } from "./code";
-import { HtmlRenderers, HTML_RENDERERS } from "./html";
-import { ListRenderers, LIST_RENDERERS } from "./list";
-import { MediaRenderers, MEDIA_RENDERERS } from "./media";
-import {
-  PRESENTATIONAL_RENDERERS,
-  PresentationRenderers,
-} from "./presentational";
-import { TableRenderers, TABLE_RENDERERS } from "./table";
-import { TextRenderers, TEXT_RENDERERS } from "./text";
+import type { CodeRenderers } from "./code";
+import { CODE_RENDERERS } from "./code";
+import type { HtmlRenderers } from "./html";
+import { HTML_RENDERERS } from "./html";
+import type { ListRenderers } from "./list";
+import { LIST_RENDERERS } from "./list";
+import type { MediaRenderers } from "./media";
+import { MEDIA_RENDERERS } from "./media";
+import type { PresentationRenderers } from "./presentational";
+import { PRESENTATIONAL_RENDERERS } from "./presentational";
+import type { TableRenderers } from "./table";
+import { TABLE_RENDERERS } from "./table";
+import type { TextRenderers } from "./text";
+import { TEXT_RENDERERS } from "./text";
 
 /**
  * @see {@link DEFAULT_MARKDOWN_RENDERERS} for the default implementation

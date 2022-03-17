@@ -1,5 +1,6 @@
 import cn from "classnames";
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import {
   FileUploadSVGIcon,
   Typography,

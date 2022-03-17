@@ -1,10 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
-import {
-  AppBarAction as RMDAppBarAction,
-  AppBarActionProps as RMDAppBarActionProps,
-  Tooltip,
-  useTooltip,
-} from "react-md";
+import type { AppBarActionProps as RMDAppBarActionProps } from "react-md";
+import { AppBarAction as RMDAppBarAction, Tooltip, useTooltip } from "react-md";
 
 interface AppBarActionProps extends RMDAppBarActionProps {
   id: string;

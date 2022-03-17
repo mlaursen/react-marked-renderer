@@ -1,13 +1,11 @@
 import type { ReactElement } from "react";
 import filesize from "filesize";
-import {
+import type {
   FileExtensionError,
   FileSizeError,
-  isFileSizeError,
-  isTooManyFilesError,
-  Typography,
   TooManyFilesError,
 } from "react-md";
+import { isFileSizeError, isTooManyFilesError, Typography } from "react-md";
 
 interface ErrorHeaderProps {
   error: TooManyFilesError | FileSizeError | FileExtensionError;

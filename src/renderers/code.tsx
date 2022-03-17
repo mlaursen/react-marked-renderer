@@ -1,14 +1,11 @@
 import type { marked } from "marked";
-import {
+import type {
   ComponentType,
-  createContext,
   DOMAttributes,
   ReactElement,
   ReactNode,
-  useCallback,
-  useContext,
-  useMemo,
 } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
 
 /**
  * A function that should highlight all the code within an `HTMLElement`. This

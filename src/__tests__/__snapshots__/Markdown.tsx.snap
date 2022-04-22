@@ -201,6 +201,34 @@ exports[`Markdown should be able to render emphasis (italic) text 1`] = `
 </div>
 `;
 
+exports[`Markdown should be able to render escaped (backslash-prefixed) html 1`] = `
+<div>
+   
+  <ul>
+    <li>
+      &lt;
+      img&gt;
+    </li>
+    <li>
+      &lt;
+      video&gt;
+    </li>
+    <li>
+      &lt;
+      iframe&gt;
+    </li>
+    <li>
+      &lt;
+      embed&gt;
+    </li>
+    <li>
+      &lt;
+      object&gt;
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Markdown should be able to render escaped (backslash-prefixed) text 1`] = `
 <div>
    

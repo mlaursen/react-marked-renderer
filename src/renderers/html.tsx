@@ -36,6 +36,10 @@ export type EscapeRendererProps = marked.Tokens.Escape;
  * ```
  */
 export function EscapeRenderer({ text }: EscapeRendererProps): ReactElement {
+  if (text === "&lt;") {
+    return <>&lt;</>;
+  }
+
   return <>{text}</>;
 }
 

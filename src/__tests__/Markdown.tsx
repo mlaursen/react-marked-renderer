@@ -121,6 +121,14 @@ Here is some \\*escaped\\* stuff.
 Allow \\_\\_tests\\_\\_.
 `;
 
+const ESCAPED_HTML_MARKDOWN = `
+- \\<img>
+- \\<video>
+- \\<iframe>
+- \\<embed>
+- \\<object>
+`;
+
 const BR_MARKDOWN = `
 Trailing two spaces to force break  
 Second Line of text with trailing slash to force break\\
@@ -422,6 +430,14 @@ describe("Markdown", () => {
 
   it("should be able to render escaped (backslash-prefixed) text", () => {
     const { container } = render(<Markdown markdown={ESCAPED_MARKDOWN} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render escaped (backslash-prefixed) html", () => {
+    const { container } = render(<Markdown markdown={ESCAPED_HTML_MARKDOWN} />);
+    const firstLi = document.querySelector("li");
+    expect(firstLi?.innerHTML).toBe("&lt;img&gt;");
 
     expect(container).toMatchSnapshot();
   });

@@ -3,13 +3,11 @@ import { useState } from "react";
 import {
   AppBar,
   AppBarTitle,
-  Brightness4SVGIcon,
   FileInput,
   FileUploadSVGIcon,
   FilterFramesSVGIcon,
   FilterNoneSVGIcon,
   HelpOutlineSVGIcon,
-  IconRotator,
   SettingsOverscanSVGIcon,
   Tabs,
   ViewColumnSVGIcon,
@@ -17,6 +15,7 @@ import {
 
 import { AppBarAction } from "./AppBarAction";
 import { HelpDialog } from "./HelpDialog";
+import { ThemePreference } from "./ThemePreference";
 import { usePlayground } from "./usePlayground";
 import { useUpload } from "./useUpload";
 
@@ -25,14 +24,8 @@ export function Header(): ReactElement {
   const onRequestClose = (): void => {
     setVisible(false);
   };
-  const {
-    darkTheme,
-    splitView,
-    customRenderers,
-    toggleDarkTheme,
-    toggleSplitView,
-    toggleCustomRenderers,
-  } = usePlayground();
+  const { splitView, customRenderers, toggleSplitView, toggleCustomRenderers } =
+    usePlayground();
   const { accept, onChange } = useUpload();
 
   return (
@@ -71,17 +64,7 @@ export function Header(): ReactElement {
         >
           {customRenderers ? <FilterFramesSVGIcon /> : <FilterNoneSVGIcon />}
         </AppBarAction>
-        <AppBarAction
-          aria-label="Light Theme"
-          id="theme-type"
-          aria-pressed={darkTheme}
-          onClick={toggleDarkTheme}
-          tooltip="Toggle between light and dark themes"
-        >
-          <IconRotator rotated={darkTheme}>
-            <Brightness4SVGIcon />
-          </IconRotator>
-        </AppBarAction>
+        <ThemePreference />
         <AppBarAction
           aria-label="Help"
           id="website-help"

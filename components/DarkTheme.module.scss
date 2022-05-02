@@ -1,0 +1,5 @@
+@use '../everything' as *;
+
+.container {
+  @include rmd-theme-dark;
+}

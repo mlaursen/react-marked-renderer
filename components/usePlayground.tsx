@@ -11,9 +11,11 @@ import {
 
 import { DEFAULT_MARKDOWN } from "../constants";
 
+export type ThemeType = "light" | "dark" | "system";
+
 interface PlaygroundState {
   markdown: string;
-  darkTheme: boolean;
+  themeType: ThemeType;
   splitView: boolean;
   splitPercentage: number;
   customRenderers: boolean;
@@ -27,7 +29,7 @@ interface PlaygroundContext extends PlaygroundState {
   maxSplitPercentage(): void;
   incrementSplitPercentage(): void;
   decrementSplitPercentage(): void;
-  toggleDarkTheme(): void;
+  setThemeType(themeType: ThemeType): void;
   toggleSplitView(): void;
   toggleCustomRenderers(): void;
 }
@@ -42,7 +44,7 @@ const SPLIT_PERCENTAGE_INCREMENT = 1;
 const LOCAL_STORAGE_KEY = "playgroundState";
 const INITIAL_STATE: PlaygroundState = {
   markdown: DEFAULT_MARKDOWN,
-  darkTheme: false,
+  themeType: "system",
   splitView: true,
   splitPercentage: 50,
   customRenderers: false,
@@ -58,7 +60,7 @@ const context = createContext<PlaygroundContext>({
   incrementSplitPercentage: noop,
   decrementSplitPercentage: noop,
   toggleSplitView: noop,
-  toggleDarkTheme: noop,
+  setThemeType: noop,
   toggleCustomRenderers: noop,
 });
 context.displayName = "Playground";
@@ -71,9 +73,13 @@ interface SimplePlaygroundAction {
     | "maxSplitPercentage"
     | "incrementSplitPercentage"
     | "decrementSplitPercentage"
-    | "toggleDarkTheme"
     | "toggleSplitView"
     | "toggleCustomRenderers";
+}
+
+interface SetThemeTypeAction {
+  type: "setThemeType";
+  themeType: ThemeType;
 }
 
 interface SetMarkdownAction {
@@ -93,6 +99,7 @@ interface SetPlaygroundStateAction {
 
 type PlaygroundAction =
   | SimplePlaygroundAction
+  | SetThemeTypeAction
   | SetMarkdownAction
   | SetSplitPercentageAction
   | SetPlaygroundStateAction;
@@ -107,6 +114,14 @@ const validateBool = (value: unknown, initial: boolean): boolean => {
   }
 
   return initial;
+};
+
+const validateThemeType = (value: unknown, initial: ThemeType): ThemeType => {
+  if (value !== "light" && value !== "dark" && value !== "system") {
+    return initial;
+  }
+
+  return value;
 };
 
 const getNextSplitPercentageState = (
@@ -138,10 +153,10 @@ function reducer(
         ...state,
         markdown: action.markdown,
       };
-    case "toggleDarkTheme":
+    case "setThemeType":
       return {
         ...state,
-        darkTheme: !state.darkTheme,
+        themeType: action.themeType,
       };
     case "toggleSplitView":
       return {
@@ -180,7 +195,7 @@ export function PlaygroundProvider({
   children: ReactNode;
 }): ReactElement {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { markdown, darkTheme, splitView, splitPercentage, customRenderers } =
+  const { markdown, themeType, splitView, splitPercentage, customRenderers } =
     state;
 
   const reset = useCallback(() => {
@@ -204,8 +219,8 @@ export function PlaygroundProvider({
   const decrementSplitPercentage = useCallback(() => {
     dispatch({ type: "decrementSplitPercentage" });
   }, []);
-  const toggleDarkTheme = useCallback(() => {
-    dispatch({ type: "toggleDarkTheme" });
+  const setThemeType = useCallback((themeType: ThemeType) => {
+    dispatch({ type: "setThemeType", themeType });
   }, []);
   const toggleSplitView = useCallback(() => {
     dispatch({ type: "toggleSplitView" });
@@ -216,7 +231,7 @@ export function PlaygroundProvider({
   const value = useMemo<PlaygroundContext>(
     () => ({
       markdown,
-      darkTheme,
+      themeType: themeType,
       splitView,
       splitPercentage,
       customRenderers,
@@ -227,13 +242,13 @@ export function PlaygroundProvider({
       maxSplitPercentage,
       incrementSplitPercentage,
       decrementSplitPercentage,
-      toggleDarkTheme,
+      setThemeType: setThemeType,
       toggleSplitView,
       toggleCustomRenderers,
     }),
     [
       customRenderers,
-      darkTheme,
+      themeType,
       decrementSplitPercentage,
       incrementSplitPercentage,
       markdown,
@@ -245,7 +260,7 @@ export function PlaygroundProvider({
       splitPercentage,
       splitView,
       toggleCustomRenderers,
-      toggleDarkTheme,
+      setThemeType,
       toggleSplitView,
     ]
   );
@@ -272,10 +287,10 @@ export function PlaygroundProvider({
       }
 
       try {
-        const { darkTheme, splitView, customRenderers } = JSON.parse(cached);
+        const { themeType, splitView, customRenderers } = JSON.parse(cached);
         const state = {
           ...INITIAL_STATE,
-          darkTheme: validateBool(darkTheme, INITIAL_STATE.darkTheme),
+          themeType: validateThemeType(themeType, INITIAL_STATE.themeType),
           splitView: validateBool(splitView, INITIAL_STATE.splitView),
           customRenderers: validateBool(
             customRenderers,
@@ -293,23 +308,11 @@ export function PlaygroundProvider({
       LOCAL_STORAGE_KEY,
       JSON.stringify({
         splitView,
-        darkTheme,
+        themeType,
         customRenderers,
       })
     );
-  }, [customRenderers, darkTheme, splitView]);
-  useEffect(() => {
-    const html = document.querySelector("html");
-    if (!html || !darkTheme) {
-      return;
-    }
-
-    const className = "dark-theme";
-    html.classList.add(className);
-    return () => {
-      html.classList.remove(className);
-    };
-  }, [darkTheme]);
+  }, [customRenderers, themeType, splitView]);
 
   return <Provider value={value}>{children}</Provider>;
 }

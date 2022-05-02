@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "target": "es5",
     "module": "commonjs",
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "isolatedModules": false
   }
 }

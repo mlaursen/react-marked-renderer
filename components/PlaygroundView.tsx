@@ -30,10 +30,10 @@ export function PlaygroundView(): ReactElement | null {
   };
 
   return (
-    <div style={style} className={styles.grid}>
+    <form style={style} className={styles.grid}>
       <MarkdownEditor />
       <PanelResizer />
       <MarkdownPreview />
-    </div>
+    </form>
   );
 }

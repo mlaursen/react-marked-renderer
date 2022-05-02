@@ -16,6 +16,7 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.check.json",
     "test": "jest",
+    "test-cy": "cypress open",
     "dev": "next dev",
     "start": "next start",
     "build": "next build"
@@ -56,6 +57,7 @@
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "@rollup/plugin-replace": "^4.0.0",
+    "@testing-library/cypress": "^8.0.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@types/inquirer": "^8.2.1",
@@ -64,6 +66,7 @@
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
+    "cypress": "^9.6.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.14.0",
     "filesize": "^8.0.7",

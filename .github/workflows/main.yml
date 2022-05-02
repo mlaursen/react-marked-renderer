@@ -1,0 +1,105 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Main Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Using Node 16
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.0-chrome99-ff97
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Lint and Typecheck
+        uses: cypress-io/github-action@v2
+        with:
+          runTests: false
+
+      - run: yarn
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn test --coverage
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - run: yarn build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: .next
+
+  test-chrome:
+    name: Test Chrome
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.0-chrome99-ff97
+      options: --user 1001
+    needs: validate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: .next
+
+      - name: "UI Tests - Chrome"
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
+          browser: chrome
+          # record: true
+          # parallel: true
+          group: "UI - Chrome"
+          spec: cypress/integration/*
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test-firefox:
+    name: Test Firefox
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.0-chrome99-ff97
+      options: --user 1001
+    needs: validate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: .next
+
+      - name: "UI Tests - Firefox"
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
+          browser: firefox
+          # record: true
+          # parallel: true
+          group: "UI - Firefox"
+          spec: cypress/integration/*
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

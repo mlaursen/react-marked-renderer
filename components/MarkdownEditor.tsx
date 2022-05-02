@@ -30,6 +30,11 @@ export function MarkdownEditor(): ReactElement {
             linesRef.current.scrollTop = event.currentTarget.scrollTop;
           }
         }}
+        containerProps={{
+          "aria-label": "Editor",
+          id: "markdown-editor-container",
+          role: "region",
+        }}
       />
       <div
         ref={linesRef}

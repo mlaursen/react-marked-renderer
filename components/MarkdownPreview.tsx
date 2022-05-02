@@ -22,13 +22,18 @@ const highlightCode: DangerouslyHighlightCode = (code, lang) =>
 export function MarkdownPreview(): ReactElement {
   const { markdown, customRenderers } = usePlayground();
   return (
-    <div id="preview-panel" className={styles.container}>
+    <output
+      aria-label="Preview"
+      id="preview-panel"
+      htmlFor="markdown-editor"
+      className={styles.container}
+    >
       <Markdown
         markdown={markdown}
         renderers={customRenderers ? renderers : undefined}
         getLanguage={customRenderers ? undefined : getLanguage}
         highlightCode={customRenderers ? highlightCode : undefined}
       />
-    </div>
+    </output>
   );
 }

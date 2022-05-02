@@ -66,7 +66,13 @@ export function HelpDialog({
     >
       <DialogHeader>
         <DialogTitle id={titleId}>Playground</DialogTitle>
-        <AppBarAction id={closeId} onClick={onRequestClose} first last>
+        <AppBarAction
+          aria-label="Close"
+          id={closeId}
+          onClick={onRequestClose}
+          first
+          last
+        >
           <CloseSVGIcon />
         </AppBarAction>
       </DialogHeader>

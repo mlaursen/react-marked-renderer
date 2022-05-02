@@ -54,7 +54,7 @@ export function Header(): ReactElement {
           {splitView ? <SettingsOverscanSVGIcon /> : <ViewColumnSVGIcon />}
         </AppBarAction>
         <FileInput
-          id="file-uploa"
+          id="file-upload"
           accept={accept}
           onChange={onChange}
           theme="clear"

@@ -15,7 +15,7 @@ export function MarkdownEditor(): ReactElement {
     <>
       <TextArea
         aria-label="Editor"
-        id="markddown-editor"
+        id="markdown-editor"
         name="editor"
         theme="none"
         value={markdown}

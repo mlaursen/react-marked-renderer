@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/mlaursen/react-marked-renderer/compare/v1.1.1...v1.1.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* **html:** correctly render escaped html ([c5deefe](https://github.com/mlaursen/react-marked-renderer/commit/c5deefedd97eeae0adf5be48ff1213c5f7442c73))
+
+
+### Internal Changes
+
+* **deps-dev:** bump next from 12.0.9 to 12.1.0 ([c21f505](https://github.com/mlaursen/react-marked-renderer/commit/c21f5059b2fedfaf58bc9e147479794e2223bc9b))
+* **deps-dev:** bump prismjs from 1.26.0 to 1.27.0 ([#91](https://github.com/mlaursen/react-marked-renderer/issues/91)) ([0653bf4](https://github.com/mlaursen/react-marked-renderer/commit/0653bf4ba44618092cdd926e18b3e0a197f208cd))
+* **deps:** bump actions/checkout from 2 to 3 ([#95](https://github.com/mlaursen/react-marked-renderer/issues/95)) ([4e92a9d](https://github.com/mlaursen/react-marked-renderer/commit/4e92a9d7084781893e3f44d46b3ee0525bbd37bc))
+* **deps:** bump actions/setup-node from 2.5.1 to 3 ([7b9d888](https://github.com/mlaursen/react-marked-renderer/commit/7b9d88867692485c29610830e1d8e119ad388c90))
+* **deps:** bump github/codeql-action from 1 to 2 ([#117](https://github.com/mlaursen/react-marked-renderer/issues/117)) ([37ea3a5](https://github.com/mlaursen/react-marked-renderer/commit/37ea3a53219349a65c6ef6ecbfd71b68e3d4c92d))
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([e437d2c](https://github.com/mlaursen/react-marked-renderer/commit/e437d2cce9c2ece34aa61b08f48449babe759995))
+* **deps:** bump node-fetch from 2.6.1 to 2.6.7 ([#80](https://github.com/mlaursen/react-marked-renderer/issues/80)) ([aea6b57](https://github.com/mlaursen/react-marked-renderer/commit/aea6b57bec3f3bc4692fc025d0fed2bb9026b7e0))
+* **deps:** bump trim-off-newlines from 1.0.1 to 1.0.3 ([#79](https://github.com/mlaursen/react-marked-renderer/issues/79)) ([bd864f7](https://github.com/mlaursen/react-marked-renderer/commit/bd864f76a96b552bb12dbf82fc4b259cd8673192))
+* **dev-deps:** bump all dev dependencies to latest ([a5371ec](https://github.com/mlaursen/react-marked-renderer/commit/a5371ecd7745bd814be63ab01c41d5ca24158520))
+* **dev-deps:** Bump all remaining dev dependencies to latest ([ec836e0](https://github.com/mlaursen/react-marked-renderer/commit/ec836e07fdceae5b207051774af39c2b250ff4e7))
+* **dev-deps:** bump eslint and config to latest ([5027b3f](https://github.com/mlaursen/react-marked-renderer/commit/5027b3fb1ea9ec46451c183e1ee9fe28486ecdfe))
+* **dev-deps:** bump most dev dependencies to latest ([1e9d31e](https://github.com/mlaursen/react-marked-renderer/commit/1e9d31e49cf74b9b820da33300aa3427da941a7c))
+* **dev-deps:** bump prettier to latest and reformat files ([46a2eb7](https://github.com/mlaursen/react-marked-renderer/commit/46a2eb70ec66b339907df3919ea325c105cc091f))
+* **dev-deps:** bump react and react-dom to v18.1.0 ([c96fc8f](https://github.com/mlaursen/react-marked-renderer/commit/c96fc8f8d8bbf2d35687dd743e03dd03607217a6))
+* **docs:** Fix Firefox selecting text while resizing ([0cb49d8](https://github.com/mlaursen/react-marked-renderer/commit/0cb49d8d3f019a2585fa7563dbbbb715d04ea3e6))
+* **docs:** Update PanelResizer hover/focus styles ([118881a](https://github.com/mlaursen/react-marked-renderer/commit/118881acdcd9537e67e1e81b86414d33432f9114))
+* Fix npm badge in README ([57779cf](https://github.com/mlaursen/react-marked-renderer/commit/57779cf90cf7b847c2b07a2ff08e17cd587bfd56))
+* **website:** fix typos ([0c55ea2](https://github.com/mlaursen/react-marked-renderer/commit/0c55ea271493b03fdae2f4c7b5957638fe245d75))
+* **workflow:** Update validate workflow to use node 16 ([43abc80](https://github.com/mlaursen/react-marked-renderer/commit/43abc80524df120dbe1599d3b0a1428945ccc5b6))
+
 ### [1.1.1](https://github.com/mlaursen/react-marked-renderer/compare/v1.1.0...v1.1.1) (2022-01-18)
 
 

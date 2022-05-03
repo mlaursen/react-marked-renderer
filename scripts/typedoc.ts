@@ -6,12 +6,18 @@ const loggedExecSync = (command: string): void => {
   execSync(command, { stdio: "inherit" });
 };
 
-const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
-const isNoRemote = execSync("git remote -v").toString().trim().length === 0;
+let commitSha: string | undefined;
+let isNoRemote = false;
+if (process.env.GITHUB_SHA) {
+  commitSha = process.env.GITHUB_SHA;
+} else {
+  commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+  isNoRemote = execSync("git remote -v").toString().trim().length === 0;
+}
 
 if (commitSha && isNoRemote) {
   console.log(
-    "A git remote could not be found. Manually setting it to the repositor field in the `package.json`."
+    "A git remote could not be found. Manually setting it to the repository field in the `package.json`."
   );
 
   loggedExecSync(`git remote add origin ${repository}`);

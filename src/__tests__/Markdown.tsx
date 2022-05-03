@@ -15,7 +15,35 @@ import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-typescript";
 
 import { renderers } from "../../components/renderers";
-import { DEFAULT_MARKDOWN } from "../../constants";
+import {
+  BLOCKQUOTE_MARKDOWN,
+  BOLD_TEXT_MARKDOWN,
+  BR_MARKDOWN,
+  CODE_BLOCK_MARKDOWN,
+  CODE_SPAN_ADVANCED_MARKDOWN,
+  CODE_SPAN_MARKDOWN,
+  DEFAULT_MARKDOWN,
+  EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN,
+  EMPHASIS_TEXT_MARKDOWN,
+  ESCAPED_HTML_MARKDOWN,
+  ESCAPED_MARKDOWN,
+  FOLDABLE_TEXT_MARKDOWN,
+  HEADING_1_WITH_EQUALS_MARKDOWN,
+  HEADING_2_WITH_HYPHENS_MARKDOWN,
+  HEADING_MARKDOWN,
+  HORIZONTAL_RULE_MARKDOWN,
+  IMAGE_MARKDOWN,
+  LINK_MARKDOWN,
+  NESTED_BLOCKQUOTE_MARKDOWN,
+  NESTED_LIST_MARKDOWN,
+  ORDERED_LIST_MARKDOWN,
+  REFERENCE_LINK_MARKDOWN,
+  STRIKETHROUGH_TEXT_MARKDOWN,
+  TABLE_COMPLEX_MARKDOWN,
+  TABLE_MARKDOWN,
+  TASK_LIST_MARKDOWN,
+  UNORDERED_LIST_MARKDOWN,
+} from "../../constants";
 import { Markdown } from "../Markdown";
 import type {
   DangerouslyHighlightCode,
@@ -23,232 +51,6 @@ import type {
   MarkdownOptions,
 } from "../renderers";
 import { DEFAULT_MARKDOWN_OPTIONS } from "../renderers";
-
-const HEADING_MARKDOWN = `
-# Heading 1
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-###### Heading 6
-`;
-
-const HEADING_1_WITH_EQUALS_MARKDOWN = `
-Three equals
-===
-
-Three or more equals
-======
-`;
-
-const HEADING_2_WITH_HYPHENS_MARKDOWN = `
-Three hyphens
----
-
-Three or more hyphens
-------
-`;
-
-const LINK_MARKDOWN = `
-Automatically https://example.com without brackets.
-
-[Brackets Link](https://github.com) with text afterwards.
-
-[Brackets Link with title](https://github.com "Custom Title") with text afterwards.
-
-[Referenced Link Matching case] with text afterwards.
-
-[ReFeRENced LInk IGNORing cAsE] with text afterwards.
-
-[Referenced Link Matching case]: https://github.com/mlaursen
-[referenced link ignoring case]: https://github.com/mlaursen/react-marked-renderer
-`;
-
-const REFERENCE_LINK_MARKDOWN = `
-[heading-1](#heading-1)
-[heading-2](#heading-2 "Goto heading-2")
-`;
-
-const BLOCKQUOTE_MARKDOWN = `
-> This is text in a blockquote
-`;
-
-const NESTED_BLOCKQUOTE_MARKDOWN = `
-> Root Blockquote
->> Nested Blockquote
-`;
-
-const EMPHASIS_TEXT_MARKDOWN = `
-_Using Single Underscore_
-
-*Using Single Asterisk*
-`;
-
-const BOLD_TEXT_MARKDOWN = `
-__Using Double Underscore___
-
-**Using Double Asterisk**
-`;
-
-const STRIKETHROUGH_TEXT_MARKDOWN = `
-~~This text has strikethroughs~~
-`;
-
-const EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN = `
-___Should be emphasis and bold.___
-
-***Should be emphasis and bold.***
-
-*__Should be emphasis and bold.__*
-
-__*Should be emphasis and bold.*__
-
-_**Should be emphasis and bold.**_
-
-**_Should be emphasis and bold._**
-
-~~**_Should be emphasis, bold, and strikethrough._**~~
-`;
-
-const ESCAPED_MARKDOWN = `
-Here is some \\*escaped\\* stuff.
-
-Allow \\_\\_tests\\_\\_.
-`;
-
-const ESCAPED_HTML_MARKDOWN = `
-- \\<img>
-- \\<video>
-- \\<iframe>
-- \\<embed>
-- \\<object>
-`;
-
-const BR_MARKDOWN = `
-Trailing two spaces to force break  
-Second Line of text with trailing slash to force break\\
-Third line of text
-
-[Link Text](https://example.com)  
-[Link Text](https://example.com)\\
-Fine Link Line
-`;
-
-const CODE_BLOCK_MARKDOWN = `
-\`\`\`
-const x = "y";
-\`\`\`
-
-\`\`\`sh
-yarn add some-package
-\`\`\`
-`;
-
-const CODE_SPAN_MARKDOWN = `
-This has some \`inline code\` to see.
-`;
-
-const CODE_SPAN_ADVANCED_MARKDOWN = `
-This has some \`inline code that "contains" html 'entities' and <other></other>\`
-
-Some other html entities:
-
-- \`¢\` cent
-- \`£\` pound
-- \`¥\` yen
-- \`€\` euro
-- \`©\` copyright
-- \`®\` registered trademark
-`;
-
-const UNORDERED_LIST_MARKDOWN = `
-- Item 1
-- Item 2
-- Item 3
-
-* Asterisk Item 1
-* Asterisk Item 2
-* Asterisk Item 3
-`;
-
-const ORDERED_LIST_MARKDOWN = `
-1. Ordered Item 1
-2. Ordered Item 2
-3. Ordered Item 3
-`;
-
-const NESTED_LIST_MARKDOWN = `
-1. Ordered Item 1
-   1. Ordered Subitem 1
-   2. Ordered Subitem 2
-      - Three Down Hyphen
-      * Three Down Asterisk
-`;
-
-const TASK_LIST_MARKDOWN = `
-- [ ] Unchecked Task
-- [x] Checked Task Lowercase
-- [X] Checked Task Uppercase
-`;
-
-const HORIZONTAL_RULE_MARKDOWN = `
-Text Above HR
-
----
-
-Text Below HR
-`;
-
-const IMAGE_MARKDOWN = `
-![](image.jpeg)
-![alt text](image.jpeg)
-![alt text](image.jpeg "With Title!")
-![absolute path](/image.jpeg)
-![relative path](./image.jpeg)
-`;
-
-const TABLE_MARKDOWN = `
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-`;
-
-// https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
-const TABLE_COMPLEX_MARKDOWN = `
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| \`git status\` | List all *new or modified* files |
-| \`git diff\` | Show file differences that **haven't been** staged |
-
-
-| Name     | Character |
-| ---      | ---       |
-| Backtick | \`         |
-| Pipe     | \\|        |
-`;
-
-const FOLDABLE_TEXT_MARKDOWN = `
-<details>
-<summary>Title 1</summary>
-<p>Content in Title 1</p>
-</details>
-<details>
-  <summary>Title 2</summary>
-  <p>Content in Title 2</p>
-</details>
-`;
 
 describe("Markdown", () => {
   it("should be able to render all six heading types with or without ids", () => {

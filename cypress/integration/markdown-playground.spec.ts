@@ -280,10 +280,10 @@ const result = x + y;
     });
 
     // it should persist in local storage
-    cy.reload();
-    cy.get("html").then((element) => {
-      expect(element.get(0).className).to.match(/LightTheme/);
-    });
+    // cy.reload();
+    // cy.get("html").then((element) => {
+    //   expect(element.get(0).className).to.match(/LightTheme/);
+    // });
   });
 
   it("should allow the playground to render in split view or tab view", () => {

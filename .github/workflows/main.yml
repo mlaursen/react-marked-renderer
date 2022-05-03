@@ -71,16 +71,18 @@ jobs:
         #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-screenshots
+          name: chrome-cypress-screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v3
-        if: always()
+      - name: Upload Videos
+        uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          name: cypress-videos
+          name: chrome-cypress-videos
           path: cypress/videos
 
   test-firefox:
@@ -116,14 +118,16 @@ jobs:
         #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-screenshots
+          name: firefox-cypress-screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v3
-        if: always()
+      - name: Upload Videos
+        uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          name: cypress-videos
+          name: firefox-cypress-videos
           path: cypress/videos

@@ -1,6 +1,10 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo } from "react";
-import type { FileUploadHookReturnValue, GetFileParser } from "react-md";
+import type {
+  CompletedFileUploadStats,
+  FileUploadHookReturnValue,
+  GetFileParser,
+} from "react-md";
 import { getSplitFileUploads, useFileUpload } from "react-md";
 import { ErrorModal } from "./ErrorModal";
 import { usePlayground } from "./usePlayground";
@@ -40,6 +44,25 @@ const extensions = [
   "html",
 ] as const;
 
+const getFileType = (stats: CompletedFileUploadStats | undefined): string => {
+  if (!stats?.file) {
+    return "";
+  }
+
+  const { name, type } = stats.file;
+  const fileType = type.replace(/^.*\/(x-)?/, "");
+  if (fileType) {
+    return fileType;
+  }
+
+  const [extension] = name.split(".").reverse();
+  if (extensions.includes(extension as typeof extensions[number])) {
+    return extension;
+  }
+
+  return "";
+};
+
 export function UploadProvider({
   children,
 }: {
@@ -54,7 +77,7 @@ export function UploadProvider({
     });
   const { complete } = getSplitFileUploads(stats);
   const [current] = complete;
-  const type = current?.file.type?.replace(/^.*\//, "");
+  const type = getFileType(current);
   const fileContents = current?.result;
   useEffect(() => {
     if (typeof fileContents !== "string") {

@@ -3,8 +3,6 @@ import { useState } from "react";
 import {
   AppBar,
   AppBarTitle,
-  FileInput,
-  FileUploadSVGIcon,
   FilterFramesSVGIcon,
   FilterNoneSVGIcon,
   HelpOutlineSVGIcon,
@@ -15,9 +13,9 @@ import {
 
 import { AppBarAction } from "./AppBarAction";
 import { HelpDialog } from "./HelpDialog";
+import MarkdownFileUpload from "./MarkdownFileUpload";
 import { ThemePreference } from "./ThemePreference";
 import { usePlayground } from "./usePlayground";
-import { useUpload } from "./useUpload";
 
 export function Header(): ReactElement {
   const [visible, setVisible] = useState(false);
@@ -26,7 +24,6 @@ export function Header(): ReactElement {
   };
   const { splitView, customRenderers, toggleSplitView, toggleCustomRenderers } =
     usePlayground();
-  const { accept, onChange } = useUpload();
 
   return (
     <AppBar
@@ -36,25 +33,16 @@ export function Header(): ReactElement {
     >
       <AppBar height="dense">
         <AppBarTitle>React Marked Renderer - Playground</AppBarTitle>
+        <MarkdownFileUpload />
         <AppBarAction
           aria-label="Split View"
           aria-pressed={splitView}
           id="split-view"
-          first
           onClick={toggleSplitView}
           tooltip="Toggle between a split view or tab view"
         >
           {splitView ? <SettingsOverscanSVGIcon /> : <ViewColumnSVGIcon />}
         </AppBarAction>
-        <FileInput
-          id="file-upload"
-          accept={accept}
-          onChange={onChange}
-          theme="clear"
-          themeType="flat"
-          style={{ flexShrink: 0 }}
-          icon={<FileUploadSVGIcon />}
-        />
         <AppBarAction
           aria-label="Custom Renderers"
           aria-pressed={customRenderers}

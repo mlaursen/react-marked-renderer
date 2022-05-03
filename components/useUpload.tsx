@@ -49,13 +49,11 @@ const getFileType = (stats: CompletedFileUploadStats | undefined): string => {
     return "";
   }
 
-  const { name, type } = stats.file;
-  const fileType = type.replace(/^.*\/(x-)?/, "");
-  if (fileType) {
-    return fileType;
+  const [extension] = stats.file.name.split(".").reverse();
+  if (extension === "md" || extension === "txt") {
+    return "markdown";
   }
 
-  const [extension] = name.split(".").reverse();
   if (extensions.includes(extension as typeof extensions[number])) {
     return extension;
   }
@@ -87,8 +85,7 @@ export function UploadProvider({
     let contents = fileContents;
     if (type !== "markdown" && type) {
       contents = `\`\`\`${type}
-${fileContents}\`\`\`
-`;
+${fileContents}${/\r?\n$/.test(fileContents) ? "" : "\n"}\`\`\``;
     }
 
     setMarkdown(contents);

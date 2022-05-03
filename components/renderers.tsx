@@ -13,6 +13,7 @@ import "prismjs/components/prism-git";
 import "prismjs/components/prism-diff";
 import "prismjs/components/prism-json";
 import "prismjs/components/prism-properties";
+import "prismjs/components/prism-yaml";
 import { highlightElement, languages } from "prismjs";
 import cn from "classnames";
 import {

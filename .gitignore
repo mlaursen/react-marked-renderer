@@ -29,3 +29,7 @@ node_modules/
 /dist
 /.next
 /public/tsdocs
+
+# Cypress output
+cypress/screenshots
+cypress/videos

@@ -8,6 +8,8 @@ module.exports = {
     },
   },
   moduleNameMapper: {
+    // https://github.com/microsoft/accessibility-insights-web/pull/5421#issuecomment-1109168149
+    '^nanoid': require.resolve('nanoid'),
     '\\.scss$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/testSetup/init.ts'],

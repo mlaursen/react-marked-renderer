@@ -62,14 +62,14 @@ jobs:
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
-          # record: true
-          # parallel: true
-          # group: "UI - Chrome"
-          # spec: cypress/integration/*
-        # env:
-        #   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-        #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          record: true
+          parallel: true
+          group: "UI - Chrome"
+          spec: cypress/integration/*
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Screenshots
         uses: actions/upload-artifact@v3
@@ -109,14 +109,14 @@ jobs:
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: firefox
-          # record: true
-          # parallel: true
-          # group: "UI - Firefox"
-          # spec: cypress/integration/*
-        # env:
-        #   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-        #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          record: true
+          parallel: true
+          group: "UI - Firefox"
+          spec: cypress/integration/*
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Screenshots
         uses: actions/upload-artifact@v3

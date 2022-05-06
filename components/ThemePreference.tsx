@@ -17,9 +17,9 @@ const LightTheme = dynamic(() => import("./LightTheme"));
 const DarkTheme = dynamic(() => import("./DarkTheme"));
 
 const ICONS: Record<ThemeType, ReactElement> = {
-  light: <BrightnessHighSVGIcon />,
-  dark: <BrightnessLowSVGIcon />,
-  system: <BrightnessAutoSVGIcon />,
+  light: <BrightnessHighSVGIcon data-icon="light" />,
+  dark: <BrightnessLowSVGIcon data-icon="dark" />,
+  system: <BrightnessAutoSVGIcon data-icon="system" />,
 };
 
 export function ThemePreference(): ReactElement {

@@ -128,7 +128,10 @@ const getNextSplitPercentageState = (
   state: PlaygroundState,
   nextPercentage: number
 ): PlaygroundState => {
-  const splitPercentage = Math.min(80, Math.max(20, nextPercentage));
+  const splitPercentage = Math.min(
+    MAX_SPLIT_PERCENTAGE,
+    Math.max(MIN_SPLIT_PERCENTAGE, nextPercentage)
+  );
   if (state.splitPercentage === splitPercentage) {
     return state;
   }

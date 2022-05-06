@@ -6,7 +6,8 @@ describe("markdown playground", () => {
     cy.visit("/");
   });
 
-  it("should allow for a file to be uploaded", () => {
+  it("should support uploading files into the editor either through the file input or drag and drop", () => {
+    cy.log("Upload via file input");
     cy.findByRole("textbox", { name: "Editor" })
       .should("have.value", DEFAULT_MARKDOWN)
       .as("editor")
@@ -137,11 +138,8 @@ on:
       });
     cy.findByRole("dialog").should("not.exist");
     cy.get("@editor").should("have.value", DEFAULT_MARKDOWN);
-  });
 
-  it("should allow for a file to be uploaded with drag and drop", () => {
-    cy.findByRole("textbox", { name: "Editor" }).as("editor");
-
+    cy.log("Upload via drag and drop");
     cy.get("html").trigger("dragenter");
     cy.findByRole("heading", {
       name: "Drag and drop a text file to update the markdown text with the file contents.",
@@ -159,7 +157,8 @@ const result = x + y;
     );
   });
 
-  it("should allow the preview pane to use custom renderers", () => {
+  it.only("should allow the user to configure the render behavior, site theme, and layout in addition to viewing a help dialog", () => {
+    cy.log("Using Custom Renderers");
     cy.findByRole("button", { name: "Custom Renderers" })
       .should("have.attr", "aria-pressed", "false")
       .as("toggle");
@@ -189,11 +188,11 @@ const result = x + y;
     cy.get("@preview").within(() => {
       cy.get("[class^=rmd]").should("not.exist");
     });
-  });
 
-  it("should allow the user to custom the theme to be either light, dark, or system", () => {
+    cy.log("Changing the website theme");
     cy.get("html").should("not.have.class");
     cy.findByRole("button", { name: "Theme Preference" }).as("themePreference");
+    cy.get("@themePreference").find('[data-icon="system"]');
     cy.get("@themePreference").click();
 
     cy.findByRole("menu", { name: "Theme Preference" })
@@ -217,6 +216,7 @@ const result = x + y;
       });
 
     cy.findByRole("menu").should("not.exist");
+    cy.get("@themePreference").find('[data-icon="light"]');
     cy.get("html").then((element) => {
       expect(element.get(0).className).to.match(/LightTheme/);
     });
@@ -243,6 +243,7 @@ const result = x + y;
       });
 
     cy.findByRole("menu").should("not.exist");
+    cy.get("@themePreference").find('[data-icon="dark"]');
     cy.get("html").then((element) => {
       expect(element.get(0).className).to.match(/DarkTheme/);
     });
@@ -284,9 +285,8 @@ const result = x + y;
     // cy.get("html").then((element) => {
     //   expect(element.get(0).className).to.match(/LightTheme/);
     // });
-  });
 
-  it("should allow the playground to render in split view or tab view", () => {
+    cy.log("Customize the playground to use split view or tabs");
     cy.findByRole("button", { name: "Split View" })
       .should("have.attr", "aria-pressed", "true")
       .as("splitView");
@@ -322,14 +322,114 @@ const result = x + y;
     );
 
     cy.get("@splitView").click().should("have.attr", "aria-pressed", "true");
-    cy.findByRole("region", { name: "Editor" });
+    cy.findByRole("region", { name: "Editor" }).as("editor");
     cy.findByRole("textbox", { name: "Editor" });
     cy.findByRole("status", { name: "Preview" });
-    cy.findByRole("separator", { name: "Resize Preview Panel" });
+    cy.findByRole("separator", { name: "Resize Preview Panel" }).as(
+      "resizeHandle"
+    );
     cy.findByRole("tab").should("not.exist");
-  });
 
-  it("should display Help Modal with information", () => {
+    cy.log("Resize the split view");
+    cy.window().then((window) => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const oneThirdWidth = width / 3;
+      cy.get("@resizeHandle")
+        .should("have.attr", "aria-valuenow", "50")
+        .trigger("mousedown", {
+          button: 0,
+          pageX: centerX,
+          pageY: centerY,
+        })
+        .trigger("mousemove", {
+          pageX: oneThirdWidth,
+          pageY: centerY + 10,
+        })
+        .trigger("mouseup", {
+          pageX: oneThirdWidth,
+          pageY: centerY + 10,
+        })
+        .should(
+          "have.attr",
+          "aria-valuenow",
+          `${(oneThirdWidth / width) * 100}`
+        );
+      cy.get("@editor").should("be.visible");
+      cy.get("@preview").should("be.visible");
+
+      cy.log("Cannot resize less than 20%");
+      cy.get("@resizeHandle")
+        .trigger("mousedown", {
+          button: 0,
+          pageX: centerX,
+          pageY: centerY,
+        })
+        .trigger("mousemove", {
+          pageX: 0,
+          pageY: 0,
+        })
+        .trigger("mouseup", {
+          pageX: 0,
+          pageY: 0,
+        })
+        .should("have.attr", "aria-valuenow", "20");
+      cy.get("@editor").should("be.visible");
+      cy.get("@preview").should("be.visible");
+
+      cy.get("@resizeHandle")
+        .trigger("mousedown", { button: 0 })
+        .trigger("mousemove", {
+          pageX: width - oneThirdWidth,
+          pageY: height - 10,
+        })
+        .trigger("mouseup", {
+          pageX: width - oneThirdWidth,
+          pageY: height - 10,
+        })
+        .should(
+          "have.attr",
+          "aria-valuenow",
+          `${((oneThirdWidth * 2) / width) * 100}`
+        );
+      cy.get("@editor").should("be.visible");
+      cy.get("@preview").should("be.visible");
+
+      cy.log("Cannot resize more than 80%");
+      cy.get("@resizeHandle")
+        .trigger("mousedown", { button: 0 })
+        .trigger("mousemove", {
+          pageX: width,
+          pageY: centerY,
+        })
+        .trigger("mouseup", {
+          pageX: width,
+          pageY: centerY - 10,
+        })
+        .should("have.attr", "aria-valuenow", "80");
+      cy.get("@editor").should("be.visible");
+      cy.get("@preview").should("be.visible");
+
+      cy.log("Resize with keyboard");
+      cy.get("@resizeHandle")
+        .focus()
+        .trigger("keydown", { key: "Home" })
+        .should("have.attr", "aria-valuenow", "20")
+        .trigger("keydown", { key: "ArrowLeft" })
+        .should("have.attr", "aria-valuenow", "20")
+        .trigger("keydown", { key: "ArrowRight" })
+        .should("have.attr", "aria-valuenow", "21")
+        .trigger("keydown", { key: "End" })
+        .should("have.attr", "aria-valuenow", "80")
+        .trigger("keydown", { key: "ArrowRight" })
+        .should("have.attr", "aria-valuenow", "80")
+        .trigger("keydown", { key: "ArrowLeft" })
+        .should("have.attr", "aria-valuenow", "79");
+    });
+
+    cy.log("Using the Help Modal");
     cy.findByRole("dialog").should("not.exist");
     cy.findByRole("button", { name: "Help" }).click();
 
@@ -384,5 +484,23 @@ const result = x + y;
       });
 
     cy.findByRole("dialog", { name: "Playground" }).should("not.exist");
+
+    cy.log("Reset the playground");
+    cy.findByRole("button", { name: "Custom Renderers" })
+      .as("toggle")
+      .click()
+      .should("have.attr", "aria-pressed", "true");
+    cy.get("@themePreference").find('[data-icon="light"]');
+
+    cy.findByRole("button", { name: "Help" }).click();
+    cy.findByRole("dialog", { name: "Playground" })
+      .should("be.visible")
+      .within(() => {
+        cy.findByRole("button", { name: "Reset Playground" }).click();
+      });
+    cy.findByRole("dialog", { name: "Playground" }).should("not.exist");
+    cy.get("@toggle").should("have.attr", "aria-pressed", "false");
+    cy.get("@resizeHandle").should("have.attr", "aria-valuenow", "50");
+    cy.get("@themePreference").find('[data-icon="system"]');
   });
 });

@@ -1,7 +1,7 @@
 import { DEFAULT_MARKDOWN } from "../../constants";
 
 describe("markdown playground", () => {
-  it("Should support everything needed for previewing how react-marked-renderer works by displaying a real-time markedown editor and some configuration", () => {
+  it("Should support everything needed for previewing how react-marked-renderer works by displaying a real-time markdown editor and some configuration", () => {
     cy.viewport("macbook-16");
     cy.visit("/");
 

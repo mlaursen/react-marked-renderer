@@ -1,4 +1,4 @@
-# React Marked Renderer [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-marked-renderer/blob/main/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-marked-renderer/branch/main/graph/badge.svg?token=R4XGTOIVU0)](https://codecov.io/gh/mlaursen/react-marked-renderer) [![Validate](https://github.com/mlaursen/react-marked-renderer/actions/workflows/validate.yml/badge.svg)](https://github.com/mlaursen/react-marked-renderer/actions/workflows/validate.yml) [![npm](https://img.shields.io/npm/v/react-marked-renderer)](https://www.npmjs.com/package/react-marked-renderer) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-marked-renderer)
+# React Marked Renderer [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-marked-renderer/blob/main/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-marked-renderer/branch/main/graph/badge.svg?token=R4XGTOIVU0)](https://codecov.io/gh/mlaursen/react-marked-renderer) [![Main](https://github.com/mlaursen/react-marked-renderer/actions/workflows/main.yml/badge.svg)](https://github.com/mlaursen/react-marked-renderer/actions/workflows/main.yml) [![npm](https://img.shields.io/npm/v/react-marked-renderer)](https://www.npmjs.com/package/react-marked-renderer) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-marked-renderer)
 
 A low-level component wrapper for [marked](https://github.com/markedjs/marked)
 that renders as [React](https://reactjs.org) components instead of strings.
@@ -31,6 +31,10 @@ yarn add react react-marked-renderer
   - allow code language aliases/resolution with `getLanguage`
   - in the browser with `highlightElement` (can be asynchronous)
   - in node environments with `highlightCode` (synchronous only)
+
+> Note: Since the [marked.lexer](https://marked.js.org/using_pro#lexer) does not
+> support custom [extensions](https://marked.js.org/using_pro#extensions),
+> neither does this library. I would like to support this feature in the future.
 
 ## Usage
 
@@ -207,7 +211,7 @@ render(
 );
 ```
 
-## What's the Use-case?
+## What's the use-case?
 
 This library mostly came up since I like to write documentation sites in
 markdown, but also apply custom styles as well as linking to other documentation

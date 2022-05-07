@@ -1,12 +1,10 @@
 import { DEFAULT_MARKDOWN } from "../../constants";
 
 describe("markdown playground", () => {
-  beforeEach(() => {
+  it("Should support everything needed for previewing how react-marked-renderer works by displaying a real-time markedown editor and some configuration", () => {
     cy.viewport("macbook-16");
     cy.visit("/");
-  });
 
-  it("should support uploading files into the editor either through the file input or drag and drop", () => {
     cy.log("Upload via file input");
     cy.findByRole("textbox", { name: "Editor" })
       .should("have.value", DEFAULT_MARKDOWN)
@@ -155,9 +153,8 @@ const y = 1;
 const result = x + y;
 \`\`\``
     );
-  });
 
-  it.only("should allow the user to configure the render behavior, site theme, and layout in addition to viewing a help dialog", () => {
+    cy.reload();
     cy.log("Using Custom Renderers");
     cy.findByRole("button", { name: "Custom Renderers" })
       .should("have.attr", "aria-pressed", "false")
@@ -502,5 +499,24 @@ const result = x + y;
     cy.get("@toggle").should("have.attr", "aria-pressed", "false");
     cy.get("@resizeHandle").should("have.attr", "aria-valuenow", "50");
     cy.get("@themePreference").find('[data-icon="system"]');
+
+    cy.log("Phones should not be able to upload files");
+    cy.viewport("iphone-8");
+    cy.reload();
+
+    cy.findByLabelText("Upload").should("not.exist");
+    cy.findByRole("button", { name: "Split View" }).should("not.exist");
+    cy.findByRole("button", { name: "Custom Renderers" }).should("be.visible");
+    cy.findByRole("button", { name: "Help" }).should("be.visible");
+    cy.findByRole("tab", { name: "Editor" }).should(
+      "have.attr",
+      "aria-selected",
+      "true"
+    );
+    cy.findByRole("tab", { name: "Preview" }).should(
+      "have.attr",
+      "aria-selected",
+      "false"
+    );
   });
 });

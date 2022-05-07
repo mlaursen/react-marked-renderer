@@ -3,6 +3,7 @@
 .container {
   @include rmd-utils-scroll;
 
+  display: block;
   padding: 2rem;
 
   :global {

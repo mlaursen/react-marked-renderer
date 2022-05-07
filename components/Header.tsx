@@ -1,29 +1,26 @@
 import type { ReactElement } from "react";
-import { useState } from "react";
 import {
   AppBar,
   AppBarTitle,
   FilterFramesSVGIcon,
   FilterNoneSVGIcon,
-  HelpOutlineSVGIcon,
   SettingsOverscanSVGIcon,
   Tabs,
+  useAppSize,
   ViewColumnSVGIcon,
 } from "react-md";
 
 import { AppBarAction } from "./AppBarAction";
-import { HelpDialog } from "./HelpDialog";
-import MarkdownFileUpload from "./MarkdownFileUpload";
+import { HelpAction } from "./HelpAction";
+import { MarkdownFileUpload } from "./MarkdownFileUpload";
 import { ThemePreference } from "./ThemePreference";
 import { usePlayground } from "./usePlayground";
 
 export function Header(): ReactElement {
-  const [visible, setVisible] = useState(false);
-  const onRequestClose = (): void => {
-    setVisible(false);
-  };
   const { splitView, customRenderers, toggleSplitView, toggleCustomRenderers } =
     usePlayground();
+  const { isPhone } = useAppSize();
+  const title = `${isPhone ? "" : "React Marked Renderer - "}Playground`;
 
   return (
     <AppBar
@@ -32,17 +29,19 @@ export function Header(): ReactElement {
       height={splitView ? "dense" : "prominent-dense"}
     >
       <AppBar height="dense">
-        <AppBarTitle>React Marked Renderer - Playground</AppBarTitle>
-        <MarkdownFileUpload />
-        <AppBarAction
-          aria-label="Split View"
-          aria-pressed={splitView}
-          id="split-view"
-          onClick={toggleSplitView}
-          tooltip="Toggle between a split view or tab view"
-        >
-          {splitView ? <SettingsOverscanSVGIcon /> : <ViewColumnSVGIcon />}
-        </AppBarAction>
+        <AppBarTitle>{title}</AppBarTitle>
+        {!isPhone && <MarkdownFileUpload />}
+        {!isPhone && (
+          <AppBarAction
+            aria-label="Split View"
+            aria-pressed={splitView}
+            id="split-view"
+            onClick={toggleSplitView}
+            tooltip="Toggle between a split view or tab view"
+          >
+            {splitView ? <SettingsOverscanSVGIcon /> : <ViewColumnSVGIcon />}
+          </AppBarAction>
+        )}
         <AppBarAction
           aria-label="Custom Renderers"
           aria-pressed={customRenderers}
@@ -53,16 +52,7 @@ export function Header(): ReactElement {
           {customRenderers ? <FilterFramesSVGIcon /> : <FilterNoneSVGIcon />}
         </AppBarAction>
         <ThemePreference />
-        <AppBarAction
-          aria-label="Help"
-          id="website-help"
-          last
-          tooltip="Help"
-          onClick={() => setVisible(true)}
-        >
-          <HelpOutlineSVGIcon />
-        </AppBarAction>
-        <HelpDialog visible={visible} onRequestClose={onRequestClose} />
+        <HelpAction />
       </AppBar>
       {!splitView && (
         <AppBar height="dense">

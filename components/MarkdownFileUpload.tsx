@@ -2,7 +2,7 @@ import { ReactElement, useId } from "react";
 import { FileInput, Tooltip, useActionClassName, useTooltip } from "react-md";
 import { useUpload } from "./useUpload";
 
-export default function MarkdownFileUpload(): ReactElement {
+export function MarkdownFileUpload(): ReactElement {
   const { accept, onChange } = useUpload();
   const { elementProps, tooltipProps } = useTooltip({
     baseId: useId(),

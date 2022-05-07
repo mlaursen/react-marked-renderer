@@ -8,6 +8,7 @@ import {
   useReducer,
   useRef,
 } from "react";
+import { useAppSize } from "react-md";
 
 import { DEFAULT_MARKDOWN } from "../constants";
 
@@ -231,11 +232,13 @@ export function PlaygroundProvider({
   const toggleCustomRenderers = useCallback(() => {
     dispatch({ type: "toggleCustomRenderers" });
   }, []);
+
+  const { isPhone } = useAppSize();
   const value = useMemo<PlaygroundContext>(
     () => ({
       markdown,
       themeType: themeType,
-      splitView,
+      splitView: splitView && !isPhone,
       splitPercentage,
       customRenderers,
       reset,
@@ -250,21 +253,22 @@ export function PlaygroundProvider({
       toggleCustomRenderers,
     }),
     [
-      customRenderers,
-      themeType,
-      decrementSplitPercentage,
-      incrementSplitPercentage,
       markdown,
-      maxSplitPercentage,
-      minSplitPercentage,
+      themeType,
+      splitView,
+      isPhone,
+      splitPercentage,
+      customRenderers,
       reset,
       setMarkdown,
       setSplitPercentage,
-      splitPercentage,
-      splitView,
-      toggleCustomRenderers,
+      minSplitPercentage,
+      maxSplitPercentage,
+      incrementSplitPercentage,
+      decrementSplitPercentage,
       setThemeType,
       toggleSplitView,
+      toggleCustomRenderers,
     ]
   );
 

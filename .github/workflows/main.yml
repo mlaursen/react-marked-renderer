@@ -65,7 +65,7 @@ jobs:
           record: true
           parallel: true
           group: "UI - Chrome"
-          spec: cypress/integration/*
+          spec: cypress/e2e/*
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -114,7 +114,7 @@ jobs:
           record: true
           parallel: true
           group: "UI - Firefox"
-          spec: cypress/integration/*
+          spec: cypress/e2e/*
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

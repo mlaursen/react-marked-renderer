@@ -3,8 +3,12 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "skipLibCheck": true,
     "isolatedModules": false
+  },
+  "ts-node": {
+    "swc": true,
+    "esm": true
   }
 }

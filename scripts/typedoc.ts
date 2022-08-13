@@ -1,5 +1,7 @@
-import { execSync } from "child_process";
-import { repository } from "../package.json";
+import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+// import { repository } from "../package.json" assert { type: "json" };
 
 const loggedExecSync = (command: string): void => {
   console.log(command);
@@ -14,6 +16,11 @@ if (process.env.GITHUB_SHA) {
   commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
   isNoRemote = execSync("git remote -v").toString().trim().length === 0;
 }
+
+// This can be removed for the assert line at some point
+const { repository } = JSON.parse(
+  readFileSync(join(process.cwd(), "package.json"), "utf8")
+);
 
 if (commitSha && isNoRemote) {
   console.log(

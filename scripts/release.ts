@@ -1,9 +1,9 @@
 import { Octokit } from "@octokit/core";
-import { execSync } from "child_process";
 import dotenv from "dotenv";
-import { readFileSync } from "fs";
 import inquirer from "inquirer";
-import { join } from "path";
+import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 function loggedCommand(command: string): void {
   console.log(command);

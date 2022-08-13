@@ -44,7 +44,7 @@ const links: readonly ReferenceLink[] = [
   },
   {
     name: "GitHub Markdown Cheatsheet",
-    href: "https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf",
+    href: "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet",
   },
 ];
 

@@ -43,3 +43,16 @@
     }
   }
 }
+
+.dragging {
+  cursor: row-resize;
+  user-select: none;
+
+  * {
+    pointer-events: none;
+  }
+
+  .separator::before {
+    opacity: 1;
+  }
+}

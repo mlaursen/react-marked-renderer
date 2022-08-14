@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
+import cn from "classnames";
 
 import styles from "./PanelResizer.module.scss";
 import {
@@ -26,8 +27,6 @@ export function PanelResizer(): ReactElement {
       return;
     }
 
-    document.body.style.userSelect = "none";
-
     const updatePosition = (event: MouseEvent): void => {
       event.preventDefault();
       event.stopPropagation();
@@ -40,11 +39,12 @@ export function PanelResizer(): ReactElement {
       setDragging(false);
     };
 
+    document.body.classList.add(styles.dragging);
     window.addEventListener("mousemove", updatePosition);
     window.addEventListener("mouseup", stopDragging);
 
     return () => {
-      document.body.style.userSelect = "";
+      document.body.classList.remove(styles.dragging);
       window.removeEventListener("mousemove", updatePosition);
       window.removeEventListener("mouseup", stopDragging);
     };

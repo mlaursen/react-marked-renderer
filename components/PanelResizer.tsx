@@ -3,7 +3,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
-import cn from "classnames";
 
 import styles from "./PanelResizer.module.scss";
 import {

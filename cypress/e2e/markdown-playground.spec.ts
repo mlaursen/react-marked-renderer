@@ -344,10 +344,12 @@ const result = x + y;
         .trigger("mousemove", {
           pageX: oneThirdWidth,
           pageY: centerY + 10,
+          force: true,
         })
         .trigger("mouseup", {
           pageX: oneThirdWidth,
           pageY: centerY + 10,
+          force: true,
         })
         .should(
           "have.attr",
@@ -367,10 +369,12 @@ const result = x + y;
         .trigger("mousemove", {
           pageX: 0,
           pageY: 0,
+          force: true,
         })
         .trigger("mouseup", {
           pageX: 0,
           pageY: 0,
+          force: true,
         })
         .should("have.attr", "aria-valuenow", "20");
       cy.get("@editor").should("be.visible");
@@ -381,10 +385,12 @@ const result = x + y;
         .trigger("mousemove", {
           pageX: width - oneThirdWidth,
           pageY: height - 10,
+          force: true,
         })
         .trigger("mouseup", {
           pageX: width - oneThirdWidth,
           pageY: height - 10,
+          force: true,
         })
         .should(
           "have.attr",
@@ -400,10 +406,12 @@ const result = x + y;
         .trigger("mousemove", {
           pageX: width,
           pageY: centerY,
+          force: true,
         })
         .trigger("mouseup", {
           pageX: width,
           pageY: centerY - 10,
+          force: true,
         })
         .should("have.attr", "aria-valuenow", "80");
       cy.get("@editor").should("be.visible");
@@ -470,7 +478,7 @@ const result = x + y;
             .should(
               "have.attr",
               "href",
-              "https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
+              "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
             );
         });
 

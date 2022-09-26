@@ -1422,9 +1422,9 @@
   integrity sha512-/gApFXWk5CCLFQJL5IYJXxPQuG5tz5nPX4l27A9Zm/+wJxiwFrRSP54AopDxIv4JRp/rGwcgk/lZS/0Clw8jYA==
 
 "@next/eslint-plugin-next@^12.2.4":
-  version "12.2.4"
-  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.2.4.tgz#b7496cf11050577cfa815612c541195c1b4871eb"
-  integrity sha512-ChDkUIkJeYWKRx+FdF+EhUgvKtK1wF+Xew4Os7ef3iAjMch5GGBiezw2zGXTa/C0E6potz4j11EpX89mngffug==
+  version "12.3.1"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.3.1.tgz#b821f27b0f175954d8d18e5d323fce040ecc79a6"
+  integrity sha512-sw+lTf6r6P0j+g/n9y4qdWWI2syPqZx+uc0+B/fRENqfR3KpSid6MIKqc9gNwGhJASazEQ5b3w8h4cAET213jw==
   dependencies:
     glob "7.1.7"
 

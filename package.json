@@ -73,7 +73,7 @@
     "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.0.1",
     "eslint": "^8.21.0",
-    "filesize": "^8.0.7",
+    "filesize": "^10.0.5",
     "husky": "^8.0.1",
     "identity-obj-proxy": "^3.0.0",
     "inquirer": "^9.1.0",

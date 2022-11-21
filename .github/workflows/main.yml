@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run Lint and Typecheck
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           runTests: false
 

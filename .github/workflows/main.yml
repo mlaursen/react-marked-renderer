@@ -42,6 +42,15 @@ jobs:
       options: --user 1001
     needs: validate
     steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
       - run: pnpm build
 
       - name: Save build folder

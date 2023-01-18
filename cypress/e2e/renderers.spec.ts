@@ -120,7 +120,7 @@ describe("renderers", () => {
         "https://github.com"
       );
 
-      cy.findByRole("link", { name: "Custom Title" })
+      cy.findByRole("link", { name: "Brackets Link with title" })
         .should("have.attr", "href", "https://github.com")
         .and("have.text", "Brackets Link with title")
         .and("have.attr", "title", "Custom Title");
@@ -150,7 +150,7 @@ describe("renderers", () => {
         .and("have.attr", "href", "#heading-1")
         .and("not.have.attr", "title");
 
-      cy.findByRole("link", { name: "Goto heading-2" })
+      cy.findByRole("link", { name: "heading-2" })
         .should("have.text", "heading-2")
         .and("have.attr", "title", "Goto heading-2")
         .and("have.attr", "href", "#heading-2");

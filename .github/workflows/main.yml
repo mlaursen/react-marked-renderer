@@ -51,6 +51,11 @@ jobs:
           node-version: 18
           cache: pnpm
 
+      - name: Build website
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false
+
       - run: pnpm build
 
       - name: Save build folder

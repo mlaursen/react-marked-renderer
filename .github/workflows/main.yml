@@ -34,7 +34,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
-      - run: pnpm test --coverage
+      - run: pnpm test -- --coverage
       - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
       - run: pnpm build
 

@@ -96,13 +96,13 @@ A token can be created at:
     process.exit(1);
   }
 
-  loggedCommand("yarn lint");
-  loggedCommand("yarn typecheck");
-  loggedCommand("yarn test");
-  loggedCommand("yarn rimraf dist");
-  loggedCommand("yarn rollup -c rollup.config.js");
-  loggedCommand("yarn tsc -p tsconfig.typedefs.json");
-  loggedCommand(`yarn standard-version${type}${prerelease}`);
+  loggedCommand("pnpm lint");
+  loggedCommand("pnpm typecheck");
+  loggedCommand("pnpm test");
+  loggedCommand("pnpm rimraf dist");
+  loggedCommand("pnpm rollup -c rollup.config.js");
+  loggedCommand("pnpm tsc -p tsconfig.typedefs.json");
+  loggedCommand(`pnpm standard-version${type}${prerelease}`);
 
   const { version } = JSON.parse(
     readFileSync(join(process.cwd(), "package.json"), "utf8")

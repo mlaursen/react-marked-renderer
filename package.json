@@ -9,11 +9,11 @@
   "scripts": {
     "prepare": "husky install",
     "prebuild": "npm-run-all -p lint typecheck api-docs create-env",
-    "run-script": "ts-node -T -P tsconfig.node.json",
-    "create-env": "yarn run-script scripts/createEnv.ts",
+    "cli": "ts-node -P tsconfig.node.json --swc",
+    "create-env": "pnpm run cli scripts/createEnv.ts",
     "format": "prettier --write \"**/*.{ts,tsx,scss,js,jsx,md,yml,json}\"",
-    "api-docs": "yarn run-script scripts/typedoc.ts",
-    "release": "yarn run-script scripts/release.ts",
+    "api-docs": "pnpm run cli scripts/typedoc.ts",
+    "release": "pnpm run cli scripts/release.ts",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.check.json",
     "test": "jest",
@@ -22,6 +22,10 @@
     "start": "next start",
     "build": "next build"
   },
+  "engines": {
+    "pnpm": ">=7"
+  },
+  "engineStrict": true,
   "main": "./dist/index.cjs",
   "module": "./dist/index.ejs",
   "browser": "./dist/index.min.js",

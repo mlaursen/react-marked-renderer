@@ -33,6 +33,15 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test -- --coverage
       - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node18.6.0-chrome105-ff104
+      options: --user 1001
+    needs: validate
+    steps:
       - run: pnpm build
 
       - name: Save build folder
@@ -48,7 +57,7 @@ jobs:
     container:
       image: cypress/browsers:node18.6.0-chrome105-ff104
       options: --user 1001
-    needs: validate
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
@@ -66,7 +75,7 @@ jobs:
           path: .next
 
       - name: "UI Tests - Chrome"
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           start: pnpm start
           wait-on: "http://localhost:3000"
@@ -103,7 +112,7 @@ jobs:
     container:
       image: cypress/browsers:node18.6.0-chrome105-ff104
       options: --user 1001
-    needs: validate
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
@@ -121,7 +130,7 @@ jobs:
           path: .next
 
       - name: "UI Tests - Firefox"
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           start: pnpm start
           wait-on: "http://localhost:3000"

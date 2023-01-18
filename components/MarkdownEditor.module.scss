@@ -1,4 +1,4 @@
-@use '../everything' as *;
+@use "../everything" as *;
 
 .editor {
   height: 100%;
@@ -6,7 +6,7 @@
 }
 
 .area {
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   padding: 2rem;
   padding-left: 4rem;
   white-space: pre;
@@ -42,6 +42,6 @@
 
   content: counter(line);
   counter-increment: line;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   font-size: 1rem;
 }

@@ -54,7 +54,7 @@ const getFileType = (stats: CompletedFileUploadStats | undefined): string => {
     return "markdown";
   }
 
-  if (extensions.includes(extension as typeof extensions[number])) {
+  if (extensions.includes(extension as (typeof extensions)[number])) {
     return extension;
   }
 

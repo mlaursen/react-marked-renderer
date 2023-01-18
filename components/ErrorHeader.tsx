@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import filesize from "filesize";
+import { filesize } from "filesize";
 import type {
   FileExtensionError,
   FileSizeError,

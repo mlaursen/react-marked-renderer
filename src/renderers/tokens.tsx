@@ -15,6 +15,7 @@ export function TokensRenderer({ tokens }: TokensRendererProps): ReactElement {
   return (
     <>
       {tokens.map((token, i) => (
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         <TokenRenderer key={i} token={token} />
       ))}
     </>

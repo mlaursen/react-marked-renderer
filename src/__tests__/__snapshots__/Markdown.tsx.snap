@@ -57,7 +57,18 @@ exports[`Markdown should be able to highlight code with the highlightElement opt
     <code
       class="language-sh"
     >
-      yarn add some-package
+      <span
+        class="token function"
+      >
+        yarn
+      </span>
+       
+      <span
+        class="token function"
+      >
+        add
+      </span>
+       some-package
     </code>
   </pre>
 </div>
@@ -1219,7 +1230,13 @@ exports[`custom renderer should be able to use a custom renderer 1`] = `
       >
         install
       </span>
-       --save react-marked-renderer
+       
+      <span
+        class="token parameter variable"
+      >
+        --save
+      </span>
+       react-marked-renderer
     </code>
   </pre>
    

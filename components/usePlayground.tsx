@@ -237,7 +237,7 @@ export function PlaygroundProvider({
   const value = useMemo<PlaygroundContext>(
     () => ({
       markdown,
-      themeType: themeType,
+      themeType,
       splitView: splitView && !isPhone,
       splitPercentage,
       customRenderers,
@@ -248,7 +248,7 @@ export function PlaygroundProvider({
       maxSplitPercentage,
       incrementSplitPercentage,
       decrementSplitPercentage,
-      setThemeType: setThemeType,
+      setThemeType,
       toggleSplitView,
       toggleCustomRenderers,
     }),

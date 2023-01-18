@@ -136,7 +136,7 @@ describe("Markdown", () => {
     const automatic = getByRole("link", { name: "https://example.com" });
     const brackets = getByRole("link", { name: "Brackets Link" });
     const bracketsTitle = getByRole("link", {
-      name: "Custom Title",
+      name: "Brackets Link with title",
     });
     const referencedLinkMatchingCase = getByRole("link", {
       name: "Referenced Link Matching case",
@@ -172,7 +172,7 @@ describe("Markdown", () => {
     expect(link1).not.toHaveAttribute("title");
     expect(link1).toHaveAttribute("href", "#heading-1");
 
-    const link2 = getByRole("link", { name: "Goto heading-2" });
+    const link2 = getByRole("link", { name: "heading-2" });
     expect(link2).toHaveTextContent("heading-2");
     expect(link2).toHaveAttribute("href", "#heading-2");
     expect(link2).toHaveAttribute("title", "Goto heading-2");

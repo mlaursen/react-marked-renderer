@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { Fragment } from "react";
-import filesize from "filesize";
+import { filesize } from "filesize";
 import type { FileValidationError } from "react-md";
 import { isFileSizeError, List, SimpleListItem, Typography } from "react-md";
 
@@ -21,7 +21,9 @@ export function ErrorRenderer({ error }: ErrorRendererProps): ReactElement {
             <SimpleListItem
               key={i}
               primaryText={file.name}
-              secondaryText={isFileSizeError(error) && filesize(file.size)}
+              secondaryText={
+                isFileSizeError(error) && filesize(file.size).toString()
+              }
             />
           ))}
         </List>

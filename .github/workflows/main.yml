@@ -13,9 +13,6 @@ jobs:
   validate:
     name: Validate Using Latest Node LTS
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node18.6.0-chrome105-ff104
-      options: --user 1001
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4

@@ -67,7 +67,7 @@
     "@swc/core": "^1.2.229",
     "@swc/jest": "^0.2.22",
     "@testing-library/cypress": "^9.0.0",
-    "@testing-library/dom": "^8.19.1",
+    "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/inquirer": "^9.0.0",

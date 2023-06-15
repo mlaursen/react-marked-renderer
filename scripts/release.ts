@@ -89,7 +89,12 @@ async function run(): Promise<void> {
 - ${githubDotEnv}
 
 A token can be created at:
-- https://github.com/settings/tokens/new?scopes=repo
+- https://github.com/settings/personal-access-tokens/new
+
+The token must have:
+- Repository Access
+  - Contents - read and write (for creating release)
+  - Metadata - read-only (required by Contents)
 `
     );
 
@@ -100,7 +105,7 @@ A token can be created at:
   loggedCommand("pnpm typecheck");
   loggedCommand("pnpm test");
   loggedCommand("pnpm rimraf dist");
-  loggedCommand("pnpm rollup -c rollup.config.js");
+  loggedCommand("pnpm rollup -c rollup.config.mjs");
   loggedCommand("pnpm tsc -p tsconfig.typedefs.json");
   loggedCommand(`pnpm standard-version${type}${prerelease}`);
 

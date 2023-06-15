@@ -5,4 +5,8 @@ module.exports = {
     // I have already run lint before this step...
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    // I have already typecheck before this step...
+    ignoreBuildErrors: true,
+  },
 };

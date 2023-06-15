@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "prebuild": "npm-run-all -p lint typecheck api-docs create-env",
     "cli": "ts-node -P tsconfig.node.json --swc",
     "create-env": "pnpm run cli scripts/createEnv.ts",
     "format": "prettier --write \"**/*.{ts,tsx,scss,js,jsx,md,yml,json}\"",
@@ -20,7 +19,8 @@
     "test-cy": "cypress open",
     "dev": "next dev",
     "start": "next start",
-    "build": "next build"
+    "build-website": "next build",
+    "build": "npm-run-all lint typecheck api-docs create-env build-website"
   },
   "engines": {
     "pnpm": ">=8"

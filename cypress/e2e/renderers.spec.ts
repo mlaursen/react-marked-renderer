@@ -470,7 +470,7 @@ describe("renderers", () => {
     cy.get("@editor").clear().type(IMAGE_MARKDOWN);
 
     cy.get("@preview").within(() => {
-      cy.findAllByRole("img").should("have.length", "5").as("images");
+      cy.findAllByRole("presentation").should("have.length", "5").as("images");
 
       cy.get("@images")
         .eq(0)

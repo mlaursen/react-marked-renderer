@@ -30,6 +30,14 @@
   "module": "./dist/index.mjs",
   "browser": "./dist/index.min.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
   "files": [
     "dist/",
     "src/"

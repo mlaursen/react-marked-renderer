@@ -1,4 +1,4 @@
-import { ReactElement, useId } from "react";
+import { type ReactElement, useId } from "react";
 import { FileInput, Tooltip, useActionClassName, useTooltip } from "react-md";
 import { useUpload } from "./useUpload";
 

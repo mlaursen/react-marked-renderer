@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { ReactElement, ReactNode, useId } from "react";
+import { type ReactElement, type ReactNode, useId } from "react";
 import {
   BELOW_INNER_RIGHT_ANCHOR,
   BrightnessAutoSVGIcon,
@@ -11,7 +11,7 @@ import {
   useTooltip,
 } from "react-md";
 
-import { ThemeType, usePlayground } from "./usePlayground";
+import { type ThemeType, usePlayground } from "./usePlayground";
 
 const LightTheme = dynamic(() => import("./LightTheme"));
 const DarkTheme = dynamic(() => import("./DarkTheme"));

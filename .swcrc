@@ -12,6 +12,5 @@
     },
     "baseUrl": "."
   },
-  "sourceMaps": true,
-  "env": {}
+  "sourceMaps": true
 }

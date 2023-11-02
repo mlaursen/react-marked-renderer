@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/mlaursen/react-marked-renderer/compare/v1.1.2...v2.0.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* **cypress:** enable videos and save projectId ([bcaab4f](https://github.com/mlaursen/react-marked-renderer/commit/bcaab4fea342dcbce05b64ca7ce24dfc5c73b9ec))
+* **esm:** add exports for esm ([ca85d5b](https://github.com/mlaursen/react-marked-renderer/commit/ca85d5bfb253cb8315c40720925f1d50448a4de2)), closes [#196](https://github.com/mlaursen/react-marked-renderer/issues/196)
+
+
+### Internal Changes
+
+* **ci:** add missing `--` to test command ([876976a](https://github.com/mlaursen/react-marked-renderer/commit/876976aeb3a16208014c670d5e106b70ff2d6f19))
+* **ci:** another attempt at fixing ci... ([8613320](https://github.com/mlaursen/react-marked-renderer/commit/861332016b03c2b3f1c957b74696d78328cf81b2))
+* **ci:** another attempt at fixing cypress runner ([4ebc9f9](https://github.com/mlaursen/react-marked-renderer/commit/4ebc9f9fd04b393f0e2324cf0597e6f340db4149))
+* **ci:** another ci fix attempt ([10351fe](https://github.com/mlaursen/react-marked-renderer/commit/10351fe45ab195674923c9bd3de1b51d8a188edf))
+* **ci:** hopefully fix cypress tests in github actions ([f1ce62e](https://github.com/mlaursen/react-marked-renderer/commit/f1ce62ee66847ab58ae948b80cec0ab8540e192b))
+* **cypress:** add cypress videos and screenshots to gitignore ([6c18ae5](https://github.com/mlaursen/react-marked-renderer/commit/6c18ae52fe2f19b7c6a563838ae9bdef4e232da9))
+* **cypress:** hopefully fix cypress in workflows ([ba4dd0f](https://github.com/mlaursen/react-marked-renderer/commit/ba4dd0f7fd5bcce5000e2904e72c5dcddedad152))
+* **deps-dev:** bump @octokit/core from 3.6.0 to 4.0.4 ([48ccc25](https://github.com/mlaursen/react-marked-renderer/commit/48ccc252e6d898bf20c7b7fb5916ad71f6270d76))
+* **deps:** add renovate.json ([51c795d](https://github.com/mlaursen/react-marked-renderer/commit/51c795dd7c48edfb8581d558cfeb7307193bede7))
+* **deps:** bump terser from 5.7.2 to 5.14.2 ([8a25996](https://github.com/mlaursen/react-marked-renderer/commit/8a259967ae3e31029332053c1c38965bbcb4ed3f))
+* **dev-deps:** bump all dev dependencies to latest ([e3de1db](https://github.com/mlaursen/react-marked-renderer/commit/e3de1db14ebc68fe11472767b43066dcbf0dafe6))
+* **dev-deps:** bump dev dependencies to latest ([42bc710](https://github.com/mlaursen/react-marked-renderer/commit/42bc7105d7fb649099bff875b629e40a62e78062))
+* **dev-deps:** bump dev dependencies to latest ([2152a06](https://github.com/mlaursen/react-marked-renderer/commit/2152a06b45ae049fe9733c7066913c8042b2aee2))
+* **dev-deps:** bump dev dependencies to latest ([9935835](https://github.com/mlaursen/react-marked-renderer/commit/99358353408ed09aa4d2a8b6d88ac4b3460048fb))
+* **dev-deps:** bump dev-deps to latest ([f435506](https://github.com/mlaursen/react-marked-renderer/commit/f43550621855d74fd0a07258ec52f80da9ee684b))
+* **dev-deps:** bump jest and ts-jest to v28 ([04c802b](https://github.com/mlaursen/react-marked-renderer/commit/04c802b6723016cab5df99117445cf04714ff3e6))
+* **dev-deps:** set inquirer back to v8 ([95c6fc9](https://github.com/mlaursen/react-marked-renderer/commit/95c6fc9ac20659aaa5a6ed4fda88a226403c7520))
+* fix eslint error ([8f88586](https://github.com/mlaursen/react-marked-renderer/commit/8f88586ec8f0fc466ea1b228550a1f7ff455bea2))
+* fix missing prebuid command for website ([c15d926](https://github.com/mlaursen/react-marked-renderer/commit/c15d926d3a9543349ecad8186521881685c2ad3c))
+* fix typo on cypress test name ([ad0bfe4](https://github.com/mlaursen/react-marked-renderer/commit/ad0bfe4dece705c41c51b12b390552bb3b019662))
+* **github:** fix pnpm version in workflow ([7d3dd84](https://github.com/mlaursen/react-marked-renderer/commit/7d3dd84648701c09f62d92f2e581a5889920bea4))
+* **github:** fix pnpm version in workflow ([289b4e7](https://github.com/mlaursen/react-marked-renderer/commit/289b4e75742a801e5bb82cede41c3003f6b800d7))
+* **release:** 2.0.0 ([d7bf92c](https://github.com/mlaursen/react-marked-renderer/commit/d7bf92c8d193bf0f33f2ade7b34279f943179fbc))
+* remove dependabot workflow since I use pnpm ([3b8a5e4](https://github.com/mlaursen/react-marked-renderer/commit/3b8a5e48eae547d36009755bd58a7935afe97e48))
+* switch to pnpm ([5ed1856](https://github.com/mlaursen/react-marked-renderer/commit/5ed1856fbc5cbafa04e722fcc7b9d5c518dddb11))
+* update release script notes and rollup config ([ee982f7](https://github.com/mlaursen/react-marked-renderer/commit/ee982f72133cd363f537f38968f575bf8a8e756e))
+* update to use esm and @swc/jest ([6c78524](https://github.com/mlaursen/react-marked-renderer/commit/6c78524914184a9367dc7ba61f8d05660eefd97b))
+* **website:** fix styles and remove some features on mobile ([d87cb0e](https://github.com/mlaursen/react-marked-renderer/commit/d87cb0ec6c29450804e3fbcba945d61583178041))
+* **workflow:** allow build to work in github actions ([accd997](https://github.com/mlaursen/react-marked-renderer/commit/accd99717f0e57db474bb959687d0740a95c5898))
+* **workflow:** start recording cypress tests in main workflow ([b42f20d](https://github.com/mlaursen/react-marked-renderer/commit/b42f20d0242136565fa7aa3d72b1dc5e5d7d0bde))
+* **workflow:** try adding additional git info for cypress Dashboard ([fd3379d](https://github.com/mlaursen/react-marked-renderer/commit/fd3379d2cbaf6c991c3144686acfd08c05f6f06f))
+* **workflow:** update cypress tests to not require recording ([0304b2d](https://github.com/mlaursen/react-marked-renderer/commit/0304b2daa9f8443e173fdcb902b7c0c89fdf6774))
+* **workflow:** upload cypress assets ([970805e](https://github.com/mlaursen/react-marked-renderer/commit/970805e0b046a976aca5625edd68b64d22cb3398))
+
 ## [2.0.0](https://github.com/mlaursen/react-marked-renderer/compare/v1.1.2...v2.0.0) (2023-06-15)
 
 

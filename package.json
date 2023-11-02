@@ -1,7 +1,7 @@
 {
   "name": "react-marked-renderer",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React Marked Renderer - React components for the marked library",
   "repository": "https://github.com/mlaursen/react-marked-renderer",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",

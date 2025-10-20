@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  NODE_VERSION: 22.20.0
+  PNPM_VERSION: 10.18.3
+
 jobs:
   validate:
     name: Validate Using Latest Node LTS
@@ -17,10 +21,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Run Lint and Typecheck
@@ -45,10 +49,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Build website
@@ -76,10 +80,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Download the build folders
@@ -131,10 +135,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Download the build folders

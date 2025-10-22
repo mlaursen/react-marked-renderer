@@ -27,11 +27,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Run Lint and Typecheck
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck

@@ -12,23 +12,24 @@ on:
 env:
   NODE_VERSION: 22.20.0
   PNPM_VERSION: 10.18.3
+  CYPRESS_NODE_IMAGE: cypress/browser:node22.20.0
 
 jobs:
   validate:
     name: Validate Using Latest Node LTS
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Run Lint and Typecheck
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           runTests: false
 
@@ -42,28 +43,28 @@ jobs:
     name: Build website
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node18.6.0-chrome105-ff104
+      image: ${{ env.CYPRESS_NODE_IMAGE }}
       options: --user 1001
     needs: validate
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Build website
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           runTests: false
 
       - run: pnpm build
 
       - name: Save build folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build
           if-no-files-found: error
@@ -73,27 +74,27 @@ jobs:
     name: Test Chrome
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node18.6.0-chrome105-ff104
+      image: ${{ env.CYPRESS_NODE_IMAGE }}
       options: --user 1001
     needs: build
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Download the build folders
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: build
           path: .next
 
       - name: "UI Tests - Chrome"
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           start: pnpm start
           wait-on: "http://localhost:3000"
@@ -111,14 +112,14 @@ jobs:
           COMMIT_INFO_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Upload Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: chrome-cypress-screenshots
           path: cypress/screenshots
 
       - name: Upload Videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: chrome-cypress-videos
@@ -128,27 +129,27 @@ jobs:
     name: Test Firefox
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node18.6.0-chrome105-ff104
+      image: ${{ env.CYPRESS_NODE_IMAGE }}
       options: --user 1001
     needs: build
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Download the build folders
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: build
           path: .next
 
       - name: "UI Tests - Firefox"
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           start: pnpm start
           wait-on: "http://localhost:3000"
@@ -166,14 +167,14 @@ jobs:
           COMMIT_INFO_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Upload Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: firefox-cypress-screenshots
           path: cypress/screenshots
 
       - name: Upload Videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: firefox-cypress-videos

@@ -36,9 +36,6 @@ jobs:
   build:
     name: Build website
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node22.20.0
-      options: --user 1001
     needs: validate
     steps:
       - uses: actions/checkout@v4
@@ -51,11 +48,7 @@ jobs:
           cache: pnpm
 
       - name: Build website
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-
-      - run: pnpm build
+        run: pnpm build
 
       - name: Save build folder
         uses: actions/upload-artifact@v4
@@ -68,7 +61,7 @@ jobs:
     name: Test Chrome
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node22.20.0
+      image: cypress/browsers:22.20.0
       options: --user 1001
     needs: build
     steps:
@@ -123,7 +116,7 @@ jobs:
     name: Test Firefox
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node22.20.0
+      image: cypress/browsers:22.20.0
       options: --user 1001
     needs: build
     steps:

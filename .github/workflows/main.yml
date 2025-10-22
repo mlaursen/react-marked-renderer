@@ -12,7 +12,6 @@ on:
 env:
   NODE_VERSION: 22.20.0
   PNPM_VERSION: 10.18.3
-  CYPRESS_NODE_IMAGE: cypress/browser:node22.20.0
 
 jobs:
   validate:

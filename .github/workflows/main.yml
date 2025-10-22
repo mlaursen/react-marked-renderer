@@ -42,7 +42,7 @@ jobs:
     name: Build website
     runs-on: ubuntu-latest
     container:
-      image: ${{ env.CYPRESS_NODE_IMAGE }}
+      image: cypress/browsers:node22.20.0
       options: --user 1001
     needs: validate
     steps:
@@ -73,7 +73,7 @@ jobs:
     name: Test Chrome
     runs-on: ubuntu-latest
     container:
-      image: ${{ env.CYPRESS_NODE_IMAGE }}
+      image: cypress/browsers:node22.20.0
       options: --user 1001
     needs: build
     steps:
@@ -128,7 +128,7 @@ jobs:
     name: Test Firefox
     runs-on: ubuntu-latest
     container:
-      image: ${{ env.CYPRESS_NODE_IMAGE }}
+      image: cypress/browsers:node22.20.0
       options: --user 1001
     needs: build
     steps:

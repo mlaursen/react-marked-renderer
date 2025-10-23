@@ -1,5 +1,12 @@
+node_modules
+.next
+
+# also ignore coverage in subdirectories
+coverage/
+
+pnpm*.yaml
+
 CHANGELOG.md
-/node_modules
-/.next
-/dist
-/public/tsdocs
+**/CHANGELOG.md
+
+apps/docs/public

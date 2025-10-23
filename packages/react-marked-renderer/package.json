@@ -1,0 +1,92 @@
+{
+  "name": "react-marked-renderer",
+  "version": "2.0.1",
+  "description": "React Marked Renderer - React components for the marked library",
+  "type": "module",
+  "exports": {
+    ".": {
+      "react-server": {
+        "types": "./dist/server.d.ts",
+        "default": "./dist/server.mjs"
+      },
+      "import": {
+        "types": "./dist/client.d.ts",
+        "default": "./dist/client.mjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean-dist": "rm -rf dist types",
+    "clean": "rm -rf dist types node_modules",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "typecheck": "tsc --noEmit",
+    "typecheck-watch": "tsc --noEmit --watch",
+    "build-dist": "rollup -c rollup.config.ts",
+    "build-dist-watch": "pnpm run build-dist --watch",
+    "build-types": "tsc -p tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "build": "concurrently 'pnpm run build-types' 'pnpm run build-dist'",
+    "dev": "concurrently 'pnpm build-types-watch' 'pnpm build-dist-watch'"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-marked-renderer.git",
+    "directory": "packages/react-marked-renderer"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-marked-renderer/issues"
+  },
+  "homepage": "https://github.com/mlaursen/react-marked-renderer",
+  "keywords": [
+    "github markdown",
+    "markdown",
+    "marked",
+    "component",
+    "react"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^16.4.1"
+  },
+  "devDependencies": {
+    "@mlaursen/eslint-config": "^9.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.18.12",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "@vitest/coverage-v8": "^4.0.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.38.0",
+    "jsdom": "^27.0.1",
+    "prettier": "^3.6.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "rollup": "^4.52.5",
+    "rollup-plugin-swc3": "^0.12.1",
+    "rollup-preserve-directives": "^1.1.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.1"
+  },
+  "peerDependencies": {
+    "react": ">= 19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "volta": {
+    "node": "22.20.0",
+    "pnpm": "10.18.3"
+  }
+}

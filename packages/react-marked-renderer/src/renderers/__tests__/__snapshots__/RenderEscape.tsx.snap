@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderEscape > should be able to render escaped (backslash-prefixed) html 1`] = `
+<div
+  data-testid="container"
+>
+
+  <ul>
+    <li>
+      &lt;
+      img&gt;
+    </li>
+    <li>
+      &lt;
+      video&gt;
+    </li>
+    <li>
+      &lt;
+      iframe&gt;
+    </li>
+    <li>
+      &lt;
+      embed&gt;
+    </li>
+    <li>
+      &lt;
+      object&gt;
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`RenderEscape > should be able to render escaped (backslash-prefixed) text 1`] = `
+<div
+  data-testid="container"
+>
+
+  <p>
+    Here is some
+    *
+    escaped
+    *
+     stuff.
+  </p>
+
+  <p>
+    Allow
+    _
+    _
+    tests
+    _
+    _
+    .
+  </p>
+
+  <p>
+    Also need to support &lt;&gt;.
+  </p>
+</div>
+`;
+
+exports[`RenderEscape > should be able to render using a custom component 1`] = `
+<div
+  data-testid="container"
+>
+
+  <p>
+    Here is some
+    <span
+      data-testid="escape"
+    >
+      *
+    </span>
+    escaped
+    <span
+      data-testid="escape"
+    >
+      *
+    </span>
+     stuff.
+  </p>
+
+  <p>
+    Allow
+    <span
+      data-testid="escape"
+    >
+      _
+    </span>
+    <span
+      data-testid="escape"
+    >
+      _
+    </span>
+    tests
+    <span
+      data-testid="escape"
+    >
+      _
+    </span>
+    <span
+      data-testid="escape"
+    >
+      _
+    </span>
+    .
+  </p>
+
+  <p>
+    Also need to support &lt;&gt;.
+  </p>
+</div>
+`;

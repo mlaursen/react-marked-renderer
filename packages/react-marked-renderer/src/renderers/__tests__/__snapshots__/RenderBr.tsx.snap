@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderBr > should be able to render a custom br component 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    Trailing two spaces to force break
+    <br
+      data-testid="br"
+    />
+    Second Line of text with trailing slash to force break
+    <br
+      data-testid="br"
+    />
+    Third line of text
+  </p>
+   
+  <p>
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br
+      data-testid="br"
+    />
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br
+      data-testid="br"
+    />
+    Fine Link Line
+  </p>
+</div>
+`;
+
+exports[`RenderBr > should be able to support the different types of breaks 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    Trailing two spaces to force break
+    <br />
+    Second Line of text with trailing slash to force break
+    <br />
+    Third line of text
+  </p>
+   
+  <p>
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br />
+    <a
+      href="https://example.com"
+    >
+      Link Text
+    </a>
+    <br />
+    Fine Link Line
+  </p>
+</div>
+`;

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderDel > should be able to render using double underscores 1`] = `
+<del>
+  This text has strikethroughs
+</del>
+`;

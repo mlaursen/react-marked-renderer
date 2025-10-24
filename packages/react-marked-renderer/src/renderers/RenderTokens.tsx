@@ -1,18 +1,19 @@
 import { type MarkedToken, type Token, type Tokens } from "marked";
 import { type ReactElement, type ReactNode } from "react";
 
-import { type MarkdownRenderers } from "../types.js";
+import { getHeadingDepth } from "../getHeadingDepth.js";
+import {
+  type MarkdownRenderersWithTokens,
+  type RenderTokensProps,
+} from "../types.js";
+import { RenderEntireList } from "./RenderEntireList.js";
+import { RenderEntireTable } from "./RenderEntireTable.js";
 
 /**
  * This just removes the `Token.Generic` from the types since it causes a lot of type issues
  */
 function assertNonGeneric(token: Token): asserts token is MarkedToken {
   // do nothing
-}
-
-export interface RenderTokensProps {
-  tokens: readonly Token[] | undefined;
-  renderers: Readonly<MarkdownRenderers>;
 }
 
 export function RenderTokens({
@@ -23,7 +24,6 @@ export function RenderTokens({
     br: RenderBr,
     hr: RenderHr,
     blockquote: RenderBlockquote,
-    checkbox: RenderCheckbox,
     code: RenderCode,
     codespan: RenderCodeSpan,
     del: RenderDel,
@@ -35,20 +35,17 @@ export function RenderTokens({
     html: RenderHtml,
     image: RenderImage,
     link: RenderLink,
-    list: RenderList,
-    list_item: RenderListItem,
     paragraph: RenderParagraph,
     space: RenderSpace,
     strong: RenderStrong,
     tag: RenderTag,
     text: RenderText,
-    table: RenderTable,
-    tbody: RenderTbody,
-    thead: RenderThead,
-    td: RenderTd,
-    th: RenderTh,
-    tr: RenderTr,
   } = renderers;
+  const tokensRenderers: MarkdownRenderersWithTokens = {
+    ...renderers,
+    tokens: RenderTokens,
+  };
+
   return (
     <>
       {tokens?.map((token, i) => {
@@ -56,148 +53,130 @@ export function RenderTokens({
         let children: ReactNode;
         if ("tokens" in token) {
           children = (
-            <RenderTokens tokens={token.tokens} renderers={renderers} />
+            <RenderTokens tokens={token.tokens} renderers={tokensRenderers} />
           );
         }
 
         switch (token.type) {
           case "space":
-            return <RenderSpace key={i} {...token} />;
+            return (
+              <RenderSpace key={i} {...token} renderers={tokensRenderers} />
+            );
           case "br":
-            return <RenderBr key={i} {...token} />;
+            return <RenderBr key={i} {...token} renderers={tokensRenderers} />;
           case "hr":
-            return <RenderHr key={i} {...token} />;
+            return <RenderHr key={i} {...token} renderers={tokensRenderers} />;
           case "em":
             return (
-              <RenderEm key={i} {...token}>
+              <RenderEm key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderEm>
             );
           case "del":
             return (
-              <RenderDel key={i} {...token}>
+              <RenderDel key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderDel>
             );
           case "text":
             return (
-              <RenderText key={i} {...token}>
+              <RenderText key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderText>
             );
           case "strong":
             return (
-              <RenderStrong key={i} {...token}>
+              <RenderStrong key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderStrong>
             );
           case "code":
             return (
-              <RenderCode key={i} {...token}>
+              <RenderCode key={i} {...token} renderers={tokensRenderers}>
                 {token.text}
               </RenderCode>
             );
           case "codespan":
             return (
-              <RenderCodeSpan key={i} {...token}>
+              <RenderCodeSpan key={i} {...token} renderers={tokensRenderers}>
                 {token.raw.substring(1, token.raw.length - 1)}
               </RenderCodeSpan>
             );
           case "heading": {
             return (
-              <RenderHeading key={i} {...token}>
+              <RenderHeading
+                key={i}
+                {...token}
+                depth={getHeadingDepth(token.depth)}
+                renderers={tokensRenderers}
+              >
                 {children}
               </RenderHeading>
             );
           }
           case "table": {
-            const { header, rows } = token;
             return (
-              <RenderTable key={i} {...token}>
-                {header.length > 0 && (
-                  <RenderThead {...token} isHeader>
-                    <RenderTr {...token} cells={header}>
-                      {header.map((cell, i) => (
-                        <RenderTh key={i} {...cell}>
-                          <RenderTokens
-                            tokens={cell.tokens}
-                            renderers={renderers}
-                          />
-                        </RenderTh>
-                      ))}
-                    </RenderTr>
-                  </RenderThead>
-                )}
-                {rows.length > 0 && (
-                  <RenderTbody {...token} isHeader={false}>
-                    {rows.map((cells, rowIndex) => (
-                      <RenderTr key={rowIndex} {...token} cells={cells}>
-                        {cells.map((cell, cellIndex) => (
-                          <RenderTd key={cellIndex} {...cell}>
-                            <RenderTokens
-                              tokens={cell.tokens}
-                              renderers={renderers}
-                            />
-                          </RenderTd>
-                        ))}
-                      </RenderTr>
-                    ))}
-                  </RenderTbody>
-                )}
-              </RenderTable>
+              <RenderEntireTable
+                key={i}
+                token={token}
+                renderers={tokensRenderers}
+              />
             );
           }
           case "blockquote":
             return (
-              <RenderBlockquote key={i} {...token}>
+              <RenderBlockquote key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderBlockquote>
             );
           case "list":
             return (
-              <RenderList key={i} {...token}>
-                {token.items.map((item, i) => {
-                  const { task, text, loose, checked, tokens } = item;
-                  return (
-                    <RenderListItem key={i} {...item}>
-                      <RenderTokens tokens={tokens} renderers={renderers} />
-                    </RenderListItem>
-                  );
-                })}
-              </RenderList>
+              <RenderEntireList
+                key={i}
+                token={token}
+                renderers={tokensRenderers}
+              />
             );
           case "list_item":
-            return (
-              <RenderListItem key={i} {...token}>
-                Hello
-              </RenderListItem>
-            );
+            throw new Error("unreachable");
           case "paragraph":
             return (
-              <RenderParagraph key={i} {...token}>
+              <RenderParagraph key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderParagraph>
             );
           case "html":
             if ("pre" in token) {
-              return <RenderHtml key={i} {...token} />;
+              return (
+                <RenderHtml key={i} {...token} renderers={tokensRenderers} />
+              );
             }
 
-            return <RenderTag key={i} {...token} />;
+            return <RenderTag key={i} {...token} renderers={tokensRenderers} />;
           case "def":
-            return <RenderDef key={i} {...token} />;
+            return <RenderDef key={i} {...token} renderers={tokensRenderers} />;
           case "escape":
-            return <RenderEscape key={i} {...token} />;
+            return (
+              <RenderEscape key={i} {...token} renderers={tokensRenderers} />
+            );
           case "image":
-            return <RenderImage key={i} {...token} />;
+            return (
+              <RenderImage key={i} {...token} renderers={tokensRenderers} />
+            );
           case "link":
             return (
-              <RenderLink key={i} {...token}>
+              <RenderLink key={i} {...token} renderers={tokensRenderers}>
                 {children}
               </RenderLink>
             );
           default:
-            return <RenderGeneric key={i} {...(token as Tokens.Generic)} />;
+            return (
+              <RenderGeneric
+                key={i}
+                {...(token as Tokens.Generic)}
+                renderers={tokensRenderers}
+              />
+            );
         }
       })}
     </>

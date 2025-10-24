@@ -9,11 +9,21 @@ import { type RenderListItemProps } from "../types.js";
  * rendering:
  *
  * ```tsx
- * <li>{children}</li>
+ * if (task) {
+ *   return <renderers.task {...props}  />
+ * }
+ *
+ * return <li>{children}</li>
  * ```
  */
-export function RenderListItem({
-  children,
-}: Readonly<RenderListItemProps>): ReactElement {
+export function RenderListItem(
+  props: Readonly<RenderListItemProps>
+): ReactElement {
+  const { task, checked = false, children, renderers } = props;
+  const { task: RenderTask } = renderers;
+  if (task) {
+    return <RenderTask {...props} task checked={checked} />;
+  }
+
   return <li>{children}</li>;
 }

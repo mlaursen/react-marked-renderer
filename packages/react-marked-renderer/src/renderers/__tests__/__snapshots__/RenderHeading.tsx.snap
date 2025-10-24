@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderHeading > should be able to render all six heading types 1`] = `
+<h1>
+  Heading 1
+</h1>
+`;
+
+exports[`RenderHeading > should be able to render all six heading types 2`] = `
+<h2>
+  Heading 2
+</h2>
+`;
+
+exports[`RenderHeading > should be able to render all six heading types 3`] = `
+<h3>
+  Heading 3
+</h3>
+`;
+
+exports[`RenderHeading > should be able to render all six heading types 4`] = `
+<h4>
+  Heading 4
+</h4>
+`;
+
+exports[`RenderHeading > should be able to render all six heading types 5`] = `
+<h5>
+  Heading 5
+</h5>
+`;
+
+exports[`RenderHeading > should be able to render all six heading types 6`] = `
+<h6>
+  Heading 6
+</h6>
+`;
+
+exports[`RenderHeading > should be able to render h2 elements with hyphens 1`] = `
+<h2>
+  Three hyphens
+</h2>
+`;
+
+exports[`RenderHeading > should be able to render h2 elements with hyphens 2`] = `
+<h2>
+  Three or more hyphens
+</h2>
+`;
+
+exports[`RenderHeading > should be render h1 elements with equal signs 1`] = `
+<h1>
+  Three equals
+</h1>
+`;
+
+exports[`RenderHeading > should be render h1 elements with equal signs 2`] = `
+<h1>
+  Three or more equals
+</h1>
+`;

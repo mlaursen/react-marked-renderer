@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderBlockquote > should be able to render a custom blockquote component 1`] = `
+<blockquote
+  data-testid="blockquote"
+>
+  <p>
+    Hello, world!
+  </p>
+</blockquote>
+`;
+
+exports[`RenderBlockquote > should be able to render a nested blockquotes 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <blockquote>
+    <p>
+      Root Blockquote
+    </p>
+    <blockquote>
+      <p>
+        Nested Blockquote
+      </p>
+    </blockquote>
+  </blockquote>
+</div>
+`;
+
+exports[`RenderBlockquote > should be able to render a simple blockquote 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <blockquote>
+    <p>
+      This is text in a blockquote
+    </p>
+  </blockquote>
+</div>
+`;

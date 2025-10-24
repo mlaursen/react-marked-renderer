@@ -1,0 +1,85 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderLink > should be able to render a custom text component 1`] = `
+<p
+  data-testid="p"
+/>
+`;
+
+exports[`RenderLink > should be able to render links that reference specific ids 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    <a
+      href="#heading-1"
+    >
+      heading-1
+    </a>
+    
+
+    <a
+      href="#heading-2"
+      title="Goto heading-2"
+    >
+      heading-2
+    </a>
+  </p>
+</div>
+`;
+
+exports[`RenderLink > should be able to render links with or without references 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    Automatically 
+    <a
+      href="https://example.com"
+    >
+      https://example.com
+    </a>
+     without brackets.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com"
+    >
+      Brackets Link
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com"
+      title="Custom Title"
+    >
+      Brackets Link with title
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com/mlaursen"
+    >
+      Referenced Link Matching case
+    </a>
+     with text afterwards.
+  </p>
+   
+  <p>
+    <a
+      href="https://github.com/mlaursen/react-marked-renderer"
+    >
+      ReFeRENced LInk IGNORing cAsE
+    </a>
+     with text afterwards.
+  </p>
+   
+</div>
+`;

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderEm > should be able to render using a single asterisk 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    <em>
+      Using Single Asterisk
+    </em>
+  </p>
+</div>
+`;
+
+exports[`RenderEm > should be able to render using a single underscore 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    <em>
+      Using Single Underscore
+    </em>
+  </p>
+</div>
+`;

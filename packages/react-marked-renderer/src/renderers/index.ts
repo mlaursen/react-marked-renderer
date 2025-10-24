@@ -22,6 +22,7 @@ export * from "./RenderTable.js";
 export * from "./RenderTableCell.js";
 export * from "./RenderTableSection.js";
 export * from "./RenderTag.js";
+export * from "./RenderTask.js";
 export * from "./RenderTbody.js";
 export * from "./RenderText.js";
 export * from "./RenderThead.js";

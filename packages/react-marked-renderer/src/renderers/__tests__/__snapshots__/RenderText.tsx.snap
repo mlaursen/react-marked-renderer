@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderText > should be able to render a custom text component 1`] = `
+<p
+  data-testid="p"
+/>
+`;
+
+exports[`RenderText > should be able to render simple text 1`] = `
+<div
+  data-testid="container"
+>
+  <p>
+    Hello, world!
+  </p>
+</div>
+`;
+
+exports[`RenderText > should be able to render text that combines emphasis, strong, and strikethrough text 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <strong>
+      <em>
+        Should be emphasis and bold.
+      </em>
+    </strong>
+  </p>
+   
+  <p>
+    <em>
+      <strong>
+        Should be emphasis and bold.
+      </strong>
+    </em>
+  </p>
+   
+  <p>
+    <strong>
+      <em>
+        Should be emphasis and bold.
+      </em>
+    </strong>
+  </p>
+   
+  <p>
+    <del>
+      <strong>
+        <em>
+          Should be emphasis, bold, and strikethrough.
+        </em>
+      </strong>
+    </del>
+  </p>
+</div>
+`;

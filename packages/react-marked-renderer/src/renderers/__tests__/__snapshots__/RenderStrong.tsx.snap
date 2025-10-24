@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderStrong > should be able to render using a single asterisk 1`] = `
+<strong>
+  Using Double Asterisk
+</strong>
+`;
+
+exports[`RenderStrong > should be able to render using double underscores 1`] = `
+<strong>
+  Using Double Underscore
+</strong>
+`;

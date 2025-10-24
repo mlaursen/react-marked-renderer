@@ -23,6 +23,7 @@ import {
   RenderTableCell,
   RenderTableSection,
   RenderTag,
+  RenderTask,
   RenderText,
   RenderTr,
 } from "./renderers/index.js";
@@ -48,6 +49,7 @@ export const DEFAULT_MARKDOWN_RENDERERS = {
   checkbox: RenderCheckbox,
   list: RenderList,
   list_item: RenderListItem,
+  task: RenderTask,
   code: RenderCode,
   codespan: RenderCodeSpan,
   table: RenderTable,

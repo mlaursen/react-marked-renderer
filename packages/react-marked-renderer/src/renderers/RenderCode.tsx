@@ -9,20 +9,14 @@ import { type RenderCodeProps } from "../types.js";
  * rendering:
  *
  * ```tsx
- * <code>{children}</code>
+ * <pre><code>{children}</code></pre>
  * ```
  */
 export function RenderCode({
-  raw,
-  type,
-  text,
-  codeBlockStyle,
-  escaped,
-  lang,
   children,
 }: Readonly<RenderCodeProps>): ReactElement {
   return (
-    <pre className={lang ? `language-${lang}` : undefined}>
+    <pre>
       <code>{children}</code>
     </pre>
   );

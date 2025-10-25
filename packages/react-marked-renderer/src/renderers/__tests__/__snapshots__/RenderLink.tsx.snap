@@ -1,11 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`RenderLink > should be able to render a custom text component 1`] = `
-<p
-  data-testid="p"
-/>
-`;
-
 exports[`RenderLink > should be able to render links that reference specific ids 1`] = `
 <div
   data-testid="container"

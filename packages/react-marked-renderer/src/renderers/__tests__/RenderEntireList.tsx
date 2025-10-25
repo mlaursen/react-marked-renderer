@@ -35,7 +35,7 @@ const TASK_LIST_MARKDOWN = `
 - [X] Checked Task Uppercase
 `;
 
-describe("RenderList", () => {
+describe("RenderEntireList", () => {
   it("should be able to render an unordered list using hyphens", () => {
     render(<Markdown markdown={UNORDERED_HYPHEN_LIST_MARKDOWN} />);
 

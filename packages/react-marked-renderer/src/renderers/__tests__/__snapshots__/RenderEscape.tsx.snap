@@ -4,7 +4,7 @@ exports[`RenderEscape > should be able to render escaped (backslash-prefixed) ht
 <div
   data-testid="container"
 >
-
+   
   <ul>
     <li>
       &lt;
@@ -34,17 +34,17 @@ exports[`RenderEscape > should be able to render escaped (backslash-prefixed) te
 <div
   data-testid="container"
 >
-
+   
   <p>
-    Here is some
+    Here is some 
     *
     escaped
     *
      stuff.
   </p>
-
+   
   <p>
-    Allow
+    Allow 
     _
     _
     tests
@@ -52,7 +52,7 @@ exports[`RenderEscape > should be able to render escaped (backslash-prefixed) te
     _
     .
   </p>
-
+   
   <p>
     Also need to support &lt;&gt;.
   </p>
@@ -63,9 +63,9 @@ exports[`RenderEscape > should be able to render using a custom component 1`] = 
 <div
   data-testid="container"
 >
-
+   
   <p>
-    Here is some
+    Here is some 
     <span
       data-testid="escape"
     >
@@ -79,9 +79,9 @@ exports[`RenderEscape > should be able to render using a custom component 1`] = 
     </span>
      stuff.
   </p>
-
+   
   <p>
-    Allow
+    Allow 
     <span
       data-testid="escape"
     >
@@ -105,7 +105,7 @@ exports[`RenderEscape > should be able to render using a custom component 1`] = 
     </span>
     .
   </p>
-
+   
   <p>
     Also need to support &lt;&gt;.
   </p>

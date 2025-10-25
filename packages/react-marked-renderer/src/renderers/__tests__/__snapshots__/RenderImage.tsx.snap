@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderImage > should be able to render an image a title 1`] = `
+<img
+  alt="alt text"
+  src="image.png"
+  title="With Title!"
+/>
+`;
+
+exports[`RenderImage > should be able to render an image with a relative path 1`] = `
+<img
+  alt="relative path"
+  src="./image.jpeg"
+/>
+`;
+
+exports[`RenderImage > should be able to render an image with alt text 1`] = `
+<img
+  alt="alt text"
+  src="image.png"
+/>
+`;
+
+exports[`RenderImage > should be able to render an image with an absolute path 1`] = `
+<img
+  alt="absolute path"
+  src="/image.jpeg"
+/>
+`;

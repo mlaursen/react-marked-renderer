@@ -1,8 +1,8 @@
 // @ts-check
-import { configs, defineConfig, gitignore } from "@mlaursen/eslint-config";
-import { join } from "node:path";
+import { configs } from "@mlaursen/eslint-config";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default defineConfig(
-  gitignore(join(import.meta.url, "..", "..")),
-  ...configs.frontend("vitest")
-);
+export default defineConfig([
+  globalIgnores(["dist/**", "types/**"]),
+  ...configs.frontend("vitest", true),
+]);

@@ -15,9 +15,5 @@ import { type RenderEscapeProps } from "../types.js";
 export function RenderEscape({
   text,
 }: Readonly<RenderEscapeProps>): ReactElement {
-  if (text === "&lt;") {
-    return <>&lt;</>;
-  }
-
   return <>{text}</>;
 }

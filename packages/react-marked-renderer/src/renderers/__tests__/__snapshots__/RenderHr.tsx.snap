@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderHr > should be able to render horizontal rules and <br /> tags 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <p>
+    Text Above HR
+  </p>
+   
+  <hr />
+   
+  <p>
+    Text Below HR
+  </p>
+</div>
+`;

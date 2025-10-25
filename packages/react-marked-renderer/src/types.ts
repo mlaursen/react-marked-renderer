@@ -10,7 +10,7 @@ export type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface RenderTokensProps {
   tokens: readonly Token[] | undefined;
-  renderers: Readonly<MarkdownRenderers>;
+  renderers: Readonly<MarkdownRenderersWithTokens>;
 }
 
 export type PropsWithRenderers<T> = T & {
@@ -33,7 +33,7 @@ export type RenderDefProps = PropsWithRenderers<Tokens.Def>;
 export type RenderDelProps = PropsWithDefinedChildren<Tokens.Del>;
 export type RenderEmProps = PropsWithDefinedChildren<Tokens.Em>;
 export type RenderHeadingProps = PropsWithDefinedChildren<
-  Tokens.Heading & { depth: HeadingDepth }
+  Omit<Tokens.Heading, "depth"> & { depth: HeadingDepth }
 >;
 export type RenderLinkProps = PropsWithDefinedChildren<Tokens.Link>;
 export type RenderParagraphProps = PropsWithDefinedChildren<Tokens.Paragraph>;

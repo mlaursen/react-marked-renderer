@@ -26,10 +26,14 @@
     "typecheck": "tsc --noEmit",
     "typecheck-watch": "tsc --noEmit --watch",
     "build-dist": "rollup -c rollup.config.ts",
-    "build-dist-watch": "pnpm run build-dist --watch",
+    "build-dist-watch": "pnpm build-dist --watch",
     "build-types": "tsc -p tsconfig.types.json",
-    "build-types-watch": "pnpm run build-types --watch",
-    "build": "concurrently 'pnpm run build-types' 'pnpm run build-dist'",
+    "build-types-watch": "pnpm build-types --watch",
+    "build": "pnpm build-types && pnpm build-dist",
+    "test": "vitest",
+    "test-snapshot": "vitest run -u",
+    "test-run": "vitest run",
+    "test-coverage": "vitest run --coverage",
     "dev": "concurrently 'pnpm build-types-watch' 'pnpm build-dist-watch'"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
@@ -54,7 +58,7 @@
     "marked": "^16.4.1"
   },
   "devDependencies": {
-    "@mlaursen/eslint-config": "^9.0.3",
+    "@mlaursen/eslint-config": "^10.0.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -62,8 +66,10 @@
     "@types/node": "^22.18.12",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react-swc": "^4.1.0",
-    "@vitest/coverage-v8": "^4.0.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitejs/plugin-react-swc": "^4.2.0",
+    "@vitest/coverage-istanbul": "4.0.3",
+    "@vitest/coverage-v8": "^4.0.3",
     "concurrently": "^9.2.1",
     "eslint": "^9.38.0",
     "jsdom": "^27.0.1",
@@ -71,10 +77,11 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rollup": "^4.52.5",
+    "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-swc3": "^0.12.1",
     "rollup-preserve-directives": "^1.1.3",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.1"
+    "vitest": "^4.0.3"
   },
   "peerDependencies": {
     "react": ">= 19"

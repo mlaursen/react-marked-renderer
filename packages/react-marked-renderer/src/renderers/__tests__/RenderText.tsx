@@ -38,14 +38,14 @@ describe("RenderText", () => {
         markdown="Hello, world!"
         renderers={{
           text: function Text({ children }) {
-            return <p data-testid="p">{children}</p>;
+            return <span data-testid="span">{children}</span>;
           },
         }}
       />
     );
 
-    const p = screen.getByTestId("p");
-    expect(p).toMatchSnapshot();
+    const span = screen.getByTestId("span");
+    expect(span).toMatchSnapshot();
   });
 
   it("should be able to render text that combines emphasis, strong, and strikethrough text", () => {

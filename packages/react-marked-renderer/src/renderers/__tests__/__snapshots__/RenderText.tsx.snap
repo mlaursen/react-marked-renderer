@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RenderText > should be able to render a custom text component 1`] = `
-<p
-  data-testid="p"
+<span
+  data-testid="span"
 />
 `;
 

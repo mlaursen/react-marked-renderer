@@ -25,9 +25,13 @@ import {
   RenderTag,
   RenderTask,
   RenderText,
+  RenderTokens,
   RenderTr,
 } from "./renderers/index.js";
-import { type MarkdownRenderers } from "./types.js";
+import {
+  type MarkdownRenderers,
+  type MarkdownRenderersWithTokens,
+} from "./types.js";
 
 export const DEFAULT_MARKDOWN_RENDERERS = {
   hr: RenderHr,
@@ -60,3 +64,8 @@ export const DEFAULT_MARKDOWN_RENDERERS = {
   tr: RenderTr,
   generic: RenderGeneric,
 } satisfies MarkdownRenderers;
+
+export const DEFAULT_MARKDOWN_RENDERERS_WITH_TOKENS = {
+  ...DEFAULT_MARKDOWN_RENDERERS,
+  tokens: RenderTokens,
+} satisfies MarkdownRenderersWithTokens;

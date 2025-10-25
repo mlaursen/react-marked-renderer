@@ -1,0 +1,224 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderEntireTable > should be able to align columns to the center 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        align="center"
+      >
+        Center-aligned
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        align="center"
+      >
+        data
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`RenderEntireTable > should be able to align columns to the left 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        align="left"
+      >
+        Left-aligned
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        align="left"
+      >
+        data
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`RenderEntireTable > should be able to align columns to the right 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        align="right"
+      >
+        Right-aligned
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        align="right"
+      >
+        data
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`RenderEntireTable > should be able to render backticks and pipes by escaping the characters 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Character
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Backtick
+      </td>
+      <td>
+        \`
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Pipe
+      </td>
+      <td>
+        |
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`RenderEntireTable > should be able to render tables that include code, italics, and bold text 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Header 1
+      </th>
+      <th>
+        Header 2
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>
+          git status
+        </code>
+      </td>
+      <td>
+        List all 
+        <em>
+          new or modified
+        </em>
+         files
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>
+          git diff
+        </code>
+      </td>
+      <td>
+        Show file differences that 
+        <strong>
+          haven't been
+        </strong>
+         staged
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`RenderEntireTable > should be able to render tables with the leading and trailing | 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <table>
+    <thead>
+      <tr>
+        <th>
+          First Header
+        </th>
+        <th>
+          Second Header
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`RenderEntireTable > should be able to render tables without leading and trailing | 1`] = `
+<div
+  data-testid="container"
+>
+   
+  <table>
+    <thead>
+      <tr>
+        <th>
+          First Header
+        </th>
+        <th>
+          Second Header
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Content Cell
+        </td>
+        <td>
+          Content Cell
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderEntireList > should be able to render an unordered list using asterisks 1`] = `
+<ul>
+  <li>
+    Asterisk Item 1
+  </li>
+  <li>
+    Asterisk Item 2
+  </li>
+  <li>
+    Asterisk Item 3
+  </li>
+</ul>
+`;
+
+exports[`RenderEntireList > should be able to render an unordered list using hyphens 1`] = `
+<ul>
+  <li>
+    Item 1
+  </li>
+  <li>
+    Item 2
+  </li>
+  <li>
+    Item 3
+  </li>
+</ul>
+`;
+
+exports[`RenderEntireList > should be able to render nested lists 1`] = `
+<ol>
+  <li>
+    Ordered Item 1
+    <ol>
+      <li>
+        Ordered Subitem 1
+        <ul>
+          <li>
+            Three Down Hyphen
+          </li>
+        </ul>
+      </li>
+      <li>
+        Ordered Subitem 2
+        <ul>
+          <li>
+            Three Down Asterisk
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+`;
+
+exports[`RenderEntireList > should be able to render ordered lists 1`] = `
+<ol>
+  <li>
+    Ordered Item 1
+  </li>
+  <li>
+    Ordered Item 2
+  </li>
+  <li>
+    Ordered Item 3
+  </li>
+</ol>
+`;
+
+exports[`RenderEntireList > should be able to render task lists 1`] = `
+<ul>
+  <li>
+    <input
+      id="_r_0_"
+      type="checkbox"
+    />
+    <label
+      for="_r_0_"
+    >
+      Unchecked Task
+    </label>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_2_"
+      type="checkbox"
+    />
+    <label
+      for="_r_2_"
+    >
+      Checked Task Lowercase
+    </label>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_4_"
+      type="checkbox"
+    />
+    <label
+      for="_r_4_"
+    >
+      Checked Task Uppercase
+    </label>
+  </li>
+</ul>
+`;

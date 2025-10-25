@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderTag > should allow for a custom renderer 1`] = `
+<div
+  data-testid="container"
+>
+  <p>
+    Some text with 
+    an HTML tag
+     in it.
+  </p>
+</div>
+`;
+
+exports[`RenderTag > should not be able to render inline tags without a custom renderer 1`] = `
+<div
+  data-testid="container"
+>
+  <p>
+    Some text with 
+    an HTML tag
+     in it.
+  </p>
+</div>
+`;

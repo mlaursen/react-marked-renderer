@@ -1,4 +1,5 @@
-import react from "@vitejs/plugin-react-swc";
+// can't use @vitejs/plugin-react-swc since the coverage lines are incorrect
+import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vitest/config";
 
@@ -9,10 +10,10 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: resolve(import.meta.dirname, "src/testSetup.ts"),
     // I do not like having tests in the same folders as the rest of the files
-    include: ["**/__tests__/*.{ts,tsx}"],
+    include: ["**/src/**/__tests__/*.{ts,tsx}"],
     coverage: {
       include: ["src/**/*"],
-      exclude: ["src/mocks/**", "**/types.ts", "src/testSetup.ts"],
+      exclude: ["**/{index,types,shared,testSetup}.ts", "**/__snapshots__/**"],
     },
   },
 });

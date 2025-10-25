@@ -1,8 +1,9 @@
 // @ts-check
-import { configs, defineConfig, gitignore } from "@mlaursen/eslint-config";
+import { configs, gitignore } from "@mlaursen/eslint-config";
 import nextPlugin from "@next/eslint-plugin-next";
+import { defineConfig } from "eslint/config";
 
-export default defineConfig(
+export default defineConfig([
   nextPlugin.configs["core-web-vitals"],
   gitignore(import.meta.url),
   ...configs.frontend("vitest"),
@@ -10,5 +11,5 @@ export default defineConfig(
     rules: {
       "@typescript-eslint/no-unused-expressions": "off",
     },
-  }
-);
+  },
+]);

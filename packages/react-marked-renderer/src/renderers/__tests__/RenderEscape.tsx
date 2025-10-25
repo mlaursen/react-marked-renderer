@@ -29,6 +29,7 @@ describe("RenderEscape", () => {
 
     expect(screen.getByTestId("container")).toMatchSnapshot();
   });
+
   it("should be able to render escaped (backslash-prefixed) html", () => {
     render(
       <div data-testid="container">

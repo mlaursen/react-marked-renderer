@@ -1,9 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RenderLink > should be able to render links that reference specific ids 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     <a
@@ -24,9 +22,7 @@ exports[`RenderLink > should be able to render links that reference specific ids
 `;
 
 exports[`RenderLink > should be able to render links with or without references 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     Automatically 

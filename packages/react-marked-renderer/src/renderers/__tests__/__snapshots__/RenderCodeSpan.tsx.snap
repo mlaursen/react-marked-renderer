@@ -1,0 +1,74 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderCodeSpan > should be able to handle escaping html entities 1`] = `
+<div>
+   
+  <p>
+    This has some 
+    <code>
+      inline code that "contains" html 'entities' and &lt;other&gt;&lt;/other&gt;
+    </code>
+  </p>
+</div>
+`;
+
+exports[`RenderCodeSpan > should be able to handle escaping html entities within lists 1`] = `
+<div>
+   
+  <p>
+    Some other html entities:
+  </p>
+   
+  <ul>
+    <li>
+      <code>
+        ¢
+      </code>
+       cent
+    </li>
+    <li>
+      <code>
+        £
+      </code>
+       pound
+    </li>
+    <li>
+      <code>
+        ¥
+      </code>
+       yen
+    </li>
+    <li>
+      <code>
+        €
+      </code>
+       euro
+    </li>
+    <li>
+      <code>
+        ©
+      </code>
+       copyright
+    </li>
+    <li>
+      <code>
+        ®
+      </code>
+       registered trademark
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`RenderCodeSpan > should be able to render code blocks without a language 1`] = `
+<div>
+   
+  <p>
+    This has some 
+    <code>
+      inline code
+    </code>
+     to see.
+  </p>
+</div>
+`;

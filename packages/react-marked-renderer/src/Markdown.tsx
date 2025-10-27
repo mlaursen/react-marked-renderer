@@ -1,21 +1,62 @@
-import { marked } from "marked";
-import { type ReactElement, useMemo } from "react";
+import { Marked } from "marked";
+import { type ReactElement, type ReactNode, useMemo } from "react";
 
-import { mergeRenderers } from "./mergeRenderers.js";
-import { RenderTokens } from "./renderers/RenderTokens.js";
-import { type MarkdownProps } from "./types.js";
+import { reactMarkedRenderer } from "./reactMarkedRenderer.js";
+import type {
+  ReactMarkedExtension,
+  ReactMarkedOptions,
+  ReactMarkedRendererOptions,
+} from "./types.js";
 
+const EMPTY_LIST = [] as const;
+
+export interface MarkdownProps extends ReactMarkedRendererOptions {
+  /**
+   * The markdown string to convert to React components.
+   */
+  markdown: string;
+
+  /**
+   * An optional list of extensions to apply before the main
+   * `reactMarkedRenderer` extension. This will only work if the extensions
+   * also output `ReactNode` instead of an html string.
+   */
+  extensions?: readonly ReactMarkedExtension[];
+
+  /**
+   * An optional marked instance if you want to control it manually.
+   */
+  marked?: Marked<ReactNode, ReactNode>;
+
+  /**
+   * Optional options to pass to `marked.parse(markdown, options)`. This
+   * probably won't be used.
+   */
+  options?: ReactMarkedOptions;
+}
+
+/**
+ * Renders markdown with custom React components.
+ */
 export function Markdown({
-  lexer = marked.lexer,
+  marked: propMarked,
   options,
   renderers,
+  extensions = EMPTY_LIST,
   markdown,
+  parseHtml,
+  parseHtmlProps,
 }: Readonly<MarkdownProps>): ReactElement {
-  const tokens = useMemo(
-    () => lexer(markdown, options),
-    [lexer, markdown, options]
-  );
-  const merged = useMemo(() => mergeRenderers(renderers), [renderers]);
+  const marked = useMemo(() => {
+    if (propMarked) {
+      return propMarked;
+    }
 
-  return <RenderTokens tokens={tokens} renderers={merged} />;
+    return new Marked<ReactNode, ReactNode>().use(
+      ...extensions,
+      reactMarkedRenderer({ renderers, parseHtml, parseHtmlProps })
+    );
+  }, [extensions, parseHtml, parseHtmlProps, propMarked, renderers]);
+
+  return <>{marked.parse(markdown, options)}</>;
 }

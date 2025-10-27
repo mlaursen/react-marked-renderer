@@ -3,108 +3,90 @@ import { describe, expect, it } from "vitest";
 
 import { Markdown } from "../../Markdown.js";
 
-const TABLE_MARKDOWN_NO_BOUNDS = `
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-`;
-
-const TABLE_MARKDOWN_BOUNDS = `
+const PIPED_TABLE_MARKDOWN = `
 | First Header  | Second Header |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
 `;
 
-const LEFT_ALIGNED_MARKDOWN = `
-| Left-aligned |
-| :---         |
-|    data      |
+const PIPELESS_TABLE_MARKDOWN = `
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 `;
 
-const CENTER_ALIGNED_MARKDOWN = `
-| Center-aligned |
-|     :---:      |
-| data           |
+const CELL_ALIGNMENT_MARKDOWN = `
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| Cell 1-1 | Cell 1-2 | Cell 1-3 |
 `;
 
-const RIGHT_ALIGNED_MARKDOWN = `
-| Right-aligned |
-|          ---: |
-| data          |
-`;
+// https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
+const ADVANCED_FORMATTING_MARKDOWN = `
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| \`git status\` | List all *new or modified* files | Final ~cell~ |
+| \`git diff\` | Show file differences that **haven't been** staged | Final ~cell~ |
 
-const MODIFIED_TEXT_MARKDOWN = `
-| Header 1       | Header 2                                           |
-| ------------   | ---------------------------------------------------|
-| \`git status\` | List all *new or modified* files                   |
-| \`git diff\`   | Show file differences that **haven't been** staged |
-`;
-
-const ESCAPED_CHARACTERS_MARKDOWN = `
-| Name     | Character |
-| ---      | ---       |
-| Backtick | \`         |
-| Pipe     | \\|        |
 `;
 
 describe("RenderEntireTable", () => {
-  it("should be able to render tables without leading and trailing |", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={TABLE_MARKDOWN_NO_BOUNDS} />
-      </div>
+  it("should be able to render tables with leading and trailing pipes (|)", () => {
+    const { container } = render(<Markdown markdown={PIPED_TABLE_MARKDOWN} />);
+
+    expect(() => screen.getByRole("table")).not.toThrow();
+    expect(() =>
+      screen.getByRole("columnheader", { name: "First Header" })
+    ).not.toThrow();
+    expect(() =>
+      screen.getByRole("columnheader", { name: "Second Header" })
+    ).not.toThrow();
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to render tables without leading and trailing pipes (|)", () => {
+    const { container } = render(
+      <Markdown markdown={PIPELESS_TABLE_MARKDOWN} />
     );
 
     expect(() => screen.getByRole("table")).not.toThrow();
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(() =>
+      screen.getByRole("columnheader", { name: "First Header" })
+    ).not.toThrow();
+    expect(() =>
+      screen.getByRole("columnheader", { name: "Second Header" })
+    ).not.toThrow();
+    expect(container).toMatchSnapshot();
   });
 
-  it("should be able to render tables with the leading and trailing |", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={TABLE_MARKDOWN_BOUNDS} />
-      </div>
+  it("should support table cell alignment", () => {
+    const { container } = render(
+      <Markdown markdown={CELL_ALIGNMENT_MARKDOWN} />
     );
 
-    expect(() => screen.getByRole("table")).not.toThrow();
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    const leftAligned = screen.getByRole("columnheader", {
+      name: "Left-aligned",
+    });
+    const centerAligned = screen.getByRole("columnheader", {
+      name: "Center-aligned",
+    });
+    const rightAligned = screen.getByRole("columnheader", {
+      name: "Right-aligned",
+    });
+
+    expect(leftAligned).toHaveAttribute("align", "left");
+    expect(centerAligned).toHaveAttribute("align", "center");
+    expect(rightAligned).toHaveAttribute("align", "right");
+    expect(container).toMatchSnapshot();
   });
 
-  it("should be able to align columns to the left", () => {
-    render(<Markdown markdown={LEFT_ALIGNED_MARKDOWN} />);
+  it("should support advanced formatting in tables", () => {
+    const { container } = render(
+      <Markdown markdown={ADVANCED_FORMATTING_MARKDOWN} />
+    );
 
-    expect(screen.getByRole("columnheader")).toHaveAttribute("align", "left");
-    expect(screen.getByRole("cell")).toHaveAttribute("align", "left");
-    expect(screen.getByRole("table")).toMatchSnapshot();
-  });
-
-  it("should be able to align columns to the center", () => {
-    render(<Markdown markdown={CENTER_ALIGNED_MARKDOWN} />);
-
-    expect(screen.getByRole("columnheader")).toHaveAttribute("align", "center");
-    expect(screen.getByRole("cell")).toHaveAttribute("align", "center");
-    expect(screen.getByRole("table")).toMatchSnapshot();
-  });
-
-  it("should be able to align columns to the right", () => {
-    render(<Markdown markdown={RIGHT_ALIGNED_MARKDOWN} />);
-
-    expect(screen.getByRole("columnheader")).toHaveAttribute("align", "right");
-    expect(screen.getByRole("cell")).toHaveAttribute("align", "right");
-    expect(screen.getByRole("table")).toMatchSnapshot();
-  });
-
-  it("should be able to render tables that include code, italics, and bold text", () => {
-    render(<Markdown markdown={MODIFIED_TEXT_MARKDOWN} />);
-
-    expect(screen.getByRole("table")).toMatchSnapshot();
-  });
-
-  it("should be able to render backticks and pipes by escaping the characters", () => {
-    render(<Markdown markdown={ESCAPED_CHARACTERS_MARKDOWN} />);
-
-    expect(screen.getByRole("table")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

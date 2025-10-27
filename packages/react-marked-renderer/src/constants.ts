@@ -8,7 +8,6 @@ import {
   RenderDel,
   RenderEm,
   RenderEscape,
-  RenderGeneric,
   RenderHeading,
   RenderHr,
   RenderHtml,
@@ -17,55 +16,55 @@ import {
   RenderList,
   RenderListItem,
   RenderParagraph,
+  RenderRawTable,
+  RenderReactElement,
   RenderSpace,
   RenderStrong,
   RenderTable,
   RenderTableCell,
+  RenderTableRow,
   RenderTableSection,
   RenderTag,
   RenderTask,
   RenderText,
-  RenderTokens,
-  RenderTr,
 } from "./renderers/index.js";
-import {
-  type MarkdownRenderers,
-  type MarkdownRenderersWithTokens,
-} from "./types.js";
+import { type MarkdownRenderers } from "./types.js";
 
 export const DEFAULT_MARKDOWN_RENDERERS = {
   hr: RenderHr,
   br: RenderBr,
   def: RenderDef,
-  del: RenderDel,
   space: RenderSpace,
   escape: RenderEscape,
-  strong: RenderStrong,
-  html: RenderHtml,
-  tag: RenderTag,
-  image: RenderImage,
+
+  text: RenderText,
   em: RenderEm,
+  del: RenderDel,
+  strong: RenderStrong,
   heading: RenderHeading,
-  link: RenderLink,
   paragraph: RenderParagraph,
   blockquote: RenderBlockquote,
-  text: RenderText,
-  checkbox: RenderCheckbox,
-  list: RenderList,
-  list_item: RenderListItem,
-  task: RenderTask,
+
+  link: RenderLink,
+
   code: RenderCode,
   codespan: RenderCodeSpan,
-  table: RenderTable,
-  tbody: RenderTableSection,
-  thead: RenderTableSection,
-  td: RenderTableCell,
-  th: RenderTableCell,
-  tr: RenderTr,
-  generic: RenderGeneric,
-} satisfies MarkdownRenderers;
 
-export const DEFAULT_MARKDOWN_RENDERERS_WITH_TOKENS = {
-  ...DEFAULT_MARKDOWN_RENDERERS,
-  tokens: RenderTokens,
-} satisfies MarkdownRenderersWithTokens;
+  image: RenderImage,
+
+  checkbox: RenderCheckbox,
+  list: RenderList,
+  listitem: RenderListItem,
+  task: RenderTask,
+
+  raw_table: RenderRawTable,
+  table: RenderTable,
+  tablecell: RenderTableCell,
+  tablerow: RenderTableRow,
+  thead: RenderTableSection,
+  tbody: RenderTableSection,
+
+  react: RenderReactElement,
+  html: RenderHtml,
+  tag: RenderTag,
+} satisfies MarkdownRenderers;

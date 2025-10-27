@@ -11,7 +11,7 @@ import { type RenderTableRowProps } from "../types.js";
  * <tr>{children}</tr>
  * ```
  */
-export function RenderTr({
+export function RenderTableRow({
   children,
 }: Readonly<RenderTableRowProps>): ReactElement {
   return <tr>{children}</tr>;

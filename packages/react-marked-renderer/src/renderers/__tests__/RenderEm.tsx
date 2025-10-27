@@ -12,28 +12,22 @@ const EMPHASIS_ASTERISK_MARKDOWN = `
 
 describe("RenderEm", () => {
   it("should be able to render using a single underscore", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={EMPHASIS_UNDERSCORE_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={EMPHASIS_UNDERSCORE_MARKDOWN} />
     );
 
-    const container = screen.getByTestId("container");
-    // eslint-disable-next-line testing-library/no-node-access
+    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
     expect(container.querySelector("em")).not.toBeNull();
     expect(container).toHaveTextContent("Using Single Underscore");
     expect(container).toMatchSnapshot();
   });
 
   it("should be able to render using a single asterisk", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={EMPHASIS_ASTERISK_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={EMPHASIS_ASTERISK_MARKDOWN} />
     );
 
-    const container = screen.getByTestId("container");
-    // eslint-disable-next-line testing-library/no-node-access
+    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
     expect(container.querySelector("em")).not.toBeNull();
     expect(container).toHaveTextContent("Using Single Asterisk");
     expect(container).toMatchSnapshot();

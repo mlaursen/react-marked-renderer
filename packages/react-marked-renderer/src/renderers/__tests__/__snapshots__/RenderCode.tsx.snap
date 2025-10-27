@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderCode > should be able to render code blocks with a language 1`] = `
+<div>
+   
+  <pre>
+    <code>
+      yarn add some-package
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`RenderCode > should be able to render code blocks without a language 1`] = `
+<div>
+   
+  <pre>
+    <code>
+      const x = "y";
+    </code>
+  </pre>
+</div>
+`;

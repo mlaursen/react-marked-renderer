@@ -6,5 +6,6 @@
     "declarationDir": "./types",
     "emitDeclarationOnly": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/__tests__", "**/testSetup.ts", "**/prev"]
 }

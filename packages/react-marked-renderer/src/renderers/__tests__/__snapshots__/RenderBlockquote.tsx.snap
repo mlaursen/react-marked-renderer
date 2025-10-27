@@ -11,9 +11,7 @@ exports[`RenderBlockquote > should be able to render a custom blockquote compone
 `;
 
 exports[`RenderBlockquote > should be able to render a nested blockquotes 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <blockquote>
     <p>
@@ -29,9 +27,7 @@ exports[`RenderBlockquote > should be able to render a nested blockquotes 1`] = 
 `;
 
 exports[`RenderBlockquote > should be able to render a simple blockquote 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <blockquote>
     <p>

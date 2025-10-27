@@ -1,106 +1,131 @@
-import {
-  type Lexer,
-  type MarkedOptions,
-  type Token,
-  type Tokens,
+import type {
+  MarkedExtension,
+  MarkedOptions,
+  Parser,
+  Renderer,
+  Tokens,
 } from "marked";
-import { type ComponentType, type ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
+export type ReactMarkedRenderer = Renderer<ReactNode, ReactNode>;
+export type ReactMarkedParser = Parser<ReactNode, ReactNode>;
+export type ReactMarkedOptions = Omit<
+  MarkedOptions<ReactNode, ReactNode>,
+  "async"
+>;
+export type ReactMarkedExtension = MarkedExtension<ReactNode, ReactNode>;
 export type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6;
 
-export interface RenderTokensProps {
-  tokens: readonly Token[] | undefined;
-  renderers: Readonly<MarkdownRenderersWithTokens>;
+export interface DefinedMarkdownRenderers {
+  renderers: Readonly<MarkdownRenderers>;
 }
-
-export type PropsWithRenderers<T> = T & {
-  renderers: Readonly<MarkdownRenderersWithTokens>;
-};
-export type PropsWithDefinedChildren<T> = PropsWithRenderers<
+export type SharedRenderProps<T> = T &
+  DefinedMarkdownRenderers & {
+    parser: ReactMarkedParser;
+  };
+export type SharedRenderPropsWithChildren<T> = SharedRenderProps<
   T & { children: ReactNode }
 >;
 
-export type RenderHrProps = PropsWithRenderers<Tokens.Hr>;
-export type RenderBrProps = PropsWithRenderers<Tokens.Br>;
-export type RenderSpaceProps = PropsWithRenderers<Tokens.Space>;
-export type RenderEscapeProps = PropsWithRenderers<Tokens.Escape>;
-export type RenderHtmlProps = PropsWithRenderers<Tokens.HTML>;
-export type RenderTagProps = PropsWithRenderers<Tokens.Tag>;
-export type RenderImageProps = PropsWithRenderers<Tokens.Image>;
-export type RenderGenericProps = PropsWithRenderers<Tokens.Generic>;
-export type RenderDefProps = PropsWithRenderers<Tokens.Def>;
+export type RenderHrProps = SharedRenderProps<Tokens.Hr>;
+export type RenderBrProps = SharedRenderProps<Tokens.Br>;
+export type RenderSpaceProps = SharedRenderProps<Tokens.Space>;
+export type RenderEscapeProps = SharedRenderProps<Tokens.Escape>;
+export type RenderHtmlProps = SharedRenderProps<Tokens.HTML>;
+export type RenderTagProps = SharedRenderProps<Tokens.Tag>;
+export type RenderImageProps = SharedRenderPropsWithChildren<Tokens.Image>;
+export type RenderGenericProps = SharedRenderProps<Tokens.Generic>;
+export type RenderDefProps = SharedRenderProps<Tokens.Def>;
 
-export type RenderDelProps = PropsWithDefinedChildren<Tokens.Del>;
-export type RenderEmProps = PropsWithDefinedChildren<Tokens.Em>;
-export type RenderHeadingProps = PropsWithDefinedChildren<
+export type RenderDelProps = SharedRenderPropsWithChildren<Tokens.Del>;
+export type RenderEmProps = SharedRenderPropsWithChildren<Tokens.Em>;
+export type RenderHeadingProps = SharedRenderPropsWithChildren<
   Omit<Tokens.Heading, "depth"> & { depth: HeadingDepth }
 >;
-export type RenderLinkProps = PropsWithDefinedChildren<Tokens.Link>;
-export type RenderParagraphProps = PropsWithDefinedChildren<Tokens.Paragraph>;
-export type RenderBlockquoteProps = PropsWithDefinedChildren<Tokens.Blockquote>;
-export type RenderTextProps = PropsWithDefinedChildren<Tokens.Text>;
-export type RenderStrongProps = PropsWithDefinedChildren<Tokens.Strong>;
+export type RenderLinkProps = SharedRenderPropsWithChildren<Tokens.Link>;
+export type RenderParagraphProps =
+  SharedRenderPropsWithChildren<Tokens.Paragraph>;
+export type RenderBlockquoteProps =
+  SharedRenderPropsWithChildren<Tokens.Blockquote>;
+export type RenderTextProps = SharedRenderPropsWithChildren<Tokens.Text>;
+export type RenderStrongProps = SharedRenderPropsWithChildren<Tokens.Strong>;
 
-export type RenderCheckboxProps = PropsWithRenderers<
+export type RenderCheckboxProps = SharedRenderProps<
   Tokens.Checkbox & { id?: string }
 >;
-export type RenderListProps = PropsWithDefinedChildren<Tokens.List>;
-export type RenderListItemProps = PropsWithDefinedChildren<Tokens.ListItem>;
-export type RenderTaskProps = PropsWithDefinedChildren<
+export type RenderListProps = SharedRenderPropsWithChildren<Tokens.List>;
+export type RenderListItemProps =
+  SharedRenderPropsWithChildren<Tokens.ListItem>;
+export type RenderTaskProps = SharedRenderPropsWithChildren<
   Tokens.ListItem & { task: true; checked: boolean }
 >;
 
-export type RenderCodeProps = PropsWithDefinedChildren<Tokens.Code>;
-export type RenderCodeSpanProps = PropsWithDefinedChildren<Tokens.Codespan>;
+export type RenderCodeProps = SharedRenderPropsWithChildren<Tokens.Code>;
+export type RenderCodeSpanProps =
+  SharedRenderPropsWithChildren<Tokens.Codespan>;
 
-export type RenderTableProps = PropsWithDefinedChildren<Tokens.Table>;
-export type RenderTableCellProps = PropsWithDefinedChildren<Tokens.TableCell>;
-export type RenderTableRowProps = PropsWithDefinedChildren<
-  Tokens.Table & { cells: readonly Tokens.TableCell[] }
+export type RenderRawTableProps = SharedRenderProps<{ token: Tokens.Table }>;
+export type RenderTableProps = SharedRenderPropsWithChildren<Tokens.Table>;
+export type RenderTableCellProps =
+  SharedRenderPropsWithChildren<Tokens.TableCell>;
+export type RenderTableRowProps = SharedRenderPropsWithChildren<
+  Tokens.TableRow<ReactNode>
 >;
-export type RenderTableSectionProps = PropsWithDefinedChildren<
-  Tokens.Table & { isHeader: boolean }
->;
+export type RenderTableSectionProps = SharedRenderPropsWithChildren<{
+  table: Tokens.Table;
+  header: boolean;
+}>;
+
+export type RenderReactElementProps =
+  SharedRenderPropsWithChildren<Tokens.ReactElementToken>;
 
 export interface MarkdownRenderers {
-  hr: ComponentType<RenderHrProps>;
   br: ComponentType<RenderBrProps>;
+  hr: ComponentType<RenderHrProps>;
+  def: ComponentType<RenderDefProps>;
   space: ComponentType<RenderSpaceProps>;
-  strong: ComponentType<RenderStrongProps>;
   escape: ComponentType<RenderEscapeProps>;
-  html: ComponentType<RenderHtmlProps>;
-  tag: ComponentType<RenderTagProps>;
-  image: ComponentType<RenderImageProps>;
-  del: ComponentType<RenderDelProps>;
+
+  text: ComponentType<RenderTextProps>;
   em: ComponentType<RenderEmProps>;
+  del: ComponentType<RenderDelProps>;
+  strong: ComponentType<RenderStrongProps>;
   heading: ComponentType<RenderHeadingProps>;
-  link: ComponentType<RenderLinkProps>;
   paragraph: ComponentType<RenderParagraphProps>;
   blockquote: ComponentType<RenderBlockquoteProps>;
-  text: ComponentType<RenderTextProps>;
-  checkbox: ComponentType<RenderCheckboxProps>;
-  list: ComponentType<RenderListProps>;
-  list_item: ComponentType<RenderListItemProps>;
-  task: ComponentType<RenderTaskProps>;
+
+  link: ComponentType<RenderLinkProps>;
+
   code: ComponentType<RenderCodeProps>;
   codespan: ComponentType<RenderCodeSpanProps>;
-  generic: ComponentType<RenderGenericProps>;
-  def: ComponentType<RenderDefProps>;
+
+  image: ComponentType<RenderImageProps>;
+
+  checkbox: ComponentType<RenderCheckboxProps>;
+  list: ComponentType<RenderListProps>;
+  listitem: ComponentType<RenderListItemProps>;
+  task: ComponentType<RenderTaskProps>;
+
+  raw_table: ComponentType<RenderRawTableProps>;
   table: ComponentType<RenderTableProps>;
+  tablecell: ComponentType<RenderTableCellProps>;
+  tablerow: ComponentType<RenderTableRowProps>;
   thead: ComponentType<RenderTableSectionProps>;
   tbody: ComponentType<RenderTableSectionProps>;
-  td: ComponentType<RenderTableCellProps>;
-  th: ComponentType<RenderTableCellProps>;
-  tr: ComponentType<RenderTableRowProps>;
+
+  react: ComponentType<RenderReactElementProps>;
+  html: ComponentType<RenderHtmlProps>;
+  tag: ComponentType<RenderTagProps>;
 }
 
-export interface MarkdownRenderersWithTokens extends MarkdownRenderers {
-  tokens: ComponentType<RenderTokensProps>;
+export type OverridableMarkdownRenderers = Partial<Readonly<MarkdownRenderers>>;
+
+export interface ReactElementExtensionOptions {
+  parseHtml?: boolean;
+  parseHtmlProps?: (rawProps: string) => Tokens.ReactElementToken["props"];
 }
 
-export interface MarkdownProps {
-  lexer?: typeof Lexer.lex;
-  options?: MarkedOptions;
-  markdown: string;
-  renderers?: Partial<Readonly<MarkdownRenderers>>;
+export interface ReactMarkedRendererOptions
+  extends ReactElementExtensionOptions {
+  renderers?: OverridableMarkdownRenderers;
 }

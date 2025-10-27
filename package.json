@@ -13,6 +13,8 @@
     "typecheck": "pnpm run turbo-s typecheck",
     "typecheck-watch": "pnpm run turbo-s typecheck-watch",
     "test": "pnpm run turbo-s test",
+    "test-renderer": "pnpm --filter react-marked-renderer test",
+    "coverage-renderer": "pnpm --filter react-marked-renderer test-coverage",
     "clean-dist": "pnpm run turbo-s clean-dist",
     "clean-root": "rm -rf .turbo node_modules",
     "clean": "pnpm run clean-dist && pnpm run clean-root"

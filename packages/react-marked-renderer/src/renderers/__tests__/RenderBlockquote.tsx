@@ -14,25 +14,17 @@ const NESTED_BLOCKQUOTE_MARKDOWN = `
 
 describe("RenderBlockquote", () => {
   it("should be able to render a simple blockquote", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={BLOCKQUOTE_MARKDOWN} />
-      </div>
-    );
+    const { container } = render(<Markdown markdown={BLOCKQUOTE_MARKDOWN} />);
 
-    const container = screen.getByTestId("container");
     expect(container).toHaveTextContent("This is text in a blockquote");
     expect(container).toMatchSnapshot();
   });
 
   it("should be able to render a nested blockquotes", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={NESTED_BLOCKQUOTE_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={NESTED_BLOCKQUOTE_MARKDOWN} />
     );
 
-    const container = screen.getByTestId("container");
     expect(container).toHaveTextContent("Root BlockquoteNested Blockquote");
     expect(container).toMatchSnapshot();
   });

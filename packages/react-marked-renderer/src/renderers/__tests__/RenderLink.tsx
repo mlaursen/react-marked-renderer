@@ -25,11 +25,7 @@ const REFERENCE_LINK_MARKDOWN = `
 
 describe("RenderLink", () => {
   it("should be able to render links with or without references", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={LINK_MARKDOWN} />
-      </div>
-    );
+    const { container } = render(<Markdown markdown={LINK_MARKDOWN} />);
 
     const automatic = screen.getByRole("link", { name: "https://example.com" });
     const brackets = screen.getByRole("link", { name: "Brackets Link" });
@@ -56,14 +52,12 @@ describe("RenderLink", () => {
       "href",
       "https://github.com/mlaursen/react-marked-renderer"
     );
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to render links that reference specific ids", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={REFERENCE_LINK_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={REFERENCE_LINK_MARKDOWN} />
     );
 
     const link1 = screen.getByRole("link", { name: "heading-1" });
@@ -76,7 +70,7 @@ describe("RenderLink", () => {
     expect(link2).toHaveAttribute("href", "#heading-2");
     expect(link2).toHaveAttribute("title", "Goto heading-2");
 
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to render a custom link component", () => {

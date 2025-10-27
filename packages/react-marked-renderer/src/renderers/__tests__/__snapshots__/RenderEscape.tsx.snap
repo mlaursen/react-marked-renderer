@@ -1,9 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RenderEscape > should be able to render escaped (backslash-prefixed) html 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <ul>
     <li>
@@ -31,9 +29,7 @@ exports[`RenderEscape > should be able to render escaped (backslash-prefixed) ht
 `;
 
 exports[`RenderEscape > should be able to render escaped (backslash-prefixed) text 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     Here is some 
@@ -60,9 +56,7 @@ exports[`RenderEscape > should be able to render escaped (backslash-prefixed) te
 `;
 
 exports[`RenderEscape > should be able to render using a custom component 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     Here is some 

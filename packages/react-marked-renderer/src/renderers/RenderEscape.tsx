@@ -11,6 +11,14 @@ import { type RenderEscapeProps } from "../types.js";
  * ```tsx
  * <>{text}</>
  * ```
+ *
+ * So this will match things like:
+ *
+ * ```markdown
+ * Allow \\_\\_tests\\_\\_.
+ * ```
+ *
+ * This would be called 4 times with `_`.
  */
 export function RenderEscape({
   text,

@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RenderReactElement > should be able to render custom components with a custom renderer 1`] = `
+<div>
+  <div>
+    {"flagged":true,"hello":"world"}
+    Children
+  </div>
+  <div>
+    {"flagged":true,"hello":"world"}
+    Children
+  </div>
+  <div>
+    {"flagged":true,"hello":"world"}
+  </div>
+  <div>
+    {"flagged":true,"hello":"world"}
+  </div>
+</div>
+`;
+
+exports[`RenderReactElement > should be able to render html elements as React elements 1`] = `
+<div>
+  <details>
+    <summary>
+      Title 1
+    </summary>
+    
+
+    <p>
+      Content in Title 1
+    </p>
+  </details>
+</div>
+`;
+
+exports[`RenderReactElement > should be able to render html elements as React elements 2`] = `
+<div>
+  <details>
+    <summary>
+      Title 2
+    </summary>
+    
+  
+    <p>
+      Content in Title 2
+    </p>
+  </details>
+</div>
+`;
+
+exports[`RenderReactElement > should be able to support attributes on elements 1`] = `
+<div
+  class="hello-world"
+  data-testid="container"
+>
+  <p
+    data-paragraph="true"
+  >
+    Text
+  </p>
+  
+  
+  <input
+    checked=""
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`RenderReactElement > should be able to support self closing tags with a space 1`] = `
+<div>
+  <hr />
+</div>
+`;
+
+exports[`RenderReactElement > should be able to support self closing tags without a space 1`] = `
+<div>
+  <hr />
+</div>
+`;

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Markdown } from "../../Markdown.js";
@@ -21,39 +21,29 @@ const ESCAPED_HTML_MARKDOWN = `
 
 describe("RenderEscape", () => {
   it("should be able to render escaped (backslash-prefixed) text", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={ESCAPED_MARKDOWN} />
-      </div>
-    );
+    const { container } = render(<Markdown markdown={ESCAPED_MARKDOWN} />);
 
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to render escaped (backslash-prefixed) html", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={ESCAPED_HTML_MARKDOWN} />
-      </div>
-    );
+    const { container } = render(<Markdown markdown={ESCAPED_HTML_MARKDOWN} />);
 
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to render using a custom component", () => {
-    render(
-      <div data-testid="container">
-        <Markdown
-          markdown={ESCAPED_MARKDOWN}
-          renderers={{
-            escape: function Escape({ text }) {
-              return <span data-testid="escape">{text}</span>;
-            },
-          }}
-        />
-      </div>
+    const { container } = render(
+      <Markdown
+        markdown={ESCAPED_MARKDOWN}
+        renderers={{
+          escape: function Escape({ text }) {
+            return <span data-testid="escape">{text}</span>;
+          },
+        }}
+      />
     );
 
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Markdown } from "../../Markdown.js";
@@ -15,13 +15,10 @@ const FOLDABLE_TEXT_MARKDOWN = `<details>
 
 describe("RenderHtml", () => {
   it("should not be able to support foldable text (details) without a custom renderer", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={FOLDABLE_TEXT_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={FOLDABLE_TEXT_MARKDOWN} />
     );
 
-    const container = screen.getByTestId("container");
     expect(container).toBeEmptyDOMElement();
   });
 });

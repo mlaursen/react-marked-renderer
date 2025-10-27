@@ -11,13 +11,18 @@ import { type RenderListProps } from "../types.js";
  * ```tsx
  * const Component = ordered ? "ol" : "ul";
  *
- * <Component>{children}</Component>;
+ * <Component start={start}>{children}</Component>;
  * ```
  */
 export function RenderList({
+  start,
   ordered,
   children,
 }: Readonly<RenderListProps>): ReactElement {
   const Component = ordered ? "ol" : "ul";
-  return <Component>{children}</Component>;
+  return (
+    <Component start={typeof start === "number" ? start : undefined}>
+      {children}
+    </Component>
+  );
 }

@@ -13,14 +13,12 @@ Text Below HR
 
 describe("RenderHr", () => {
   it("should be able to render horizontal rules and <br /> tags", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={HORIZONTAL_RULE_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={HORIZONTAL_RULE_MARKDOWN} />
     );
 
     expect(screen.getByRole("separator")).toBeInTheDocument();
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("should be able to be rendered with a custom component", () => {

@@ -1,5 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`RenderList > should be able to provide a custom list item renderer 1`] = `
+<ul>
+  <li
+    data-testid="listitem"
+  >
+    Item 1
+  </li>
+  <li
+    data-testid="listitem"
+  >
+    Item 2
+  </li>
+  <li
+    data-testid="listitem"
+  >
+    Item 3
+  </li>
+</ul>
+`;
+
 exports[`RenderList > should be able to render an unordered list using asterisks 1`] = `
 <ul>
   <li>
@@ -28,11 +48,127 @@ exports[`RenderList > should be able to render an unordered list using hyphens 1
 </ul>
 `;
 
+exports[`RenderList > should be able to render loose lists 1`] = `
+<ul>
+  <li>
+    <p>
+      Item 1
+    </p>
+     
+    <p>
+      Second Paragraph of Item 1
+    </p>
+  </li>
+  <li>
+    <p>
+      Item 2
+    </p>
+  </li>
+  <li>
+    <p>
+      Item 3
+    </p>
+     
+    <p>
+      Second Paragraph of Item 3
+    </p>
+  </li>
+</ul>
+`;
+
+exports[`RenderList > should be able to render loose task lists with the RenderTaskUnsafe renderer 1`] = `
+<ul>
+  <li>
+    <input
+      id="_r_c_"
+      type="checkbox"
+    />
+    <p>
+      Item 1
+    </p>
+     
+    <p>
+      Second Paragraph of Item 1
+    </p>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_e_"
+      type="checkbox"
+    />
+    <p>
+      Item 2
+    </p>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_g_"
+      type="checkbox"
+    />
+    <p>
+      Item 3
+    </p>
+     
+    <p>
+      Second Paragraph of Item 3
+    </p>
+  </li>
+</ul>
+`;
+
+exports[`RenderList > should be able to render loose task lists without a custom renderer even if the styles and markup isn't great 1`] = `
+<ul>
+  <li>
+    <input
+      id="_r_6_"
+      type="checkbox"
+    />
+    <p>
+      Item 1
+    </p>
+     
+    <p>
+      Second Paragraph of Item 1
+    </p>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_8_"
+      type="checkbox"
+    />
+    <p>
+      Item 2
+    </p>
+  </li>
+  <li>
+    <input
+      checked=""
+      id="_r_a_"
+      type="checkbox"
+    />
+    <p>
+      Item 3
+    </p>
+     
+    <p>
+      Second Paragraph of Item 3
+    </p>
+  </li>
+</ul>
+`;
+
 exports[`RenderList > should be able to render nested lists 1`] = `
-<ol>
+<ol
+  start="1"
+>
   <li>
     Ordered Item 1
-    <ol>
+    <ol
+      start="1"
+    >
       <li>
         Ordered Subitem 1
         <ul>
@@ -55,7 +191,9 @@ exports[`RenderList > should be able to render nested lists 1`] = `
 `;
 
 exports[`RenderList > should be able to render ordered lists 1`] = `
-<ol>
+<ol
+  start="1"
+>
   <li>
     Ordered Item 1
   </li>

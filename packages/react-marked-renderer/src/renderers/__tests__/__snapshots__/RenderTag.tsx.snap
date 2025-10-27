@@ -1,9 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RenderTag > should allow for a custom renderer 1`] = `
-<div
-  data-testid="container"
->
+<div>
   <p>
     Some text with 
     an HTML tag
@@ -13,9 +11,7 @@ exports[`RenderTag > should allow for a custom renderer 1`] = `
 `;
 
 exports[`RenderTag > should not be able to render inline tags without a custom renderer 1`] = `
-<div
-  data-testid="container"
->
+<div>
   <p>
     Some text with 
     an HTML tag

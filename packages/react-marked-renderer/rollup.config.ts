@@ -2,18 +2,17 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { type RollupOptions } from "rollup";
 import { dts } from "rollup-plugin-dts";
 import { defineRollupSwcOption, swc } from "rollup-plugin-swc3";
-import preserveDirectives from "rollup-preserve-directives";
 
-function createConfig(): RollupOptions {
-  return {
-    input: {
-      client: "./src/react-client/index.ts",
-      server: "./src/react-server/index.ts",
-    },
-    external: ["react", "react/jsx-runtime"],
+const external = (id: string): boolean => !/^[./]/.test(id);
+
+export default [
+  {
+    input: "./src/index.ts",
+    external,
     output: {
-      dir: "./dist",
-      entryFileNames: "[name].mjs",
+      file: "./dist/index.mjs",
+      format: "es",
+      sourcemap: true,
     },
     plugins: [
       nodeResolve(),
@@ -29,23 +28,15 @@ function createConfig(): RollupOptions {
           },
         })
       ),
-      preserveDirectives(),
     ],
-  };
-}
-
-function createTypesConfig(): RollupOptions {
-  return {
-    input: {
-      client: "./types/react-client/index.d.ts",
-      server: "./types/react-server/index.d.ts",
-    },
+  },
+  {
+    input: "./types/index.d.ts",
     output: {
-      dir: "./dist",
-      entryFileNames: "[name].d.ts",
+      file: "./dist/index.d.ts",
+      sourcemap: true,
     },
+    external,
     plugins: [dts()],
-  };
-}
-
-export default [createConfig(), createTypesConfig()] satisfies RollupOptions[];
+  },
+] satisfies RollupOptions[];

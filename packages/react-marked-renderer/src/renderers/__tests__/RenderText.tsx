@@ -21,13 +21,8 @@ _**Should be emphasis and bold.**_
 
 describe("RenderText", () => {
   it("should be able to render simple text", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown="Hello, world!" />
-      </div>
-    );
+    const { container } = render(<Markdown markdown="Hello, world!" />);
 
-    const container = screen.getByTestId("container");
     expect(container).toHaveTextContent("Hello, world!");
     expect(container).toMatchSnapshot();
   });
@@ -49,12 +44,10 @@ describe("RenderText", () => {
   });
 
   it("should be able to render text that combines emphasis, strong, and strikethrough text", () => {
-    render(
-      <div data-testid="container">
-        <Markdown markdown={EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN} />
-      </div>
+    const { container } = render(
+      <Markdown markdown={EMPHASIS_BOLD_STRIKETHROUGH_TEXT_MARKDOWN} />
     );
 
-    expect(screen.getByTestId("container")).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

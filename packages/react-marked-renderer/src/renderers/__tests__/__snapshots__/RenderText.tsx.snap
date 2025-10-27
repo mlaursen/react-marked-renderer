@@ -3,13 +3,13 @@
 exports[`RenderText > should be able to render a custom text component 1`] = `
 <span
   data-testid="span"
-/>
+>
+  Hello, world!
+</span>
 `;
 
 exports[`RenderText > should be able to render simple text 1`] = `
-<div
-  data-testid="container"
->
+<div>
   <p>
     Hello, world!
   </p>
@@ -17,9 +17,7 @@ exports[`RenderText > should be able to render simple text 1`] = `
 `;
 
 exports[`RenderText > should be able to render text that combines emphasis, strong, and strikethrough text 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     <em>

@@ -1,9 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RenderBr > should be able to render a custom br component 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     Trailing two spaces to force break
@@ -40,9 +38,7 @@ exports[`RenderBr > should be able to render a custom br component 1`] = `
 `;
 
 exports[`RenderBr > should be able to support the different types of breaks 1`] = `
-<div
-  data-testid="container"
->
+<div>
    
   <p>
     Trailing two spaces to force break

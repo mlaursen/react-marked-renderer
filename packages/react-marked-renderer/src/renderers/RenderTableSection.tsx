@@ -13,9 +13,9 @@ import { type RenderTableSectionProps } from "../types.js";
  * ```
  */
 export function RenderTableSection({
-  isHeader,
+  header,
   children,
 }: Readonly<RenderTableSectionProps>): ReactElement {
-  const Component = isHeader ? "thead" : "tbody";
+  const Component = header ? "thead" : "tbody";
   return <Component>{children}</Component>;
 }

@@ -1,18 +1,19 @@
-import { DEFAULT_MARKDOWN_RENDERERS_WITH_TOKENS } from "./constants.js";
+import { DEFAULT_MARKDOWN_RENDERERS } from "./constants.js";
 import {
   type MarkdownRenderers,
-  type MarkdownRenderersWithTokens,
+  type OverridableMarkdownRenderers,
 } from "./types.js";
 
+/** @internal */
 export function mergeRenderers(
-  renderers?: Partial<Readonly<MarkdownRenderers>>
-): Readonly<MarkdownRenderersWithTokens> {
+  renderers?: OverridableMarkdownRenderers
+): Readonly<MarkdownRenderers> {
   if (!renderers) {
-    return DEFAULT_MARKDOWN_RENDERERS_WITH_TOKENS;
+    return DEFAULT_MARKDOWN_RENDERERS;
   }
 
-  const merged: MarkdownRenderersWithTokens = {
-    ...DEFAULT_MARKDOWN_RENDERERS_WITH_TOKENS,
+  const merged: MarkdownRenderers = {
+    ...DEFAULT_MARKDOWN_RENDERERS,
   };
   Object.entries(renderers).forEach(([name, renderer]) => {
     //  @ts-expect-error It can be mismatched types, but _shouldn't_

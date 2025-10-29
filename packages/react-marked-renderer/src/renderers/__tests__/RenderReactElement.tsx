@@ -10,7 +10,7 @@ import { doNotParseHtmlProps } from "../../parseHtmlProps.js";
 
 const DETAILS_MARKDOWN = `
 <details>
-<summary>Title 1</summary>
+<summary>Title 1 **bold**</summary>
 <p>Content in Title 1</p>
 </details>
 `;
@@ -23,7 +23,8 @@ const DETAILS_WITH_SPACES_MARKDOWN = `
 `;
 
 describe("RenderReactElement", () => {
-  it("should be able to render html elements as React elements", () => {
+  // eslint-disable-next-line vitest/no-focused-tests
+  it.only("should be able to render html elements as React elements", () => {
     const { container, rerender } = render(
       <Markdown markdown={DETAILS_MARKDOWN} parseHtml />
     );

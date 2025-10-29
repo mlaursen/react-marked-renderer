@@ -23,10 +23,11 @@ exports[`RenderReactElement > should be able to render html elements as React el
 <div>
   <details>
     <summary>
-      Title 1
+      Title 1 
+      <strong>
+        bold
+      </strong>
     </summary>
-    
-
     <p>
       Content in Title 1
     </p>
@@ -40,8 +41,6 @@ exports[`RenderReactElement > should be able to render html elements as React el
     <summary>
       Title 2
     </summary>
-    
-  
     <p>
       Content in Title 2
     </p>

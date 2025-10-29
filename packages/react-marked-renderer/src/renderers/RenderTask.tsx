@@ -1,10 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Tokens } from "marked";
 import { type ReactElement, useId } from "react";
 
 import type { RenderTaskProps } from "../types.js";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { RenderTaskUnsafe } from "./RenderTaskUnsafe.js";
 
 /**
  * The default implementation for rendering the {@link Tokens.ListItem} when
@@ -12,36 +9,78 @@ import type { RenderTaskUnsafe } from "./RenderTaskUnsafe.js";
  *
  * ```tsx
  * const id = useId();
+ * const { checkbox: RenderCheckbox, paragraph: RenderParagraph } = renderers
  *
- * <li>
- *   <renderers.checkbox id={id} checked={checked} renderers={renderers} />
- *   {loose ? children : <label htmlFor={id}>{children}</label>}
- * </li>
+ *  const shared = { parser, renderers };
+ *  const checkbox = <RenderCheckbox id={id} checked={checked} {...shared} />;
+ *
+ *  let firstParagraph: ReactElement | undefined;
+ *  const firstToken = tokens[0];
+ *  if (loose && firstToken?.type === "text") {
+ *    firstParagraph = (
+ *      <RenderParagraph {...firstToken} {...shared}>
+ *        {checkbox}{" "}
+ *        <label htmlFor={id}>{parser.parseInline(firstToken.tokens)}</label>
+ *      </RenderParagraph>
+ *    );
+ *  }
+ *
+ *  return (
+ *    <li>
+ *      {!!firstParagraph && (
+ *        <>
+ *          {firstParagraph}
+ *          {parser.parse(tokens.slice(1))}
+ *        </>
+ *      )}
+ *      {!firstParagraph && (
+ *        <>
+ *          {checkbox} {loose ? children : <label htmlFor={id}>{children}</label>}
+ *        </>
+ *      )}
+ *    </li>
+ *  );
  * ```
- *
- * @see {@link RenderTaskUnsafe} for a way to possibly render loose task lists
- * @remarks You'll most likely need to implement a custom renderer for this
- * since the default styles aren't very pretty.
  */
 export function RenderTask({
   loose,
+  tokens,
   parser,
   checked,
   children,
   renderers,
 }: Readonly<RenderTaskProps>): ReactElement {
   const id = useId();
-  const { checkbox: RenderCheckbox } = renderers;
+  const { checkbox: RenderCheckbox, paragraph: RenderParagraph } = renderers;
+  const shared = { parser, renderers };
+  const checkbox = <RenderCheckbox id={id} checked={checked} {...shared} />;
+
+  let firstParagraph: ReactElement | undefined;
+  const firstToken = tokens[0];
+  if (loose && firstToken?.type === "text") {
+    // remove the Tokens.Generic
+    const pToken = firstToken as Tokens.Paragraph;
+
+    firstParagraph = (
+      <RenderParagraph {...pToken} {...shared}>
+        {checkbox}{" "}
+        <label htmlFor={id}>{parser.parseInline(pToken.tokens)}</label>
+      </RenderParagraph>
+    );
+  }
 
   return (
     <li>
-      <RenderCheckbox
-        id={id}
-        checked={checked}
-        parser={parser}
-        renderers={renderers}
-      />
-      {loose ? children : <label htmlFor={id}>{children}</label>}
+      {firstParagraph ? (
+        <>
+          {firstParagraph}
+          {parser.parse(tokens.slice(1))}
+        </>
+      ) : (
+        <>
+          {checkbox} {loose ? children : <label htmlFor={id}>{children}</label>}
+        </>
+      )}
     </li>
   );
 }

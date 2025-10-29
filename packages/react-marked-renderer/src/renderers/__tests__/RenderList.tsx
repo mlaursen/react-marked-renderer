@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Markdown } from "../../Markdown.js";
-import { RenderTaskUnsafe } from "../RenderTaskUnsafe.js";
 
 const UNORDERED_HYPHEN_LIST_MARKDOWN = `
 - Item 1
@@ -132,21 +131,7 @@ describe("RenderList", () => {
 
     const list = screen.getByRole("list");
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
-    expect(screen.getAllByRole("paragraph")).toHaveLength(5);
-    expect(list).toMatchSnapshot();
-  });
-
-  it("should be able to render loose task lists with the RenderTaskUnsafe renderer", () => {
-    render(
-      <Markdown
-        markdown={LOOSE_TASK_LIST_MARKDOWN}
-        renderers={{
-          task: RenderTaskUnsafe,
-        }}
-      />
-    );
-
-    const list = screen.getByRole("list");
+    expect(screen.getAllByRole("paragraph")).toHaveLength(3);
     expect(list).toMatchSnapshot();
   });
 

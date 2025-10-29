@@ -76,86 +76,55 @@ exports[`RenderList > should be able to render loose lists 1`] = `
 </ul>
 `;
 
-exports[`RenderList > should be able to render loose task lists with the RenderTaskUnsafe renderer 1`] = `
-<ul>
-  <li>
-    <input
-      id="_r_c_"
-      type="checkbox"
-    />
-    <p>
-      Item 1
-    </p>
-     
-    <p>
-      Second Paragraph of Item 1
-    </p>
-  </li>
-  <li>
-    <input
-      checked=""
-      id="_r_e_"
-      type="checkbox"
-    />
-    <p>
-      Item 2
-    </p>
-  </li>
-  <li>
-    <input
-      checked=""
-      id="_r_g_"
-      type="checkbox"
-    />
-    <p>
-      Item 3
-    </p>
-     
-    <p>
-      Second Paragraph of Item 3
-    </p>
-  </li>
-</ul>
-`;
-
 exports[`RenderList > should be able to render loose task lists without a custom renderer even if the styles and markup isn't great 1`] = `
 <ul>
   <li>
-    <input
-      id="_r_6_"
-      type="checkbox"
-    />
     <p>
-      Item 1
+      <input
+        id="_r_6_"
+        type="checkbox"
+      />
+       
+      <label
+        for="_r_6_"
+      >
+        Item 1
+      </label>
     </p>
      
+    Second Paragraph of Item 1
+  </li>
+  <li>
     <p>
-      Second Paragraph of Item 1
+      <input
+        checked=""
+        id="_r_8_"
+        type="checkbox"
+      />
+       
+      <label
+        for="_r_8_"
+      >
+        Item 2
+      </label>
     </p>
   </li>
   <li>
-    <input
-      checked=""
-      id="_r_8_"
-      type="checkbox"
-    />
     <p>
-      Item 2
-    </p>
-  </li>
-  <li>
-    <input
-      checked=""
-      id="_r_a_"
-      type="checkbox"
-    />
-    <p>
-      Item 3
+      <input
+        checked=""
+        id="_r_a_"
+        type="checkbox"
+      />
+       
+      <label
+        for="_r_a_"
+      >
+        Item 3
+      </label>
     </p>
      
-    <p>
-      Second Paragraph of Item 3
-    </p>
+    Second Paragraph of Item 3
   </li>
 </ul>
 `;
@@ -213,6 +182,7 @@ exports[`RenderList > should be able to render task lists 1`] = `
       id="_r_0_"
       type="checkbox"
     />
+     
     <label
       for="_r_0_"
     >
@@ -225,6 +195,7 @@ exports[`RenderList > should be able to render task lists 1`] = `
       id="_r_2_"
       type="checkbox"
     />
+     
     <label
       for="_r_2_"
     >
@@ -237,6 +208,7 @@ exports[`RenderList > should be able to render task lists 1`] = `
       id="_r_4_"
       type="checkbox"
     />
+     
     <label
       for="_r_4_"
     >

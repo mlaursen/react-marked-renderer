@@ -25,5 +25,4 @@ export * from "./RenderTableRow.js";
 export * from "./RenderTableSection.js";
 export * from "./RenderTag.js";
 export * from "./RenderTask.js";
-export * from "./RenderTaskUnsafe.js";
 export * from "./RenderText.js";

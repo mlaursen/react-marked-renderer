@@ -29,6 +29,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@react-marked-renderer/highlightjs':
+        specifier: workspace:*
+        version: link:../../packages/highlightjs
       '@react-md/core':
         specifier: ^6.3.4
         version: 6.3.4(@jest/globals@29.7.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vitest@4.0.3(@types/node@22.18.12)(jsdom@27.0.1(postcss@8.5.6))(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1))

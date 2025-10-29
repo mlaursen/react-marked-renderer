@@ -1,0 +1,7 @@
+CHANGELOG.md
+pnpm*.yaml
+
+node_modules
+dist/
+types/
+coverage/

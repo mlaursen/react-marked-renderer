@@ -6,6 +6,9 @@ import {
 
 import { RenderPrismJs } from "./RenderPrismJs.js";
 
+/**
+ * @see {@link ReactMarkdown} for examples
+ */
 export function Markdown(props: MarkdownProps): ReactElement {
   return (
     <ReactMarkdown

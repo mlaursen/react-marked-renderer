@@ -1,0 +1,9 @@
+{
+  "out": "./public/tsdocs",
+  "gaID": "G-JSF6GSWE18",
+  "entryPoints": ["./src/index.ts"],
+  "tsconfig": "./tsconfig.tsdoc.json",
+  "validation": {
+    "invalidLink": true
+  }
+}

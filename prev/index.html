@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReactMarkedRenderer UMD Example</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- development scripts -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-marked-renderer@latest/dist/index.js"
+    ></script>
+    <!-- <script src="./dist/index.min.js"></script> -->
+
+    <!-- production scripts -->
+    <!-- <script -->
+    <!--   crossorigin -->
+    <!--   src="https://unpkg.com/react@17/umd/react.production.min.js" -->
+    <!-- ></script> -->
+    <!-- <script -->
+    <!--   crossorigin -->
+    <!--   src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" -->
+    <!-- ></script> -->
+    <!-- <script -->
+    <!--   crossorigin -->
+    <!--   src="https://unpkg.com/react-marked-renderer@latest/dist/index.min.js" -->
+    <!-- ></script> -->
+    <div id="root"></div>
+    <script>
+      ReactDOM.render(
+        React.createElement(App),
+        document.getElementById("root")
+      );
+
+      function App() {
+        return React.createElement(
+          ReactMarkedRenderer.Markdown,
+          { markdown: "# Hello, world!\n\nSome Text\n" },
+          null
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -12,6 +12,8 @@
     "@react-marked-renderer/highlightjs": "workspace:*",
     "@react-marked-renderer/prismjs": "workspace:*",
     "@react-md/core": "^6.3.4",
+    "@shikijs/langs": "^3.14.0",
+    "@shikijs/themes": "^3.14.0",
     "cnbuilder": "^3.1.0",
     "highlight.js": "^11.11.1",
     "next": "^16.0.0",
@@ -19,10 +21,11 @@
     "prismjs": "^1.30.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-marked-renderer": "workspace:*"
+    "react-marked-renderer": "workspace:*",
+    "shiki": "^3.14.0"
   },
   "devDependencies": {
-    "@mlaursen/eslint-config": "^10.0.0",
+    "@mlaursen/eslint-config": "^10.0.1",
     "@next/eslint-plugin-next": "^16.0.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.18.12",

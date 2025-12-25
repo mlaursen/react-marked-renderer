@@ -1,0 +1,18 @@
+@use "@/everything" as *;
+
+.container {
+  // Note: The height and positioning is set up in a way so that the copy button
+  // can be visible in a single-line code example without displaying scrollbars
+  position: absolute;
+  right: 1rem;
+  top: 0.25rem;
+
+  @include rtl {
+    left: 1rem;
+    right: auto;
+  }
+  // copy to clipboard doesn't make much sense on phones
+  @include phone-media {
+    display: none;
+  }
+}

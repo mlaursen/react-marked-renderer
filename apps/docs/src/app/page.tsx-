@@ -1,0 +1,38 @@
+import { Markdown } from "@react-marked-renderer/highlightjs";
+import { TextContainer } from "@react-md/core/typography/TextContainer";
+import { Typography } from "@react-md/core/typography/Typography";
+import Link from "next/link";
+import { type ReactElement } from "react";
+
+import { DEFAULT_MARKDOWN } from "./constants";
+import { CUSTOM_RENDERERS } from "./renderers";
+
+const MARKDOWN = `
+# react-marked-renderer
+
+### Render markdown using custom React components instead of plain HTML strings with [marked](https://marked.js.org).
+
+---
+
+## Installation
+
+\`\`\`sh
+npm install react-marked-renderer
+\`\`\`
+
+\`\`\`sh
+pnpm add react-marked-renderer
+\`\`\`
+
+\`\`\`sh
+yarn add react-marked-renderer
+\`\`\`
+`;
+
+export default function HomePage(): ReactElement {
+  return (
+    <TextContainer>
+      <Markdown markdown={MARKDOWN} renderers={CUSTOM_RENDERERS} />
+    </TextContainer>
+  );
+}

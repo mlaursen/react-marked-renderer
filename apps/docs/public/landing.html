@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-marked-renderer - Render Markdown with React Components</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .gradient-text {
+        background: linear-gradient(to right, #60a5fa, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white"
+  >
+    <nav
+      class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <svg
+            class="text-blue-400"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <span class="text-xl font-bold">react-marked-renderer</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#docs" class="hover:text-blue-400 transition-colors">Docs</a>
+          <a
+            href="https://github.com"
+            class="hover:text-blue-400 transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="text-center mb-16">
+        <h1 class="text-6xl font-bold mb-6">
+          <span class="gradient-text">Render Markdown</span><br />
+          <span class="text-white">with React Components</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
+          A powerful React component library that wraps marked.js, allowing you
+          to render custom React components for markdown tokens instead of plain
+          HTML strings.
+        </p>
+        <div class="flex gap-4 justify-center">
+          <a
+            href="#installation"
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors flex items-center gap-2"
+          >
+            Get Started
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="https://github.com"
+            class="px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg font-semibold transition-colors flex items-center gap-2"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-20">
+        <div
+          class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-blue-500 transition-colors"
+        >
+          <div
+            class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="text-blue-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Custom Components</h3>
+          <p class="text-slate-400">
+            Replace any markdown token with your own React components. Full
+            control over rendering.
+          </p>
+        </div>
+
+        <div
+          class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-purple-500 transition-colors"
+        >
+          <div
+            class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="text-purple-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon
+                points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+              ></polygon>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Built on marked.js</h3>
+          <p class="text-slate-400">
+            Leverages the power and flexibility of marked.js under the hood with
+            a React-friendly API.
+          </p>
+        </div>
+
+        <div
+          class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-green-500 transition-colors"
+        >
+          <div
+            class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">TypeScript Ready</h3>
+          <p class="text-slate-400">
+            Fully typed with TypeScript for the best developer experience and
+            type safety.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="installation"
+      class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-800"
+    >
+      <h2 class="text-4xl font-bold mb-8 text-center gradient-text">
+        Get Started
+      </h2>
+
+      <div class="max-w-3xl mx-auto">
+        <div
+          class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 mb-8"
+        >
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+              ></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Installation
+          </h3>
+          <div
+            class="bg-slate-950 rounded-lg p-4 font-mono text-sm overflow-x-auto"
+          >
+            <div class="text-slate-400"># npm</div>
+            <div class="text-blue-400">npm install react-marked-renderer</div>
+            <div class="text-slate-400 mt-3"># yarn</div>
+            <div class="text-blue-400">yarn add react-marked-renderer</div>
+            <div class="text-slate-400 mt-3"># pnpm</div>
+            <div class="text-blue-400">pnpm add react-marked-renderer</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            Quick Example
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <div class="text-sm text-slate-400 mb-2">Code</div>
+              <div
+                class="bg-slate-950 rounded-lg p-4 font-mono text-xs overflow-x-auto"
+              >
+                <pre
+                  class="text-slate-300"
+                ><span class="text-purple-400">import</span> { <span class="text-blue-400">Markdown</span> } <span class="text-purple-400">from</span> <span class="text-green-400">'react-marked-renderer'</span>;
+
+<span class="text-purple-400">const</span> <span class="text-blue-400">markdown</span> = <span class="text-green-400">`
+# Hello World
+
+This is **bold** text.
+
+- Item 1
+- Item 2
+- Item 3
+`</span>;
+
+<span class="text-purple-400">function</span> <span class="text-yellow-400">App</span>() {
+  <span class="text-purple-400">return</span> &lt;<span class="text-blue-400">Markdown</span> <span class="text-yellow-400">content</span>={markdown} /&gt;;
+}</pre>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-sm text-slate-400 mb-2">Preview</div>
+              <div
+                class="bg-white text-slate-900 rounded-lg p-4 overflow-x-auto"
+              >
+                <h1 class="text-2xl font-bold mb-3">Hello World</h1>
+                <p class="mb-3">This is <strong>bold</strong> text.</p>
+                <ul class="list-disc list-inside">
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-slate-700">
+            <h4 class="text-lg font-bold mb-3">Custom Renderers</h4>
+            <div
+              class="bg-slate-950 rounded-lg p-4 font-mono text-xs overflow-x-auto"
+            >
+              <pre
+                class="text-slate-300"
+              ><span class="text-purple-400">import</span> { <span class="text-blue-400">Markdown</span> } <span class="text-purple-400">from</span> <span class="text-green-400">'react-marked-renderer'</span>;
+
+<span class="text-purple-400">const</span> <span class="text-blue-400">customRenderers</span> = {
+  <span class="text-yellow-400">heading</span>: ({ <span class="text-blue-400">level</span>, <span class="text-blue-400">children</span> }) =&gt; (
+    &lt;<span class="text-blue-400">h</span>{level} <span class="text-yellow-400">className</span>=<span class="text-green-400">"custom-heading"</span>&gt;
+      {children}
+    &lt;/<span class="text-blue-400">h</span>{level}&gt;
+  ),
+  <span class="text-yellow-400">code</span>: ({ <span class="text-blue-400">lang</span>, <span class="text-blue-400">text</span> }) =&gt; (
+    &lt;<span class="text-blue-400">SyntaxHighlighter</span> <span class="text-yellow-400">language</span>={lang}&gt;
+      {text}
+    &lt;/<span class="text-blue-400">SyntaxHighlighter</span>&gt;
+  ),
+};
+
+&lt;<span class="text-blue-400">Markdown</span> <span class="text-yellow-400">content</span>={markdown} <span class="text-yellow-400">renderers</span>={customRenderers} /&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-slate-800 mt-20">
+      <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="flex justify-between items-center">
+          <div class="text-slate-400">
+            <p>Built with ❤️ for the React community</p>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="text-slate-400 hover:text-white transition-colors"
+              >Documentation</a
+            >
+            <a
+              href="#"
+              class="text-slate-400 hover:text-white transition-colors"
+              >GitHub</a
+            >
+            <a
+              href="#"
+              class="text-slate-400 hover:text-white transition-colors"
+              >NPM</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

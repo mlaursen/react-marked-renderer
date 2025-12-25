@@ -1,0 +1,5 @@
+/dist
+/.next
+/public
+/node_modules
+/cypress/fixtures

@@ -1,3 +1,48 @@
 @use "@/everything" as *;
 
 @include styles;
+
+[class*="material-symbol-"] {
+  @include icon-use-var(font-size, size);
+}
+
+// @media (prefers-color-scheme: dark) {
+//
+//   @include use-shiki-dark-theme;
+// }
+
+.light-mode {
+  @include use-light-theme;
+}
+
+html:where(:not(.light-mode)) {
+  @media (prefers-color-scheme: dark) {
+    @include use-shiki-dark-theme;
+  }
+}
+
+.dark-mode {
+  @include use-dark-theme;
+  @include use-shiki-dark-theme;
+}
+
+main {
+  height: 100%;
+}
+
+.rmd-window-splitter {
+  opacity: 1;
+}
+
+.rmd-window-splitter:before {
+  @include divider-use-var(background-color, color);
+
+  content: "";
+  inset: 0;
+  position: absolute;
+  width: 0.25rem;
+}
+
+.rmd-window-splitter::after {
+  @include window-splitter-use-var(opacity);
+}

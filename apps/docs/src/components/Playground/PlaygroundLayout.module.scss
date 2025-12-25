@@ -1,0 +1,12 @@
+@use "@/everything" as *;
+
+.container {
+  grid-template-columns: minmax(0, window-splitter-get-var(position, 1fr)) 1fr;
+  height: 100%;
+  overflow: hidden;
+}
+
+.output {
+  height: 100%;
+  overflow: auto;
+}

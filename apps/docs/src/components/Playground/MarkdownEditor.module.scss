@@ -1,0 +1,14 @@
+.editor {
+  align-items: stretch;
+  height: 100%;
+  justify-content: stretch;
+  padding-top: 0;
+}
+
+.area {
+  font-family: var(--source-code-pro), "Source Code Pro", monospace;
+  height: 100%;
+  padding-left: 4rem;
+  padding: 2rem;
+  white-space: pre;
+}

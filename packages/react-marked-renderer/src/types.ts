@@ -53,7 +53,9 @@ export type RenderStrongProps = SharedRenderPropsWithChildren<Tokens.Strong>;
 export type RenderCheckboxProps = SharedRenderProps<
   Tokens.Checkbox & { id?: string }
 >;
-export type RenderListProps = SharedRenderPropsWithChildren<Tokens.List>;
+export type RenderListProps = SharedRenderPropsWithChildren<
+  Omit<Tokens.List, "start"> & { start: number | undefined }
+>;
 export type RenderListItemProps =
   SharedRenderPropsWithChildren<Tokens.ListItem>;
 export type RenderTaskProps = SharedRenderPropsWithChildren<

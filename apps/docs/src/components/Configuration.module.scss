@@ -1,0 +1,7 @@
+@use "@/everything" as *;
+
+.sheet {
+  @include phone-media {
+    width: 100%;
+  }
+}

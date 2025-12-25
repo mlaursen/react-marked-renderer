@@ -1,3 +1,6 @@
+"use client";
+
+import "prism-themes/themes/prism-solarized-dark-atom.css";
 import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-css";
@@ -13,31 +16,16 @@ import "prismjs/components/prism-properties";
 import "prismjs/components/prism-scss";
 import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-typescript";
-
-export type SupportedCodeLanguage =
-  | "css"
-  | "scss"
-  | "js"
-  | "jsx"
-  | "ts"
-  | "tsx"
-  | "html"
-  | "json"
-  | "sh"
-  | "diff"
-  | ({} & string);
-
-export interface TransformCodeOptions {
-  code: string;
-  lang: SupportedCodeLanguage;
-}
-
-export type FormatCode = (options: TransformCodeOptions) => Promise<string>;
-export type HighlightCode = (options: TransformCodeOptions) => string;
+import { type ReactElement, type ReactNode } from "react";
 
 Prism.manual = true;
 
-export const highlightCode: HighlightCode = (options): string => {
-  const { code, lang } = options;
-  return Prism.highlight(code, Prism.languages[lang], lang);
-};
+export interface PrismJsLayoutProps {
+  children: ReactNode;
+}
+
+export default function PrismJsLayout({
+  children,
+}: Readonly<PrismJsLayoutProps>): ReactElement {
+  return <>{children}</>;
+}

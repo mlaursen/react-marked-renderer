@@ -138,8 +138,14 @@ export function createRenderer({
       );
     },
     list(token: Tokens.List): ReactNode {
+      const start = typeof token.start === "number" ? token.start : undefined;
       return (
-        <RenderList {...token} parser={this.parser} renderers={renderers}>
+        <RenderList
+          {...token}
+          start={start}
+          parser={this.parser}
+          renderers={renderers}
+        >
           {this.parser.parse(token.items)}
         </RenderList>
       );

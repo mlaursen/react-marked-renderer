@@ -1,0 +1,48 @@
+@use "@/everything" as *;
+@use "sass:map";
+
+$max-height: 50rem !default;
+$tablet-max-height: min(60vh, $max-height) !default;
+
+.container {
+  margin: 2rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.scrollContainer {
+  @include interaction-outline($outline-offset: false);
+
+  max-height: var(--code-max-height, #{$max-height});
+  overflow: auto;
+
+  &:focus-visible,
+  &:has(:focus-visible) {
+    @include interaction-focus-styles($disable-background: true);
+  }
+
+  @include tablet-media {
+    --code-max-height: var(--code-tablet-max-height, #{$tablet-max-height});
+  }
+}
+
+.preContainer {
+  float: left;
+  min-width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  :where(pre, code) {
+    font-family: var(--source-code-pro), "Source Code Pro", monospace;
+  }
+
+  :where(pre) {
+    margin: var(--code-margin, 0);
+    min-height: calc(button-get-var(text-min-height) + 0.5em);
+    overflow: auto;
+    overflow-wrap: anywhere;
+    padding: 1em;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+}

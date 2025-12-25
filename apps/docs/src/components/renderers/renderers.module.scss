@@ -1,0 +1,57 @@
+@use "@/everything" as *;
+
+$raw-margin: icon-get-var(size);
+$task-margin: negate-var(#{$raw-margin});
+$task-p-margin: calc(#{$raw-margin} * 2);
+
+.blockquote {
+  $border-style: 0.25em solid divider-get-var(color);
+
+  @include theme-use-var(color, text-secondary-color);
+  @include typography-styles(subtitle-1);
+
+  border-left: $border-style;
+  font-style: italic;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  position: relative;
+
+  p:only-child {
+    margin: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @include rtl {
+    border-left: 0;
+    border-right: $border-style;
+  }
+}
+
+.task {
+  list-style: none;
+  margin-left: $task-margin;
+
+  @include rtl {
+    margin-left: auto;
+    margin-right: $task-margin;
+  }
+}
+
+.loose {
+  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  p ~ p {
+    grid-column: 1 / -1;
+    margin-left: $task-p-margin;
+
+    @include rtl {
+      margin-left: auto;
+      margin-right: $task-p-margin;
+    }
+  }
+}
